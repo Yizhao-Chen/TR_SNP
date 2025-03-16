@@ -1,0 +1,879 @@
+region,id,type,name,species,elevation,lat,lon,start,end,contributor
+usa,ak009,Ring Width,Slana bei Tok,PCGL,600,6250,-14355,1696,1983,Fritz Schweingruber
+usa,ak010,Ring Width,Eureka Summit,PCGL,960,6150,-14720,1654,1983,Fritz Schweingruber
+usa,ak012,Ring Width,Northway Junction,PCGL,600,6250,-14120,1795,1983,Fritz Schweingruber
+usa,ak013,Ring Width,"Willow Island,30km westl",PCGL,99,6450,-14810,1769,1983,Fritz Schweingruber
+usa,ak031,Ring Width,Four Twelve 3 Digit,PCGL,126,6756,-16218,1524,1990,Gordon Jacoby Rosanne D'arrigo Brendan Buckley
+usa,ak032,Ring Width,Arrigetch,PCGL,716,6727,-15403,1585,1990,Gordon Jacoby Rosanne D'arrigo Brendan Buckley
+usa,ak034,Ring Width,Fox River Bank,PCGL,61,6449,-16342,1795,1997,Andrea Lloyd
+usa,ak035,Ring Width,Canyon Creek,PCGL,884,6315,-14747,1642,1997,Andrea Lloyd
+usa,ak036,Ring Width,Eagle Summit below treeline,PCGL,945,6530,-14520,1734,1997,Andrea Lloyd
+usa,ak037,Ring Width,Eagle Summit treeline,PCGL,945,6530,-14520,1833,1996,Andrea Lloyd
+usa,ak039,Ring Width,Monahan Flats,PCGL,884,6316,-14755,1697,1998,Andrea Lloyd
+usa,ak040,Ring Width,Nome Creek below treeline,PCGL,884,6522,-14637,1785,1999,Andrea Lloyd
+usa,ak041,Ring Width,Nome Creek treeline,PCGL,884,6522,-14637,1775,1997,Andrea Lloyd
+usa,ak042,Ring Width,Twelvemile Summit below treeline,PCGL,945,6522,-14556,1739,1996,Andrea Lloyd
+usa,ak043,Ring Width,Twelvemile Summit treeline,PCGL,945,6522,-14556,1713,1997,Andrea Lloyd
+usa,ak046,Ring Width,Kobuk/Noatak,PCGL,100,6704,-15937,978,1992,John C. King Lisa J. Graumlich
+usa,ak047,Ring Width,Firth River,PCGL,100,6806,-14106,1676,2002,Martin Wilmking
+usa,ak048,Ring Width,Chimney Lake,PCGL,100,6707,-15005,1725,2001,Martin Wilmking
+usa,ak049,Ring Width,North Fork Koyukuk,PCGL,100,6709,-15005,1715,2001,Martin Wilmking
+usa,ak050,Ring Width,Nutirwik Creek,PCGL,100,6709,-14908,1731,2000,Martin Wilmking
+usa,ak051,Ring Width,Nutirwik Creek Floodplain,PCGL,100,6709,-14908,1828,2001,Martin Wilmking
+usa,ak052,Ring Width,Hunt Fork of John River,PCGL,100,6708,-15204,1730,2002,Martin Wilmking
+usa,ak053,Ring Width,Sheenjek River,PCGL,100,6805,-14308,1715,2000,Janet Joergenson Martin Wilmking
+usa,ak055,Ring Width,"Slime Creek, Alaska Range",PCGL,100,6305,-14808,1788,2002,Martin Wilmking
+usa,ak057,Ring Width,Almond Butter Lower,PCGL,168,6511,-16212,1607,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak058,Ring Width,Almond Butter Upper,PCGL,213,6511,-16213,1406,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak059,Ring Width,Alpine View,PCGL,282,6507,-16211,1542,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak060,Ring Width,Burnt Over,PCGL,259,6513,-16215,1621,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak061,Ring Width,Bye Rosanne,PCGL,282,6505,-16211,1575,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak062,Ring Width,Death Valley,PCGL,239,6512,-16216,1358,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak063,Ring Width,Echo Slope,PCGL,229,6506,-16209,1590,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak064,Ring Width,Frost Valley,PCGL,229,6505,-16209,1611,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak065,Ring Width,Gordon's Cat,PCGL,168,6512,-16212,1400,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak066,Ring Width,Hey Bear,PCGL,213,6513,-16213,1533,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak067,Ring Width,Hey Bear Upper,PCGL,229,6513,-16213,1383,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak068,Ring Width,Mt. Mole,PCGL,229,6505,-16211,1550,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak069,Ring Width,Ptarmigan Hill,PCGL,244,6504,-16214,1718,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak070,Ring Width,Windy Ridge,PCGL,251,6511,-16213,1556,2002,R. D'arrigo E. Mashig D. Frank R. Wilson G. Jacoby
+usa,ak073,Ring Width,Nazina Treeline,PCGL,995,6122,-14241,1546,1997,Gordon Jacoby Nicole Davi Greg Wiles
+usa,ak074,Ring Width,Nabesna Mine,PCGL,1167,6222,-14303,1471,1997,Gordon Jacoby Nicole Davi Greg Wiles
+usa,ak076,Ring Width,Chisana Air,PCGL,1006,6205,-14201,1415,1994,Gordon Jacoby Nicole Davi Greg Wiles
+usa,ak077,Ring Width,Caribou Creek,PCGL,994,6233,-14317,1559,1996,Gordon Jacoby Nicole Davi Greg Wiles
+usa,ak078,Ring Width,Big Bend Lake,PCGL,1040,6120,-14243,1557,1997,Gordon Jacoby Nicole Davi Greg Wiles
+usa,ak079,Ring Width,Dalton Highway Mile Post 171,PCMA,405,6713,-15016,1878,2005,Andrea Lloyd Chris Fastie
+usa,ak080,Ring Width,Dalton Highway Mile Post 182,PCMA,387,6721,-15003,1861,2003,Andrea Lloyd Chris Fastie
+usa,ak081,Ring Width,Dalton Highway Mile Post 184,PCMA,385,6723,-15006,1848,2004,Andrea Lloyd Chris Fastie
+usa,ak082,Ring Width,Dalton Highway Mile Post 199,PCMA,455,6732,-14951,1815,2001,Andrea Lloyd Chris Fastie
+usa,ak083,Ring Width,Dalton Highway Mile Post 200,PCMA,443,6733,-14950,1912,2001,Andrea Lloyd Chris Fastie
+usa,ak084,Ring Width,Dalton Highway Mile Post 201,PCMA,469,6734,-14949,1912,2001,Andrea Lloyd Chris Fastie
+usa,ak085,Ring Width,Dalton Highway Mile Post 235,PCGL,810,6802,-14941,1806,2005,Andrea Lloyd Chris Fastie
+usa,ak091,Ring Width,Rock Tor,TSME,90,6103,-14706,1406,2002,Greg Wiles Rob Wilson Rosanne D'arrigo
+usa,ak092,Ring Width,Beasley Creek,TSME,205,5937,-13912,1553,1993,Greg Wiles Gordon Jacoby
+usa,ak094,Ring Width,Prince William Sound,TSME,100,6027,-14820,873,1991,David Barclay Greg Wiles
+usa,ak101,Ring Width,Wrangell Pinnacle,TSME,757,5626,-13219,1343,1999,Greg Wiles Gordon Jacoby Nicole Davi
+usa,ak103,Ring Width,Savage River,PCGL,930,6344,-14911,1556,1990,Gordon Jacoby Rosanne D'arrigo Brendan Buckley
+usa,ak104,Ring Width,Dalton Highway,PCGL,701,6758,-14946,1303,2000,Gordon Jacoby Nicole Davi
+usa,ak109,Ring Width,412/Noatak,PCGL,750,6755,-16218,1524,1990,Gordon Jacoby Rosanne D'arrigo Brendan Buckley
+usa,ak110,Ring Width,Giddings,PCGL,,6705,-15755,980,1990,Gordon Jacoby Rosanne D'arrigo Brendan Buckley
+usa,ak111,Ring Width,Central Alaska Composite,PCGL,,6400,-14700,1556,1990,Rosanne D'arrigo Rob Wilson Gordon Jacoby
+usa,ak113,Ring Width,NW North Alaska Composite,PCGL,,6730,-15000,952,2000,Rosanne D'Arrigo Rob Wilson Gordon Jacoby
+usa,ak114,Ring Width,Southern Alaska Composite,TSME,,5600,-13200,1343,2000,Rosanne D'arrigo Rob Wilson Gordon Jacoby
+usa,ak115,Ring Width,Seward Composite,PCGL,,6510,-16215,1389,2001,Rosanne D'arrigo Rob Wilson Gordon Jacoby
+usa,ak116,Ring Width,Wrangells Composite,PCGL,,6200,-14200,1471,1999,Rosanne D'arrigo Rob Wilson Gordon Jacoby
+usa,ak12,Ring Width,"PONY POINT, KODIAK ISLAND",PCSI,20,5737,-15217,1731,1986,Klaus F. Kaiser
+usa,ak120,Ring Width,Nellie Juan,TSME,30,6028,-14821,1034,1999,David Barclay James Milligan Greg Wiles
+usa,ak121,Ring Width,Yakutat Moraines,PCSI,10,5932,-13944,1403,1995,David Barclay Tim Van Loan Gordon Jacoby
+usa,ak122,Ring Width,Alces Bluff,PCGL,420,6349,-14448,1835,2009,Andrea Lloyd Daniel Mann Paul Duffy
+usa,ak123,Ring Width,Tanana Bluff,PCGL,437,6343,-14409,1851,2009,Andrea Lloyd Daniel Mann Paul Duffy
+usa,ak124,Ring Width,Nenana Bluff,PCGL,339,6410,-14918,1827,2009,Andrea Lloyd Daniel Mann Paul Duffy
+usa,ak125,Ring Width,Salcha Bluff,PCGL,245,6429,-14658,1890,2009,Andrea Lloyd Daniel Mann Paul Duffy
+usa,ak126,Ring Width,Eagle Bluff,PCGL,341,6448,-14112,1854,2009,Andrea Lloyd Daniel Mann Paul Duffy
+usa,ak133,Ring Width,Babe Creek Summit,PCMA,465,6500,-14739,1908,2010,J. M. Wolken D. H. Mann A. H. Lloyd
+usa,ak134,Ring Width,Babe Creek Side Slope,PCMA,431,6500,-14739,1875,2010,J. M. Wolken D. H. Mann A. H. Lloyd
+usa,ak135,Ring Width,Babe Creek Toe Slope,PCMA,317,6500,-14740,1895,2010,J. M. Wolken D. H. Mann A. H. Lloyd
+usa,ak136,Ring Width,Babe Creek Valley Bottom,PCMA,300,6500,-14740,1857,2012,J. M. Wolken D. H. Mann A. H. Lloyd
+usa,ak139,Ring Width,Yakutat Inner Terminal Moraine,PCSI,40,5932,-13934,1784,1996,F. K. Kaiser
+usa,ak14,Ring Width,"ISTHMUS, KODIAK ISLAND",PCSI,1,5738,-15220,1789,1986,Klaus F. Kaiser
+usa,ak148,Ring Width,Agashashok Treeline,PCGL,125,6729,-16213,1855,2012,Patrick Sullivan
+usa,ak149,Ring Width,Agashashok Forest,PCGL,120,6729,-16213,1814,2012,Patrick Sullivan
+usa,ak15,Ring Width,"GULKANA, GLENALLEN",PCSI,500,6217,-14522,1854,1986,Klaus F. Kaiser
+usa,ak17,Ring Width,"FORK TWIN CREEK, KODIAK ISLAND",PCSI,25,5736,-15219,1721,1986,Klaus F. Kaiser
+usa,ak18,Ring Width,East Yakutat,PCSI,15,5931,-13942,1807,1986,Klaus F. Kaiser
+usa,ak2,Ring Width,"YAKUTAT, NEAR GLACIER BEAR LODGE",PCSI,15,5931,-13942,1655,1986,Klaus F. Kaiser
+usa,ak3,Ring Width,"TOK RIVER, NW TOK, TOK CUT OFF",PCSI,630,6314,-14310,1807,1986,Klaus F. Kaiser
+usa,al002,Ring Width,FLOMATON NATURAL AREA,PIPA,63,3101,-8715,1814,1995,"John Kush, Neil Pederson And Ralph Meldahl A"
+usa,al003,Ring Width,Choccolocco Mountain,PIPA,306,3349,-8542,1583,2006,Adam Bale Michael Stambaugh Richard Guyette Joseph Marsch
+usa,ar054,Ring Width,ST.FRANCIS SUNKLANDS  QUAKE EFFECTS AFTER 1811,TADI,65,3538,-9027,1321,1990,"David W. Stahle, Malcolm K. Cleaveland"
+usa,ar055,Ring Width,Hemmed in Hollow,JUVI,550,3604,-9318,1359,1992,D. W. Stahle M. D. Therrell M. K. Cleaveland
+usa,ar056,Ring Width,Hemmed in Hollow + Kyle's Landing,QUST,550,3604,-9318,1670,1992,D. W. Stahle M. D. Therrell M. K. Cleaveland
+usa,ar057,Ring Width,Buffalo Park Boundary,QUST,335,3604,-9311,1620,1993,D. W. Stahle M. D. Therrell
+usa,ar058,Ring Width,Malcolm's Ridge,QUST,440,3606,-9408,1679,1992,M. K. Cleaveland D. W. Stahle M. D. Therrell
+usa,ar059,Ring Width,"McGarrah-Reed House, Elkins",QUAL,380,3559,-9400,1625,1993,K. Thomson D. W. Stahle
+usa,ar060,Ring Width,Norfork Lake,QUST,200,3618,-9212,1637,1993,D. W. Stahle M. D. Therrell M. K. Cleaveland
+usa,ar061,Ring Width,Point Peter Mountain,QUST,580,3656,-9252,1692,1993,D. W. Stahle M. D. Therrell M. K. Cleaveland
+usa,ar064,Ring Width,Cossatot River,JUVI,229,3415,-9410,1658,1991,G. Imrie
+usa,ar065,Ring Width,Dragover Takeout,JUVI,201,3438,-9338,1762,1991,G. Imrie
+usa,ar066,Ring Width,Dry Creek,JUVI,366,3604,-9315,1641,1988,G. Imrie
+usa,ar070,Ring Width,Lake Ouachita,JUVI,191,3233,-9317,1480,1991,G. Imrie
+usa,ar072,Ring Width,Old Growth Study Washington County,QUST,999,3550,-9400,1625,1991,D. Stahle P. Chaney S. Sierzchula M. Cleaveland
+usa,ar073,Ring Width,Pencil Bluff,JUVI,223,3437,-9343,1729,1991,G. Imrie
+usa,ar074,Ring Width,Gee Creek,PIEC,500,3541,-9318,1600,2003,Michael C. Stambaugh Richard P. Guyette
+usa,ar076,Ring Width,Caddo Gap,PIEC,248,3427,-9330,1913,2009,Stevenson Lynch Heineman Holeman Wilson Anderson Guldin
+usa,ar077,Ring Width,Cold Springs,PIEC,154,3503,-9353,1941,2008,Stevenson Lynch Heineman Holeman Wilson Anderson Guldin
+usa,ar078,Ring Width,Greenbrier,PIEC,147,3501,-9403,1946,2009,Stevenson Lynch Heineman Holeman Wilson Anderson Guldin
+usa,ar079,Ring Width,Pilot Knob,PIEC,244,3500,-9403,1943,2009,Stevenson Lynch Heineman Holeman Wilson Anderson Guldin
+usa,ar080,Ring Width,Sand Lick,PIEC,260,3444,-9327,1939,2007,Stevenson Lynch Murphy Heineman Holeman Wilson Anderson
+usa,ar081,Ring Width,Story,PIEC,218,3440,-9328,1887,2007,Stevenson Lynch Heineman Holeman Wilson Anderson Guldin
+usa,ar082,Ring Width,Knoppers Ford,PIEC,231,3500,-9351,1923,2007,Stevenson Lynch Heineman Holeman Wilson Anderson Guldin
+usa,ar083,Ring Width,Mount Ida,PIEC,203,3433,-9338,1905,2004,D. Stevenson C. Tauer T. Lynch G. Caterina
+usa,az509,Ring Width,BEAVER CREEK WATERSHED,PINE,2050,3453,-11134,1728,1985,F. Biondi
+usa,az510,Ring Width,SAN FRANCISCO PEAKS,PINE,3535,3530,-11140,548,1983,Donald A. Graybill
+usa,az513,Ring Width,BEAVER CREEK,PIPO,2392,3342,-10914,1570,1986,Donald A. Graybill
+usa,az514,Ring Width,BLACK RIVER,PSME,2438,3348,-10919,1580,1987,Donald A. Graybill
+usa,az516,Ring Width,DEVIL'S BATHTUB,PIED,2286,3212,-11033,1720,1987,Donald A. Graybill
+usa,az517,Ring Width,DRY CREEK,PIED,1377,3453,-11149,1630,1986,Donald A. Graybill
+usa,az518,Ring Width,EAGLE CREEK,PIED,1694,3328,-10929,1640,1987,Donald A. Graybill
+usa,az519,Ring Width,GREEN MOUNTIAN,PSME,2194,3223,-11041,1550,1986,Donald A. Graybill
+usa,az520,Ring Width,GREEN MOUNTAIN,PIPO,2194,3223,-11041,1460,1986,Donald A. Graybill
+usa,az522,Ring Width,GIRL'S RANCH,PIPO,1969,3423,-11025,1660,1986,Donald A. Graybill
+usa,az523,Ring Width,GRASSHOPPER,PIPO,1798,3404,-11037,1700,1985,Donald A. Graybill
+usa,az524,Ring Width,HELEN'S DOME,PIPO,2535,3213,-11033,1690,1987,Donald A. Graybill
+usa,az525,Ring Width,HELEN'S DOME,PIST,2535,3213,-11033,1720,1987,Donald A. Graybill
+usa,az526,Ring Width,MOUNT HOPKIN'S,PIPO,2133,3142,-11052,1720,1987,Donald A. Graybill
+usa,az527,Ring Width,"MULETANK, ARIZONA",PIPO,2362,3419,-11046,1630,1986,Donald A. Graybill
+usa,az528,Ring Width,NOON CREEK,PIPO,2346,3239,-10949,1770,1987,Donald A. Graybill
+usa,az529,Ring Width,NORTH SLOPE,ABCO,2441,3213,-11033,1780,1987,Donald A. Graybill
+usa,az530,Ring Width,NORTH SLOPE,PIPO,2441,3213,-11033,1720,1987,Donald A. Graybill
+usa,az531,Ring Width,NORTH SLOPE,PSME,2441,3213,-11033,1640,1987,Donald A. Graybill
+usa,az532,Ring Width,NORTH SLOPE,PIST,2441,3213,-11033,1700,1987,Donald A. Graybill
+usa,az534,Ring Width,PINERY CANYON,PSME,2286,3156,-10916,1650,1986,Donald A. Graybill
+usa,az536,Ring Width,POST CREEK,PSME,2727,3241,-10953,1610,1986,Donald A. Graybill
+usa,az538,Ring Width,ROCKY GULCH,PIPO,1965,3443,-11130,1670,1986,Donald A. Graybill
+usa,az541,Ring Width,ROSE PEAK,PIPO,2316,3325,-10922,1660,1987,Donald A. Graybill
+usa,az545,Ring Width,TUCSON SIDE,PIPO,2362,3212,-11033,1660,1987,Donald A. Graybill
+usa,az546,Ring Width,TUCSON SIDE,PIST,2362,3213,-11033,1670,1987,Donald A. Graybill
+usa,az547,Ring Width,WALNUT CANYON,PIPO,2057,3510,-11131,1420,1987,Donald A. Graybill
+usa,az548,Ring Width,WALNUT CANYON,PSME,2026,3510,-11131,1680,1986,Donald A. Graybill
+usa,az550,Ring Width,"FORT GRANT OVERLOOK, PINALENO MOUNTAINS",PISF,2896,3242,-10955,1249,1991,"Henri Grissino Mayer, Chris Baisan"
+usa,az551,Ring Width,"Fly Peak, Chiricahua Mts",PSME,2790,3151,-10918,1703,1983,Fritz Schweingruber
+usa,az552,Ring Width,"Fly Peak, Chiricahua Mts",PCEN,2790,3151,-10918,1828,1983,Fritz Schweingruber
+usa,az553,Ring Width,"Snow Bowl, San.Fr. Peak",PCEN,3150,3526,-11141,1453,1983,Fritz Schweingruber
+usa,az554,Ring Width,Baldy Peak,PSME,2940,3358,-10933,1556,1983,Fritz Schweingruber
+usa,az558,Ring Width,"Webb Peak, Pinalenos",PSME,3025,3242,-10955,1607,1999,"D. Falk,C. Hallman,M. Johnson,M. Lyon,E. Margolis,R. Van Lieshout,T. W"
+usa,az559,Ring Width,Webb Peak 2001,PSME,3020,3243,-10955,1571,2001,Rex Adams And 2001 Ltrr Class
+usa,az560,Ring Width,"Basin Area, North Rim, Grand Canyon NP",PIPO,2800,3608,-11153,1800,1995,J. J. Wolf J. N. Mast
+usa,az561,Ring Width,"Upper Walhalla Plateau, North Rim, Grand Canyon NP",PIPO,2700,3607,-11152,1800,1996,J. J. Wolf J. N. Mast
+usa,az562,Ring Width,"Lower Walhalla Plateau, North Rim, Grand Canyon NP",PIPO,2200,3606,-11152,1757,1995,J. J. Wolf J. N. Mast
+usa,az565,Ring Width,Antelope Wash,PIPO,1893,3504,-11353,1598,2008,Dave Meko Kiyomi Morino
+usa,az566,Ring Width,Bear Canyon,PSME,1877,3223,-11041,1698,2009,Dave Meko Ramzi Touchan Steve Leavitt Daniel Griffin
+usa,az567,Ring Width,Bear Canyon,PIPO,1877,3223,-11041,1837,2009,Dave Meko Ramzi Touchan Steve Leavitt Daniel Griffin
+usa,az568,Ring Width,Black River,PSME,2434,3348,-10919,1565,2008,Daniel Griffin Russ Biggs
+usa,az569,Ring Width,Black River,PIPO,2434,3348,-10919,1656,2008,Daniel Griffin Russ Biggs
+usa,az570,Ring Width,Canyon de Chelly   Modern+Archaeological,PIED,,3605,-10921,1,1990,J. S. Dean W. J. Robinson
+usa,az571,Ring Width,Douglas Canyon,PSME,2074,3238,-11018,1652,2008,Woodhouse Griffin Losleben Routson Stielstra
+usa,az578,Ring Width,Hopi Mesa  Mod+Archaeo includes AZ066+AZ084,PIED,,3611,-11030,500,1983,J. S. Dean V. C. Lamarche M. A. Stokes T. P. Harlan
+usa,az579,Ring Width,Ladybug Peak,PSME,2667,3237,-10949,1626,2008,Connie Woodhouse Daniel Griffin Mark Losleben Claire Sti
+usa,az580,Ring Width,Onion Saddle,PSME,2316,3155,-10916,1608,2010,Woodhouse Leavitt Griffin Losleben Malevich Faulstich
+usa,az581,Ring Width,Paddys River,PSME,2252,3235,-11017,1605,2008,Woodhouse Griffin Losleben Routson Stielstra
+usa,az582,Ring Width,Potato Patch,PSME,2300,3505,-11354,1797,2008,Dave Meko Kiyomi Morino
+usa,az590,Ring Width,Wahl Knoll,PSME,2969,3400,-10923,1458,2008,Daniel Griffin Russ Biggs
+usa,az591,Ring Width,Walnut Canyon,PSME,1995,3510,-11131,1645,2010,Dave Meko Daniel Griffin
+usa,az592,Ring Width,Walnut Canyon,PIPO,1995,3510,-11131,1528,2010,Dave Meko Daniel Griffin
+usa,az593,Ring Width,Webb Peak,PSME,3014,3243,-10955,1464,2008,Daniel Griffin Brittany Ciancerelli Amy Fehrenkamp Victor
+usa,az594,Ring Width,Fort Grant Overlook+Webb Peak includes AZ550+AZ559,PISF,,3242,-10955,1249,2001,Henri Grissino Mayer Chris Baisan Rex Adams
+usa,ca555,Ring Width,YOLLA BOLLY,PIBA,2460,4002,-12252,1177,1988,Brendan Buckley
+usa,ca556,Ring Width,Lone Lake,PICO,2850,3710,-11828,1548,1983,Fritz Schweingruber
+usa,ca557,Ring Width,Lassen National-Park,TSME,2550,4027,-12131,1525,1983,Fritz Schweingruber
+usa,ca558,Ring Width,"Fryday Ridge, oberhalb",PSME,1560,4045,-12340,1642,1983,Fritz Schweingruber
+usa,ca559,Ring Width,"Squaw Valley, Lake Tahoe",ABMA,2280,3906,-11916,1712,1983,Fritz Schweingruber
+usa,ca560,Ring Width,"Yosemite Park, E Eingang",PICO,3000,3748,-11915,1513,1983,Fritz Schweingruber
+usa,ca561,Ring Width,"VARIOUS, SEQUOIA NP",PILA,1848,3634,-11845,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca562,Ring Width,"LITTLE BALDY, SEQUOIA NP",PIJE,2394,3637,-11848,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca563,Ring Width,"LITTLE BALDY, SEQUOIA NP",ABMA,2387,3637,-11848,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca564,Ring Width,"LITTLE BALDY, SEQUOIA NP",ABCO,2396,3637,-11848,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca565,Ring Width,"COLONY MILL, SEQUOIA NP",QUCF,1670,3633,-11849,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca566,Ring Width,"CRYSTAL CAVE, SEQUOIA NP",LIDE,1640,3634,-11848,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca567,Ring Width,"CATHEDRAL PEAK, YOSEMITE NP",TSME,2702,3752,-11923,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca568,Ring Width,"CRYSTAL CAVE, SEQUOIA NP",PIPO,1712,3634,-11847,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca569,Ring Width,"COLONY MILL, SEQUOIA NP",PILA,1644,3634,-11848,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca570,Ring Width,"COLONY MILL, SEQUOIA NP",ABCO,1641,3634,-11848,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca571,Ring Width,"EMPLOYEES CABIN, SEQUOIA NP",LIDE,2013,3634,-11845,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca572,Ring Width,"PORCUPINE FLAT, YOSEMITE NP",PIJE,2498,3749,-11933,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca573,Ring Width,"GIN FLAT, YOSEMITE NP",PIJE,2149,3746,-11946,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca574,Ring Width,"GIN FLAT, YOSEMITE NP",ABMA,2183,3746,-11946,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca575,Ring Width,"GIN FLAT, YOSEMITE NP",PILA,2134,3746,-11946,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca576,Ring Width,"GIN FLAT, YOSEMITE NP",ABCO,2180,3746,-11946,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca577,Ring Width,"HODGDON, YOSEMITE NP",QUCF,1579,3748,-11952,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca578,Ring Width,"HODGDON, YOSEMITE NP",PIPO,1730,3748,-11952,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca579,Ring Width,"HODGDON, YOSEMITE NP",PILA,1722,3748,-11952,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca580,Ring Width,"KUNA CREST, YOSEMITE NP",PICO,3065,3751,-11914,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca581,Ring Width,"CRESCENT MEADOW, SEQUOIA NP",PIJE,2012,3633,-11845,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca582,Ring Width,"MERCED GROVE, YOSEMITE NP",PILA,1793,3745,-11951,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca583,Ring Width,"OAK FLAT ROAD, YOSEMITE NP",PIPO,1803,3745,-11946,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca584,Ring Width,"PIMPLE ROCK PEAK, SEQUOIA NP",PIJE,2010,3634,-11845,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca585,Ring Width,"PANORAMA POINT, SEQUOIA NP",PIPO,1570,3633,-11849,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca586,Ring Width,"PILLARS, SEQUOIA NP",ABMA,2118,3634,-11845,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca587,Ring Width,"PILLARS, SEQUOIA NP",ABCO,2118,3634,-11845,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca588,Ring Width,"RANGER STATION PEAK, SEQUOIA NP",PIPO,1772,3633,-11849,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca589,Ring Width,"S FORK TUOLUMNE CREEK, YOSEMITE NP",ABMA,2075,3747,-11944,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca590,Ring Width,"S FORK TUOLUMNE CREEK, YOSEMITE NP",ABCO,2070,3747,-11944,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca591,Ring Width,"TUOLUMNE GROVE, YOSEMITE NP",PILA,1942,3746,-11948,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca592,Ring Width,"UPPER YOSEMITE CREEK, YOSEMITE NP",PIJE,2370,3750,-11935,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca593,Ring Width,"UPPER YOSEMITE CREEK, YOSEMITE NP",ABCO,2402,3750,-11935,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca594,Ring Width,"WAWONA, YOSEMITE NP",QUCF,1235,3733,-11940,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca595,Ring Width,"WOLVERTON, SEQUOIA NP",ABMA,2475,3636,-11842,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca596,Ring Width,"WOLVERTON, SEQUOIA NP",PILA,2239,3635,-11844,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca597,Ring Width,"WOLVERTON, SEQUOIA NP",ABCO,2475,3636,-11842,1880,1990,"J. C. King, L. J. Graumlich"
+usa,ca598,Ring Width,Santa Lucia Mountains,PIPO,625,3604,-12134,1830,1995,F. Biondi
+usa,ca600,Ring Width,Volcan Mt. (Santa Ysabel Res.),PICO,1465,3308,-11636,1886,1995,F. Biondi
+usa,ca601,Ring Width,Volcan Mt. (Santa Ysabel Res.),PSMA,1465,3308,-11636,1808,1995,F. Biondi
+usa,ca602,Ring Width,"CATHEDRAL PEAK, YOSEMITE N.P.",PIAL,2960,3750,-11925,1532,1991,John C. King
+usa,ca603,Ring Width,"DANA PLATEAU, INYO N. F.",PIAL,3300,3755,-11914,1430,1996,John C. King
+usa,ca604,Ring Width,"GRANITE LAKES, YOSEMITE N. P.",PIAL,3300,3755,-11917,1520,1996,John C. King
+usa,ca605,Ring Width,"MAMMOTH PEAK, YOSEMITE N. P.",PIAL,3300,3752,-11917,885,1996,John C. King
+usa,ca606,Ring Width,"SPILLWAY LAKE, YOSEMITE N. P.",PIAL,3300,3750,-11913,800,1996,John C. King
+usa,ca607,Ring Width,"YOSEMITE VALLEY, YOSEMITE N. P.",PSME,1310,3743,-11940,1681,1991,John C. King
+usa,ca609,Ring Width,Fish Creek Trail (San Gorgonio),PIJE,2890,3407,-11648,1560,1995,F. Biondi
+usa,ca610,Ring Width,Mt. Laguna,PIJE,1800,3252,-11625,1660,1995,F. Biondi
+usa,ca612,Ring Width,Pine Mountain North,PSMA,1500,3439,-11922,1470,1993,"Dave Meko, Franco Biondi"
+usa,ca613,Ring Width,Santa Ana Mts. (NEW+OLD),PSMA,1200,3344,-11733,1660,1995,F. Biondi
+usa,ca614,Ring Width,American Canyon Update,QUDG,561,3518,-12016,1455,2004,D. W. Stahle M. D. Therrell R. D. Griffin J. R. Edmondson
+usa,ca615,Ring Width,Clear Lake State Park Update,QUDG,426,3901,-12249,1620,2004,D. W. Stahle R. D. Griffin M. D. Therrell
+usa,ca616,Ring Width,Don Pedro Reservoir and Green Valley Update,QUDG,274,3743,-12025,1531,2005,D. W. Stahle R. D. Griffin M. D. Therrell
+usa,ca617,Ring Width,Eel River,QUDG,610,3949,-12304,1535,1996,D. W. Stahle M. D. Therrell
+usa,ca618,Ring Width,Feather River Lake Oroville Update,QUDG,305,3931,-12126,1572,2004,D. W. Stahle M. D. Therrell R. D. Griffin J. R. Edmondson
+usa,ca619,Ring Width,Finley Lake Update,QUDG,853,4016,-12151,1393,2004,D. W. Stahle M. D. Therrell R. D. Griffin J. R. Edmondson
+usa,ca620,Ring Width,"Folsom Lake SRA, American River Update",QUDG,167,3846,-12106,1603,2003,D. W. Stahle M. D. Therrell D. M. Meko R. D. Griffin J. R. Edmon
+usa,ca622,Ring Width,Los Alamos,QULO,61,3440,-12015,1810,1984,D. W. Stahle
+usa,ca623,Ring Width,Mt. Diablo State Park Update,QUDG,185,3752,-12157,1582,2004,D. Stahle R. D. Griffin M. Therrell D. Gabor E. Cook
+usa,ca624,Ring Width,Mt. Diablo State Park,QULO,245,3752,-12157,1621,1996,D. Stahle M. Therrell E. Cook D. Gabor
+usa,ca625,Ring Width,Pacheco Pass State Park Update,QUDG,396,3703,-12121,1510,2003,D. Stahle M. Therrell R. D. Griffin
+usa,ca626,Ring Width,Pinnacles National Monument Update,QUDG,350,3628,-12111,1577,2003,D. Stahle M. Therrell R. D. Griffin J. R. Edmondson
+usa,ca627,Ring Width,San Joaquin River Millerton Lake,QUDG,213,3702,-11940,1710,1996,D. Stahle M. Therrell
+usa,ca628,Ring Width,"ANTELOPE LAKE, MERGED",PIPO,1480,4009,-12036,1450,1998,"Meko, Grow"
+usa,ca630,Ring Width,CARSON PASS EAST + CAPLES LAKE,JUOC,2591,3842,-12000,-420,1999,"Meko,Baisan,Touchan,Grow,Funkhouser"
+usa,ca631,Ring Width,JACKSON MEADOW RESERVOIR,JUOC,1921,3931,-12033,930,1999,"Meko, Baisan,Touchan,Grow,Funkhouser"
+usa,ca632,Ring Width,SARDINE POINT,JUOC,2268,3933,-12012,1010,1999,"Meko, Baisan, Grow, Touchan,Funkhouser"
+usa,ca634,Ring Width,Sycamore Grove Park,PLRA,149,3738,-12146,1816,2003,John C. King
+usa,ca635,Ring Width,Sycamore Grove Park,QULO,149,3738,-12146,1896,2003,John C. King
+usa,ca636,Ring Width,Boreal Plateau,PIBA,3420,3627,-11833,831,1992,Lisa J. Graumlich Andrea Lloyd
+usa,ca637,Ring Width,Upper Wright Lakes,PIBA,3519,3637,-11822,-215,1992,Lisa J. Graumlich Andrea Lloyd
+usa,ca639,Ring Width,Lundy Lake,PIFL,2925,3805,-11923,526,1995,Lisa J. Graumlich
+usa,ca641,Ring Width,Fourth of July Hill,PICO,2630,3752,-11922,1700,2005,John C. King
+usa,ca642,Ring Width,Climbing Bear Hill,PICO,2626,3753,-11922,1700,2005,John C. King
+usa,ca643,Ring Width,Tuolumne Meadows,PICO,2615,3752,-11922,1700,2005,John C. King
+usa,ca645,Ring Width,Marys Ranch,QUDG,475,3724,-12147,1697,2003,D. W. Stahle R. D. Griffin
+usa,ca646,Ring Width,Rock Springs Ranch,QUDG,1067,3629,-12053,1379,2003,D. W. Stahle R. D. Griffin
+usa,ca649,Ring Width,Bear Valley Buttes,QUDG,468,3913,-12226,1546,2004,D. W. Stahle R. D. Griffin M. D. Therrell
+usa,ca650,Ring Width,South Fork Cottonwood Creek,QUDG,421,4017,-12227,1649,2004,D. W. Stahle R. D. Griffin J. R. Edmondson
+usa,ca651,Ring Width,Dennison Peak,QUDG,1132,3617,-11847,1596,2003,D. W. Stahle R. D. Griffin J. R. Edmondson
+usa,ca652,Ring Width,Dibble Creek,QUDG,218,4015,-12223,1519,2004,D. W. Stahle R. D. Griffin J. R. Edmondson
+usa,ca655,Ring Width,Empire Creek,QUDG,457,3800,-12037,1695,2004,D. W. Stahle R. D. Griffin J. R. Edmondson
+usa,ca658,Ring Width,The Indians,QUDG,646,3607,-12128,1494,2003,D. W. Stahle R. D. Griffin J. R. Edmondson
+usa,ca660,Ring Width,Los Lobos Creek,QUDG,1051,3455,-11914,1333,2004,D. W. Stahle D. M. Meko R. D. Griffin J. R. Edmondson
+usa,ca661,Ring Width,Murphy Ranch,QUDG,342,3950,-12237,1532,2004,D. W. Stahle R. D. Griffin M. D. Therrell
+usa,ca663,Ring Width,"Putah Creek, Lake Berryessa",QUDG,180,3840,-12216,1534,2004,D. W. Stahle R. D. Griffin M. D. Therrell
+usa,ca664,Ring Width,San Joaquin Experimental Range,QUDG,345,3705,-11945,1557,2004,D. W. Stahle R. D. Griffin J. R. Edmondson
+usa,ca665,Ring Width,Tuolumne River,QUDG,1194,3752,-11959,1408,2004,D. W. Stahle R. D. Griffin M. D. Therrell
+usa,ca671,Ring Width,Coyote Runs,PICO,2770,3737,-11901,1610,2009,J. C. King W. C. Evans M. T. Mangan J. P. Mcgeehin
+usa,ca673,Ring Width,Ecological Staircase Terrace 2,PIMR,55,3923,-12348,1846,2008,Steven Voelker
+usa,ca674,Ring Width,Antelope Lake Update,PIPO,1385,4006,-12038,1450,2010,Malevich Woodhouse Danloe Losleben Faulstich
+usa,ca677,Ring Width,Lemon Canyon Update,PIJE,1688,3934,-12017,1415,2010,Malevich Woodhouse Danloe Losleben Faulstich
+usa,ca678,Ring Width,Log Cabin Mine/Tioga Pass Update,PIJE,2499,3757,-11909,1304,2010,Malevich Woodhouse Danloe Losleben Faulstich
+usa,ca680,Ring Width,Crane Flat Yosemite Forest Dynamics Plot,CADE,1843,3746,-11949,1581,2011,Molly Barth Andrew Larson James Lutz
+usa,ca681,Ring Width,Plumas County,ABCO,1483,4000,-12100,1900,2009,Bigelow Papaik Caum North
+usa,ca682,Ring Width,Plumas County,PSME,1483,4000,-12100,1900,2009,Bigelow Papaik Caum North
+usa,ca683,Ring Width,Plumas County,CADE,1483,4000,-12100,1900,2009,Bigelow Papaik Caum North
+usa,ca684,Ring Width,Plumas County,PILA,1483,4000,-12100,1900,2009,Bigelow Papaik Caum North
+usa,ca685,Ring Width,Plumas County,PIPO,1483,4000,-12100,1900,2009,Bigelow Papaik Caum North
+usa,ca686,Ring Width,Sycamore Woodland,PLRA,89,3733,-12151,1700,2010,John C. King
+usa,ca687,Ring Width,Alameda Creek,QULO,89,3733,-12151,1697,2010,John C. King
+usa,ca688,Ring Width,Henry Coe State Park (Random/Full Sample),QUDG,421,3710,-12124,1675,2005,D. W. Stahle R. D. Griffin M. D. Therrell
+usa,ca689,Ring Width,Sutter Buttes,QUDG,121,3915,-12148,1808,2004,D. W. Stahle R. D. Griffin M. D. Therrell
+usa,co522,Ring Width,MT GOLIATH,PINE,3535,3938,-10535,525,1983,Donald A. Graybill 25
+usa,co524,Ring Width,ALMAGRE MOUNTAIN,PINE,3536,3846,-10459,560,1983,Donald A. Graybill 22
+usa,co525,Ring Width,HERMIT LAKE,PINE,3660,3806,-10538,1048,1983,Donald A. Graybill 20
+usa,co527,Ring Width,"BIG ELK MEADOWS, COLORADO",PIPO,2438,4013,-10525,1800,1983,"T. W. Swetnam, A. M. Lynch, B. J. Raimo"
+usa,co528,Ring Width,"INDIAN CREEK, COLORADO",PIPO,2400,3922,-10508,1859,1983,"T. W. Swetnam, A. M. Lynch, B. J. Raimo"
+usa,co529,Ring Width,"OPHIR CREEK, COLORADO",PIPO,2438,3804,-10508,1726,1984,"T. W. Swetnam, A. M. Lynch, B. J. Raimo"
+usa,co531,Ring Width,"ORMES PEAK, COLORADO",PIPO,2895,3857,-10457,1714,1984,"T. W. Swetnam, A. M. Lynch, B. J. Raimo"
+usa,co532,Ring Width,DEER MOUNTAIN,PIPO,2605,4022,-10535,1640,1987,Donald A. Graybill
+usa,co533,Ring Width,ELDORADO CANYON,PSME,1981,3956,-10517,1550,1987,Donald A. Graybill
+usa,co534,Ring Width,ELDORADO CANYON,PIPO,1889,3956,-10516,1680,1987,Donald A. Graybill
+usa,co535,Ring Width,FROSTY PARK,PIFL,3218,3846,-10458,1320,1987,Donald A. Graybill
+usa,co536,Ring Width,HIDDEN VALLEY,PICO,2828,4024,-10538,1860,1987,Donald A. Graybill
+usa,co537,Ring Width,HORSETOOTH RES.,PSME,2097,4032,-10512,1800,1987,Donald A. Graybill
+usa,co538,Ring Width,HORSETOOTH RES.,PIPO,1706,4032,-10508,1670,1987,Donald A. Graybill
+usa,co539,Ring Width,JEFFERSON COUNTY,PIPO,1965,3941,-10512,1550,1987,Donald A. Graybill
+usa,co540,Ring Width,KASSLER,PSME,1828,3927,-10507,1800,1988,Donald A. Graybill
+usa,co541,Ring Width,KASSLER,PIPO,1828,3927,-10508,1710,1987,Donald A. Graybill
+usa,co542,Ring Width,LYKINS GULCH,PIPO,1798,4010,-10517,1690,1987,Donald A. Graybill
+usa,co543,Ring Width,MILNER PASS,PCEN,3413,4025,-10548,1570,1987,Donald A. Graybill
+usa,co544,Ring Width,MONARCH LAKE,PIPO,2621,4006,-10544,1430,1987,Donald A. Graybill
+usa,co545,Ring Width,NIWOT RIDGE,PIFL,3169,4003,-10533,1330,1987,Donald A. Graybill
+usa,co546,Ring Width,ONAHU CREEK,PICO,2804,4020,-10550,1770,1987,Donald A. Graybill
+usa,co547,Ring Width,RAINBOW CURVE,PIFL,3352,4024,-10540,1070,1987,Donald A. Graybill
+usa,co548,Ring Width,TURKEY CREEK BLUFF,PIPO,1938,3836,-10452,1650,1988,Donald A. Graybill
+usa,co549,Ring Width,TIMBERLINE PASS,PCEN,3505,4022,-10540,1510,1987,Donald A. Graybill
+usa,co550,Ring Width,VAN BIBBER CREEK,PIPO,1920,4022,-10515,1690,1987,Donald A. Graybill
+usa,co551,Ring Width,ALTO PICNIC GROUND,PIPO,2560,4003,-10526,1750,1987,Donald A. Graybill
+usa,co552,Ring Width,"Red Mtn.Pass, (Silverton",PCEN,3400,3754,-10743,1626,1983,Fritz Schweingruber
+usa,co553,Ring Width,Pike Peaks,PCEN,3600,3920,-10502,1530,1983,Fritz Schweingruber
+usa,co554,Ring Width,Cottonwood Pass,PCEN,3700,3840,-10735,1565,1982,Fritz Schweingruber
+usa,co557,Ring Width,Pool Table Pines,PIPO,2877,3747,-10649,1654,1997,"Daniel E. Ryerson, Thomas W. Swetnam, Ann M. Lynch"
+usa,co558,Ring Width,Roadsite,PIPO,2621,3806,-10622,1605,1997,"Daniel E. Ryerson, Thomas W. Swetnam, Ann M. Lynch"
+usa,co560,Ring Width,Wilson Ranch,PIPO,2560,3738,-10641,1675,1997,"Daniel E. Ryerson, Thomas W. Swetnam, Ann M. Lynch"
+usa,co561,Ring Width,Hogback Rampart Hills,PIFL,3230,3723,-10807,1484,1994,Diane L. Douglas
+usa,co562,Ring Width,Blanca Peak,PIAR,3720,3733,-10525,1180,1994,Diane L. Douglas
+usa,co563,Ring Width,DARK MOUNTAIN,PICO,2816,4025,-10534,1698,2001,"Sara Janssen, Arne Buechling, William Baker"
+usa,co564,Ring Width,Black Forest East,PIPO,1800,3930,-10413,1709,1997,Connie A. Woodhouse And Peter M. Brown
+usa,co565,Ring Width,Ridge Road,PIPO,1850,3923,-10412,1779,1998,Connie A. Woodhouse And Peter M. Brown
+usa,co566,Ring Width,Valley View Ranch,PSME,2170,3904,-10426,1534,1998,Connie A. Woodhouse And Peter M. Brown
+usa,co567,Ring Width,Round Prarie,PIED,1600,3730,-10332,1743,1997,Connie A. Woodhouse And Peter M. Brown
+usa,co568,Ring Width,Kim,PIPO,1650,3714,-10315,1628,1998,"3 Connie Woodhouse, Peter Brown, And Mark Losleben"
+usa,co569,Ring Width,Mesa de Maya,PIPO,2060,3706,-10337,1464,1997,Connie A. Woodhouse And Peter M. Brown
+usa,co570,Ring Width,Sheep Pen Canyon,PIPO,1580,3704,-10316,1460,1998,Connie A. Woodhouse And Peter M. Brown
+usa,co571,Ring Width,Sheep Pen Canyon,PIED,1580,3704,-10316,1837,1998,Connie A. Woodhouse And Peter M. Brown
+usa,co572,Ring Width,Lily Lake,PSME,2800,4019,-10533,894,1998,Connie A. Woodhouse And Peter M. Brown
+usa,co573w,Ring Width,"Wheelman CO, (EK ab 811)",PIPO,1950,4000,-10522,1813,1982,Fritz Schweingruber
+usa,co574w,Ring Width,"Niwot Ridge, (EK ab 011)",PCEN,3400,4003,-10534,1694,1982,Fritz Schweingruber
+usa,co575w,Ring Width,"Nederland CO, (EK ab 611",PCPU,2500,3959,-10530,1880,1982,Fritz Schweingruber
+usa,co577w,Ring Width,"Eldora CO, (EK ab 411)",PIPO,2650,3957,-10533,1716,1982,Fritz Schweingruber
+usa,co578w,Ring Width,"Boulder Creek, EK ab 101",PSME,1900,4000,-10522,1867,1982,Fritz Schweingruber
+usa,co579,Ring Width,Pumphouse,PIED,2194,3958,-10631,1320,2002,Connie A. Woodhouse Mark Losleben Jeff Lukas
+usa,co580,Ring Width,Land's End,PSME,2987,3900,-10809,1135,2002,Connie A. Woodhouse Mark Losleben Jeff Lukas
+usa,co581,Ring Width,Seedhouse,PSME,2377,4045,-10651,1539,1999,"Connie A. Woodhouse, Mark Losleben, And Jeff Lukas"
+usa,co582,Ring Width,Escalante Forks Update,PIED,1737,3840,-10821,1569,1999,"Connie A. Woodhouse, Mark Losleben, And Jeff Lukas"
+usa,co584,Ring Width,Red Canyon,PIED,2164,3942,-10644,1336,1999,Connie A. Woodhouse Jeffrey Lukas Mark Losleben
+usa,co585,Ring Width,Encampment,PSME,2500,4109,-10647,1380,2001,Connie A. Woodhouse Jeffrey Lukas Mark Losleben
+usa,co586,Ring Width,Fool Creek Ring Width,PCEN,3370,3952,-10552,1224,1992,Peter M. Brown Connie A. Woodhouse Malcolm K. Hughes Wayne S
+usa,co587,Ring Width,Lexan Creek,PCEN,3200,3953,-10556,1395,1992,Peter M. Brown Connie A. Woodhouse Malcolm K. Hughes Wayne S
+usa,co588,Ring Width,Platt Bradbury,PIPO,2835,3728,-10618,1632,2004,Connie A. Woodhouse Mark Losleben
+usa,co589,Ring Width,Almont Triangle,PSME,2926,3844,-10648,1319,1999,Connie A. Woodhouse Mark Losleben Jeff Lukas
+usa,co590,Ring Width,Bennett Creek,PIPO,2301,4040,-10531,1394,2002,Connie A. Woodhouse Jeff Lukas Laurie Huckaby Nichole Barg
+usa,co591,Ring Width,Boulder Ridge Road,PIPO,2650,4059,-10540,1423,2001,Connie A. Woodhouse Mark Losleben
+usa,co592,Ring Width,Big Thompson Update,PSME,2012,4025,-10517,1550,2000,Connie A. Woodhouse Jeff Lukas
+usa,co594,Ring Width,Cochetopa Dome,PIPO,2835,3815,-10640,1437,2002,Connie A. Woodhouse Jeff Lukas Gary Bolton Mark Losleben
+usa,co595,Ring Width,Collins Gulch,PIED,2050,3950,-10812,1168,2001,Connie A. Woodhouse Mark Losleben
+usa,co596,Ring Width,Crags Hotel,PIPO,2002,3956,-10518,1545,2003,Connie A. Woodhouse Jeff Lukas Curtis Nepstad Thornberry
+usa,co597,Ring Width,Dillon,PSME,2880,3936,-10554,1372,2002,Connie A. Woodhouse Jeff Lukas Margot Kaye
+usa,co598,Ring Width,Deer Mountain Update,PIPO,2652,4022,-10535,1547,2000,Connie A. Woodhouse Jeff Lukas Margot Kaye
+usa,co599,Ring Width,Douglas Pass,PSME,2591,3936,-10848,1382,2000,Connie A. Woodhouse Jeff Lukas Margot Kaye
+usa,co600,Ring Width,Dry Park,PIED,1996,3815,-10820,1536,2000,Connie A. Woodhouse Jeff Lukas Gary Bolton
+usa,co602,Ring Width,ELEVENMILE RESERVOIR,PIPO,2743,3852,-10526,1507,1997,Connie A. Woodhouse Mark Losleben
+usa,co603,Ring Width,Eldorado Canyon Update,PSME,2002,3956,-10518,1541,2002,Connie A. Woodhouse Jeff Lukas C. Nepstad Thornberry Tyle
+usa,co605,Ring Width,Gould Reservoir,PIED,2271,3836,-10735,1385,2002,Connie A. Woodhouse Jeff Lukas Gary Bolton
+usa,co606,Ring Width,Hot Sulphur Springs,PSME,2499,4004,-10608,1571,1999,Connie A. Woodhouse Mark Losleben Jeff Lukas
+usa,co607,Ring Width,Jamestown,PIPO,2469,4008,-10525,1364,2000,Connie A. Woodhouse Jeff Lukas Margot Kaye
+usa,co608,Ring Width,Jefferson County Update,PIPO,1965,3941,-10512,1487,2003,Connie A. Woodhouse Jeff Lukas Curtis Nepstad Thornberry
+usa,co612,Ring Width,Montrose,PIED,2286,3823,-10801,1440,2002,Connie A. Woodhouse Jeff Lukas Gary Bolton Mark Losleben
+usa,co613,Ring Width,North Park Update,PSME,2450,4057,-10620,1486,2001,Connie A. Woodhouse Mark Losleben
+usa,co614,Ring Width,Owl Canyon Update,PIED,1874,4047,-10511,1508,2002,Connie A. Woodhouse Jeff Lukas Peter M. Brown James Riser
+usa,co615,Ring Width,Piceance,PIED,1900,4003,-10818,1124,2001,Connie A. Woodhouse Mark Losleben
+usa,co616,Ring Width,Plug Hat Butte,PIED,2133,4047,-10858,1270,2000,Connie A. Woodhouse Jeff Lukas Margot Kaye
+usa,co617,Ring Width,Princeton Douglas-fir,PSME,2956,3848,-10614,1169,2002,Connie A. Woodhouse Mark Losleben Jeff Lukas
+usa,co618,Ring Width,Princeton pinyon,PIED,2774,3848,-10613,1462,1999,Connie A. Woodhouse Mark Losleben Jeff Lukas
+usa,co619,Ring Width,Peak to Peak,PSME,2746,4001,-10531,1192,2000,Connie A. Woodhouse Peter M. Brown Jeff Lukas
+usa,co621,Ring Width,Rifle,PIED,2073,3940,-10753,1335,2000,Connie A. Woodhouse Jeff Lukas
+usa,co622,Ring Width,Rustic,PIPO,2499,4043,-10535,1436,2002,Connie A. Woodhouse Jeff Lukas Laurie Huckaby Nichole Bar
+usa,co623,Ring Width,Sapinero Mesa,PIPO,2700,3819,-10712,1511,2000,Connie A. Woodhouse Jeff Lukas Gary Bolton
+usa,co625,Ring Width,South Fork,PIPO,2591,3740,-10639,1566,2002,Connie A. Woodhouse Mark Losleben Kurt Chowanski
+usa,co629,Ring Width,Unaweep Canyon,PIED,2225,3850,-10834,1296,2000,Connie A. Woodhouse Jeff Lukas Gary Bolton
+usa,co630,Ring Width,Vasquez Mountain,PSME,2865,4002,-10604,1454,1999,Connie A. Woodhouse Mark Losleben Jeff Lukas
+usa,co631,Ring Width,Wild Rose,PIED,2636,3901,-10814,1146,2002,Connie A. Woodhouse Jeff Lukas Mark Losleben
+usa,co632,Ring Width,Wet Mountains,PSME,2690,3754,-10509,1336,1997,Connie A. Woodhouse Mark Losleben
+usa,co633,Ring Width,Cameron Pass,PCEN,3100,4033,-10550,1552,2003,Christof Bigler Thomas T. Veblen
+usa,co634,Ring Width,Cameron Pass,PICO,3100,4033,-10550,1747,2003,Christof Bigler Thomas T. Veblen
+usa,co635,Ring Width,Cameron Pass,ABLA,3100,4033,-10550,1709,2003,Christof Bigler Thomas T. Veblen
+usa,co638,Ring Width,Grand View Ridge,PIED,2012,3713,-10751,1566,2002,C. Woodhouse M. Losleben C. Chowanski J. Lukas
+usa,co641,Ring Width,Van Bibber Update,PIPO,1920,3948,-10515,1566,2003,C. Woodhouse J. Lukas
+usa,co642,Ring Width,Anderson Ridge East,PIFL,2431,4227,-10852,1200,2006,Steve Gray Greg Pederson Tom Watson Anthony Barnett
+usa,co647,Ring Width,Navajo Canyon,PSME,2134,3712,-10830,1230,2005,Dave Meko Chris Baisan Troy Knight
+usa,co648,Ring Width,Pumphouse update,PIED,2194,3958,-10631,1175,2002,Connie A. Woodhouse Mark Losleben Jeff Lukas
+usa,co650,Ring Width,Wild Rose update,PSME,2636,3901,-10815,1000,2002,Connie Woodhouse Mark Losleben Jeff Lukas Kurt Chowanski
+usa,co651,Ring Width,Mancos River,PSME,2225,3716,-10821,722,2011,D. W. Stahle Edmondson D. K. Stahle Lequesne Therrell Burns K
+usa,co653,Ring Width,South Fork Update,PIPO,2591,3740,-10640,1566,2008,Connie Woodhouse Mark Losleben
+usa,co654,Ring Width,Vera Platt Bradbury,PIPO,2835,3728,-10618,1661,2008,Connie Woodhouse Mark Losleben
+usa,co655,Ring Width,Wild Rose,PSME,2636,3901,-10815,1000,2002,Woodhouse
+usa,fl001,Ring Width,Choctawhatchee River,TADI,3,3028,-8553,899,1992,David W. Stahle Malcolm K. Cleaveland
+usa,fl002,Ring Width,Live Oak,QUST,38,3020,-8256,1813,1992,D. Stahle S. Sierzchula
+usa,fl003,Ring Width,O'Leno State Park,QUST,15,2955,-8237,1852,1993,D. Stahle M. Cleaveland
+usa,fl004,Ring Width,Ocala National Forest,QUST,24,2910,-8154,1833,1993,D. Stahle M. Cleaveland
+usa,fl005,Ring Width,Suwannee River,QULY,5,2944,-8257,1725,1993,D. Stahle M. Cleaveland S. Sierzchula
+usa,fl006,Ring Width,Wannee,QUST,7,2944,-8256,1798,1992,D. Stahle S. Sierzchula
+usa,fl007,Ring Width,Lower Withlacoochee River,TADI,1,2901,-8243,1618,2005,D. Carr
+usa,fl008,Ring Width,Middle Withlacoochee River,TADI,15,2855,-8216,1646,2003,D. Carr D. Stahle
+usa,fl009,Ring Width,Upper Withlacoochee River,TADI,26,2818,-8205,1622,2005,D. Stahle D. Carr D. Griffin J. Jennings
+usa,ga005,Ring Width,"J.W. JONES ECOLOGICAL RESEARCH CENTER, Combined",PIPA,43,3113,-8429,1872,1995,"Neil Pederson, Brian Palik, And Bob Mitchell"
+usa,ga006,Ring Width,"J.W. JONES ECOLOGICAL RESEARCH CENTER, Dry Site",PIPA,43,3113,-8429,1802,1995,"Neil Pederson, Brian Palik, And Bob Mitchell"
+usa,ga007,Ring Width,"J.W. JONES ECOLOGICAL RESEARCH CENTER, Mesic Site",PIPA,43,3113,-8429,1913,1995,"Neil Pederson, Brian Palik, And Bob Mitchell"
+usa,ga008,Ring Width,"J.W. JONES ECOLOGICAL RESEARCH CENTER, Wet/Mes.Site",PIPA,43,3113,-8429,1872,1995,"Neil Pederson, Brian Palik, And Bob Mitchell"
+usa,ga009,Ring Width,Moody Tract,QULY,24,3156,-8219,1803,1992,D. Stahle S. Sierzchula
+usa,ga010,Ring Width,Amicalola,LITU,792,3434,-8414,1552,2009,N. Pederson B. Catron K. Tackett
+usa,ga011,Ring Width,Frick Creek,LITU,777,3446,-8418,1537,2009,Pederson Blozan Brice Catron Leland Scheff Malcomb Tacke
+usa,ga012,Ring Width,Chattahoochee National Forest,LITU,784,3440,-8416,1537,2009,Pederson Blozan Brice Catron Leland Scheff Malcomb Tacke
+usa,ga013,Ring Width,Big Canoe,QUSP,730,3428,-8419,1646,2009,Pederson Blozan Brice Catron Leland Scheff Malcomb Tacke
+usa,ga014,Ring Width,Frick Creek,TSCA,777,3446,-8418,1689,2009,Pederson Blozan Brice Catron Leland Scheff Malcomb Tacke
+usa,ga015,Ring Width,Greenwood Plantation,PIPA,61,3051,-8358,1661,2003,T. A. Knight
+usa,ga016,Ring Width,Lavender Mountain,PIPA,344,3020,-8515,1795,2003,T. A. Knight
+usa,ga017,Ring Width,Spreewell Bluff,PIPA,262,3251,-8429,1649,2002,T. A. Knight
+usa,ga018,Ring Width,Marshall Forest,PIEC,262,3215,-8512,1730,2001,T. A. Knight
+usa,ga019,Ring Width,Rambulette Mountain,QUST,198,3229,-8420,1762,2002,T. A. Knight
+usa,ga020,Ring Width,Pine Mountain PMN,QUPR,366,3250,-8450,1794,2002,T. A. Knight
+usa,ga021,Ring Width,Pine Mountain TMB,QUPR,366,3250,-8450,1848,2002,N. Pederson
+usa,ga022,Ring Width,Pine Mountain Combined,QUPR,366,3250,-8450,1794,2002,T. A. Knight N. Pederson
+usa,ga023,Ring Width,Georgia-HWA,TSCA,600,3453,-8439,1947,2011,D. Walker C. A. Copenheaver
+usa,id006,Ring Width,GRASSHOPPER TRAIL  22 APR 86,JUOC,1701,4231,-11648,1492,1984,"R. L. Holmes, R. K. Adams, V. C. Kirby, C. J. Earle"
+usa,id007,Ring Width,"Cascade,Radar-St.,Payett",PCEN,2140,4426,-11605,1716,1983,Fritz Schweingruber
+usa,id008,Ring Width,"Galena Pass, Sawtooth NF",PCEN,2580,4352,-11443,1530,1983,Fritz Schweingruber
+usa,id010,Ring Width,Sandpass,PIAL,2800,4358,-11458,955,1992,Dana L. Perkins
+usa,id011,Ring Width,Upper Sandpass,PIAL,2800,4358,-11458,1210,1992,Dana L. Perkins
+usa,id012,Ring Width,"Railroad Ridge 2006 update, add cores 15D 15E",PIAL,2930,4408,-11433,726,1992,Dana L. Perkins
+usa,id014,Ring Width,Salmon River Valley,PSME,1700,4425,-11415,1135,1995,Franco Biondi Dana Perkins
+usa,id015,Ring Width,East Side Trail,PIPO,1825,4345,-11606,1488,2011,David Wilkins Amy Cutter
+usa,in002,Ring Width,Greene-Sullivan State Forest,QUVE,179,3902,-8715,1907,2004,James H. Speer Keith Clay Graham Bishop Michelle Creech
+usa,ks011,Ring Width,Lazy S - B Ranch,QUST,307,3730,-9558,1758,2006,Michael C. Stambaugh Richard P. Guyette
+usa,ks012,Ring Width,Tallgrass Prairie Preserve,QUMA,408,3829,-9635,1600,2003,Michael C. Stambaugh Richard P. Guyette
+usa,ks013,Ring Width,Cedar Bluff Reservoir,JUVI,675,3846,-9949,1353,2008,Edmondson
+usa,ky006,Ring Width,Hatton Ridge,PISP,372,3753,-8342,1750,2004,Michael Stambaugh Richard Guyette Joseph Marschall
+usa,ma016,Ring Width,Tekoa Mountain,QURU,300,4210,-7248,1876,2008,Aughenbaugh Harvey Hayes Kaye Kernan Marion Peterson Pipkin Ril
+usa,ma017,Ring Width,Cold River,TSCA,,4238,-7256,1650,2003,E. Cook P. Krusic
+usa,ma018,Ring Width,Alander Mountain,TSCA,,4205,-7230,1628,1987,E. Cook P. Krusic
+usa,ma019,Ring Width,Massachusetts-HWA,TSCA,180,4221,-7222,1887,2010,D. Walker C. A. Copenheaver
+usa,me033,Ring Width,Acadia National Park Regional,PIST,60,4422,-6816,1840,1992,G. Andrew Bartholomay And Robert T. Eckert
+usa,me034,Ring Width,Acadia National Park Stand 6,PIST,9,4425,-6817,1840,1992,G. Andrew Bartholomay And Robert T. Eckert
+usa,me035,Ring Width,Acadia National Park Stand 8,PIST,67,4420,-6818,1886,1992,G. Andrew Bartholomay And Robert T. Eckert
+usa,me036,Ring Width,Bradford Camps,PCRU,310,4624,-6900,1879,2013,Hannah C. Drummond Alexander K. Stewart
+usa,mi001,Ring Width,Hartwick Pines State Park,PIRE,,4440,-8445,1770,1988,Douglas L. Koop And Henri D. Grissino Mayer
+usa,mi011,Ring Width,Good Harbor Plains,ACRU,188,4456,-8551,1892,2002,"Thomas C. Wyse, P. Charles Goebel"
+usa,mi012,Ring Width,Good Harbor Plains,PPGR,188,4456,-8551,1890,2002,"Thomas C. Wyse, P. Charles Goebel"
+usa,mi013,Ring Width,Good Harbor Plains,QURU,188,4456,-8551,1872,2002,"Thomas C. Wyse, P. Charles Goebel"
+usa,mi014,Ring Width,Good Harbor Plains,TSCA,188,4456,-8551,1898,2002,"Thomas C. Wyse, P. Charles Goebel"
+usa,mi015,Ring Width,Platte Plains,PIST,188,4443,-8605,1912,2002,"Thomas C. Wyse, P. Charles Goebel"
+usa,mi016,Ring Width,Platte Plains,QUAL,188,4443,-8605,1888,2002,"Thomas C. Wyse, P. Charles Goebel"
+usa,mi017,Ring Width,Platte Plains,PIRE,188,4443,-8605,1862,2002,"Thomas C. Wyse, P. Charles Goebel"
+usa,mi018,Ring Width,Platte Plains,QURU,188,4443,-8605,1892,2002,"Thomas C. Wyse, P. Charles Goebel"
+usa,mi020,Ring Width,Mountain Lake Michigan,PIRE,258,4652,-8754,1723,2007,Michael C. Stambaugh Richard P. Guyette
+usa,mi021,Ring Width,Pine Lake and River,PIRE,188,4652,-8752,1483,2006,M. Stambaugh R. Guyette J. Marschall R. M. Muzika
+usa,mi022,Ring Width,Rush Lake,PIRE,203,4653,-8754,1446,2009,M. Stambaugh R. Guyette J. Marschall R. M. Muzika
+usa,mn028,Ring Width,Seventh Street,QUMA,236,4858,-9714,1890,2010,Erika Wertz Scott St. George Joseph Zeleznik Emily Smoter
+usa,mn029,Ring Width,Bois de Sioux Golf Course,QUMA,293,4617,-9636,1877,2010,Erika Wertz Scott St. George Joseph Zeleznik Emily Smoter
+usa,mn030,Ring Width,Welles Park,QUMA,290,4617,-9636,1868,2010,Erika Wertz Scott St. George Joseph Zeleznik Emily Smoter
+usa,mo024,Ring Width,Democrat Ridge 1992 update,QUST,349,3741,-9200,1620,1992,D. Stahle G. Hawks S. Sierzchula N. Montagu
+usa,mo033,Ring Width,Clayton Ridge 1992 update,QUST,435,3641,-9249,1696,1992,D. W. Stahle S. Sierzchula N. Montagu
+usa,mo038,Ring Width,SHANNON COUNTY MO,PIEC,300,3710,-9230,1553,1992,R. P. Guyette
+usa,mo039,Ring Width,White Ranch State Forest,QUST,280,3730,-9153,1664,1992,D. W. Stahle R. Guyette M. D. Therrell M. K. Cleaveland
+usa,mo040,Ring Width,Mill Mountain,QUST,305,3707,-9111,1667,1992,D. W. Stahle R. Guyette M. D. Therrell M. K. Cleaveland
+usa,mo041,Ring Width,Upper Current River,JUVI,245,3725,-9134,1410,1992,D. W. Stahle R. Guyette M. D. Therrell M. K. Cleaveland
+usa,mo042,Ring Width,Lower Current River,JUVI,185,3704,-9102,1391,1991,D. W. Stahle R. Guyette M. D. Therrell M. K. Cleaveland
+usa,mo043,Ring Width,Leatherwood Creek,JUVI,275,3706,-9132,1138,1991,D. W. Stahle R. Guyette M. D. Therrell M. K. Cleaveland
+usa,mo044,Ring Width,Current River Natural Area,QUAL,240,3715,-9116,1588,1992,R. Guyette
+usa,mo045,Ring Width,Missouri Ozark Forest Ecosystem Project Sites,PIEC,280,3709,-9105,1616,2002,Michael C. Stambaugh Richard P. Guyette
+usa,mo046,Ring Width,"Brickyard Conservation Area, Loess Hills",QUMA,350,4029,-9534,1687,2004,Michael Stambaugh Adam Bale Richard Guyette
+usa,mo047,Ring Width,Grand River Basin,QUSP,240,4005,-9335,986,2004,Michael Stambaugh Richard Guyette Erin Mcmurry
+usa,mo048,Ring Width,Bon Femme Creek,QUMA,190,3850,-9218,1824,2008,Steven Voelker
+usa,mo049,Ring Width,Gans Creek,QUMA,190,3853,-9219,1897,2008,Steven Voelker
+usa,mo050,Ring Width,Current River Natural Area Update 2,QUAL,240,3715,-9116,1739,2003,Steven Voelker Richard Guyette Rose Marie Muzika
+usa,mo051,Ring Width,Southeastern Missouri,PIEC,220,3712,-9112,1806,2002,Steven Voelker Richard Guyette Rose Marie Muzika
+usa,mo052,Ring Width,Southeastern Missouri,QUCO,220,3712,-9112,1897,2002,Steven Voelker Richard Guyette Rose Marie Muzika
+usa,mo053,Ring Width,Southeastern Missouri,QUVE,220,3712,-9112,1839,2002,Steven Voelker Richard Guyette Rose Marie Muzika
+usa,mo054,Ring Width,Southeastern Missouri,QUFA,220,3712,-9112,1895,2002,Steven Voelker Richard Guyette Rose Marie Muzika
+usa,mo057,Ring Width,MOFEP Site 1,QUCO,270,3710,-9108,1901,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo058,Ring Width,MOFEP Site 1,QUVE,270,3710,-9108,1867,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo060,Ring Width,MOFEP Site 2,QUVE,270,3709,-9108,1829,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo061,Ring Width,MOFEP Site 3,QUCO,220,3708,-9106,1907,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo062,Ring Width,MOFEP Site 3,QUVE,220,3708,-9106,1849,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo063,Ring Width,MOFEP Site 4,QUCO,240,3708,-9105,1937,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo064,Ring Width,MOFEP Site 4,QUVE,240,3708,-9105,1877,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo065,Ring Width,MOFEP Site 5,QUCO,240,3710,-9102,1883,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo066,Ring Width,MOFEP Site 5,QUVE,240,3710,-9102,1863,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo067,Ring Width,MOFEP Site 6,QUCO,280,3711,-9102,1895,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo068,Ring Width,MOFEP Site 6,QUVE,280,3711,-9102,1890,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo069,Ring Width,MOFEP Site 7,QUCO,260,3700,-9112,1901,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo070,Ring Width,MOFEP Site 7,QUVE,260,3700,-9112,1875,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo071,Ring Width,MOFEP Site 8,QUCO,260,3700,-9111,1899,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo072,Ring Width,MOFEP Site 8,QUVE,260,3700,-9111,1897,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo073,Ring Width,MOFEP Site 9,QUCO,250,3704,-9107,1891,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo074,Ring Width,MOFEP Site 9,QUVE,250,3704,-9107,1869,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo075,Ring Width,MOFEP,PIEC,250,3706,-9106,1815,2002,Steven Voelker Rose Marie Muzika Richard Guyette
+usa,mo076,Ring Width,Baskett Wildlife Area,QUMA,185,3845,-9212,1887,2008,Steven Voelker
+usa,mo077,Ring Width,Missouri Living/Subfossil,QUSP,,4000,-9325,912,2008,Guyette Stambaugh
+usa,ms002,Ring Width,Pascagoula River,TADI,2,3035,-8835,1466,1992,D. W. Stahle M. D. Therrell M. K. Cleaveland
+usa,ms003,Ring Width,Sky Lake,TADI,30,3316,-9030,1238,2010,Stahle
+usa,mt105,Ring Width,"Hododoo Pass, SW-Superio",PCEN,1710,4700,-11510,1758,1983,Fritz Schweingruber
+usa,mt106,Ring Width,Lost Trail Pass,PCEN,2130,4542,-11357,1785,1983,Fritz Schweingruber
+usa,mt107,Ring Width,"Skalkaho Pass, Bitterroo",PCEN,2160,4614,-11346,1782,1983,Fritz Schweingruber
+usa,mt108,Ring Width,Highland Fire Outlook,PCEN,2730,4545,-11232,1496,1983,Fritz Schweingruber
+usa,mt109,Ring Width,Grass Mountain #2,PCEN,3208,4510,-10931,1660,1999,Lisa Graumlich And Lindsey Waggoner
+usa,mt110,Ring Width,North Fork Ridge,PSME,2500,4518,-11120,819,2000,John C. King
+usa,mt111,Ring Width,North Fork Ridge,PIFL,2500,4518,-11120,500,2000,John C. King
+usa,mt112,Ring Width,Yellow Mountain Ridge 1,PIFL,2500,4518,-11119,470,1998,John C. King Lindsey A. Waggoner Lisa J. Graumlich
+usa,mt113,Ring Width,Yellow Mountain Ridge 1 - Entire Bark Trees,PIFL,2500,4518,-11119,470,1998,Lindsey A. Waggoner Lisa J. Graumlich
+usa,mt114,Ring Width,Yellow Mountain Ridge 2,PSME,2500,4518,-11119,952,1998,John C. King Lindsey A. Waggoner Lisa J. Graumlich
+usa,mt116,Ring Width,Flint Creek Range,LALY,2645,4617,-11309,999,1998,Malcolm K. Hughes Connie A. Woodhouse Peter M. Brown
+usa,mt117,Ring Width,Preston Park,ABLA,2150,4843,-11339,1766,2006,M. F. Bekker B. P Tikalsky D. B. Fagre S. D. Bills
+usa,mt118,Ring Width,Bear Mountain Point,PSME,1672,4855,-11345,1455,2003,Greg Pederson Blase Reardon Melissa Hornbein Karen Holzer
+usa,mt119,Ring Width,Pintlers,LALY,2700,4601,-11322,1026,2005,Jeremy Littell
+usa,mt120,Ring Width,Pintlers 2,LALY,2750,4601,-11323,1248,2006,Jeremy Littell
+usa,mt121,Ring Width,NCAS      (Formerly MT121),LALY,2190,4816,-12027,1336,2005,Jeremy Littell
+usa,mt122,Ring Width,Spot Mountain West,PSME,1950,4831,-11322,1163,2002,Pederson Graumlich Littell Peters Waggoner
+usa,mt123,Ring Width,Two Medicine Lake,PSME,1636,4829,-11322,1564,2001,Pederson Graumlich Littell Peters Waggoner
+usa,mt124,Ring Width,Teton River Valley,PSME,1678,4755,-11244,1509,2001,Lisa Graumlich Linsey Waggoner Brian Peters Chris Caruso
+usa,mt125,Ring Width,Upper Smith Creek,PSME,1800,4616,-11032,1602,2009,Greg Pederson Dave Mcwethy Bryan Swindell
+usa,mt126,Ring Width,Rowe Lakes  (Formerly MT126),LALY,2135,4902,-11402,1252,1990,Margaret Colenutt Ray Colenutt
+usa,mt127,Ring Width,Chinese Garden,JUSC,1865,4500,-11041,-413,2008,John C. King
+usa,mt128,Ring Width,Rock Creek West,PIPO,1555,4657,-11420,1602,2006,P. A. Knapp P. T. Soule'
+usa,mt129,Ring Width,Ferry Landing Research Natural Area,PSME,1340,4720,-11452,1690,2006,P. A. Knapp P. T. Soule'
+usa,mt130,Ring Width,Boulder Creek,PSME,,4649,-11415,1307,2008,P. T. Soule' P. A. Knapp
+usa,mt131,Ring Width,Rock Creek East,PSME,1371,4639,-11338,1665,2008,P. T. Soule' P. A. Knapp
+usa,mt132,Ring Width,Fish Creek,PSME,1160,4651,-11441,1611,2006,P. T. Soule' P. A. Knapp
+usa,mt134,Ring Width,Paine Gulch,PSME,1650,4605,-11049,1799,2009,P. T. Soule' P. A. Knapp
+usa,mt135,Ring Width,Paine Gulch,PIPO,1650,4605,-11049,1793,2009,P. T. Soule' P. A. Knapp
+usa,nc012,Ring Width,Joyce Kilmer Memorial Forest,LITU,250,3521,-8355,1672,1997,D. Stahle S. Sierzchula
+usa,nc013,Ring Width,Joyce Kilmer Memorial Forest,TSCA,250,3521,-8355,1784,1997,D. Stahle S. Sierzchula
+usa,nc014,Ring Width,Shot Beech Ridge,QURU,1372,3536,-8325,1771,1997,D. Stahle M. Therrell
+usa,nc016,Ring Width,Mt. Collins,PCRU,1770,3530,-8330,1650,1986,R. T. Busing
+usa,nc017,Ring Width,Weymouth Woods,PIPA,100,3509,-7922,1690,2006,Jason T. Ortegren
+usa,nc019,Ring Width,Boyd Tract,PIPA,140,3508,-7922,1559,1982,Ed Cook Scott St. George
+usa,nc020,Ring Width,Bent Creek Experimental Forest,QUPR,790,3530,-8238,1716,1996,P. Baker
+usa,nc021,Ring Width,Bent Creek Experimental Forest,QUAL,790,3530,-8238,1733,1996,P. Baker
+usa,nc022,Ring Width,Bent Creek Experimental Forest,QUSP,790,3530,-8238,1716,1996,P. Baker N. Pederson
+usa,nc023,Ring Width,Lil Scaly Mountain,QUAL,1280,3502,-8316,1599,2003,N. Pederson H. M. Hopton N. Cook
+usa,nc024,Ring Width,North Carolina-HWA,TSCA,670,3517,-8243,1910,2010,D. Walker C. A. Copenheaver
+usa,nc026,Ring Width,Black River Update,TADI,2,3429,-7811,365,2010,Stahle
+usa,nc10,Ring Width,UNION CAMP BIG WOODS,PITA,2,3628,-7658,1795,1985,A. C. Barefoot & William L. Hafley
+usa,nc11,Ring Width,MOORE'S CREEK NATIONAL BATTLEFIELD,PITA,2,3428,-7807,1845,1985,A. C. Barefoot
+usa,nc3,Ring Width,"LEAD MINE, HAMPTON HILLS                   PIEC",PINE,108,3549,-7841,1770,1991,A. C. Barefoot
+usa,nc6,Ring Width,NEW HILL BEAVER TREE FARM,PITA,88,3539,-7853,1891,1994,A. C. Barefoot & W. L. Hafley Unit Of Measurement:0. 01Mm
+usa,nc7,Ring Width,NEW HILL BEAVER TREE FARM,PIPA,88,3540,-7854,1891,1994,A. C. Barefoot & W. L. Hafley
+usa,nc8,Ring Width,NEW HILL BEAVER TREE FARM,PIEC,88,3540,-7854,1879,1992,A. C. Barefoot & W. L. Hafley
+usa,nd001,Ring Width,BURNING COAL VEIN,PIPO,792,4636,-10328,1592,1990,"Meko, Sieg"
+usa,nd007,Ring Width,Pembina Golf Course,QUMA,236,4858,-9714,1856,2010,Erika Wertz Scott St. George Joseph Zeleznik Emily Smoter
+usa,nd008,Ring Width,Riverside Park,QUMA,254,4756,-9702,1865,2010,Erika Wertz Scott St. George Joseph Zeleznik Emily Smoter
+usa,nd009,Ring Width,Lincoln Park,QUMA,254,4754,-9701,1854,2010,Erika Wertz Scott St. George Joseph Zeleznik Emily Smoter
+usa,nd010,Ring Width,Oak Grove Park,QUMA,268,4653,-9646,1878,2010,Erika Wertz Scott St. George Joseph Zeleznik Emily Smoter
+usa,nd011,Ring Width,Red River Trail,QUMA,275,4652,-9647,1886,2010,Erika Wertz Scott St. George Joseph Zeleznik Emily Smoter
+usa,nd012,Ring Width,Lindenwood Park,QUMA,268,4651,-9647,1870,2010,Erika Wertz Scott St. George Joseph Zeleznik Emily Smoter
+usa,ne005,Ring Width,Snake River,PIPO,810,4242,-10052,1728,1998,Connie A. Woodhouse And Peter M. Brown
+usa,ne006,Ring Width,Long Pine Creek,PIPO,670,4240,-9943,1732,1997,Connie A. Woodhouse And Peter M. Brown
+usa,ne007,Ring Width,Canyon Road,PIPO,1530,4131,-10356,1489,1997,Connie A. Woodhouse And Peter M. Brown
+usa,ne008,Ring Width,Ash Canyon,PIPO,1280,4238,-10315,1567,1997,Connie A. Woodhouse And Peter M. Brown
+usa,nh005,Ring Width,"Rattlesnake Mountain and Town Pound, Rumney",PIRE,300,4348,-7150,1690,2008,Peter Clark Stockton Maxwell 2009 Nadef Dendroclimb Atology G
+usa,nh006,Ring Width,Middle Pawtuckaway Mountain,JUVI,140,4312,-7110,1492,2002,E. Cook B. Buckley P. Krusic H. Grissino Mayer N. Peder
+usa,nj003,Ring Width,Greenbrook Sanctuary,CYGL,61,4100,-7408,1818,2000,N. Pederson E. Mashig
+usa,nj004,Ring Width,Greenbrook Sanctuary,LITU,61,4100,-7408,1750,2000,N. Pederson E. Mashig
+usa,nj005,Ring Width,Uttertown,LITU,366,4120,-7428,1732,2003,N. Pederson K. Vranes
+usa,nj006,Ring Width,Uttertown,QURU,366,4107,-7425,1785,2001,N. Pederson E. Cook
+usa,nj007,Ring Width,Uttertown,QUPR,366,4107,-7425,1577,2002,N. Pederson M. Hopton E. Cook
+usa,nm549,Ring Width,CABRESTO CANYON,PIPO,2835,3644,-10528,1639,1987,"T. W. Swetnam, A. C. Caprio, A. M. Lynch"
+usa,nm553,Ring Width,SPRING CANYON,PIPO,2500,3243,-10622,1751,1990,"T. W. Swetnam, A. C. Caprio, A. M. Lynch"
+usa,nm554,Ring Width,MOUTH OF LA JUNTA,PIPO,2713,3607,-10531,1690,1986,"T. W. Swetnam, A. C. Caprio, A. M. Lynch"
+usa,nm557,Ring Width,RIO PUEBLO,PIPO,2469,3609,-10536,1555,1986,"T. W. Swetnam, A. C. Caprio, A. M. Lynch"
+usa,nm559,Ring Width,ELEPHANT ROCK,PIPO,2743,3642,-10526,1391,1987,"T. W. Swetnam, A. C. Caprio, A. M. Lynch"
+usa,nm560,Ring Width,ITALIAN CANYON,PIFL,2894,3644,-10528,837,1987,"T. W. Swetnam, A. C. Caprio, A. M. Lynch"
+usa,nm562,Ring Width,HOOSIER CANYON,PIPO,2500,3242,-10621,1659,1990,"T. W. Swetnam, A. C. Caprio, A. M. Lynch"
+usa,nm565,Ring Width,BLACK MOUNTAIN,PSME,2651,3323,-10814,1470,1986,Donald A. Graybill
+usa,nm566,Ring Width,BLACK MOUNTAIN,PIPO,2651,3323,-10814,1590,1987,Donald A. Graybill
+usa,nm567,Ring Width,GILA CLIFF DWELLINGS,PIPO,1767,3313,-10816,1530,1987,Donald A. Graybill
+usa,nm568,Ring Width,MIMBRES JUNCTION,PIED,1950,3257,-10801,1670,1986,Donald A. Graybill
+usa,nm569,Ring Width,"Ski Valley, Wheeler Peak",PCEN,3120,3635,-10530,1828,1983,Fritz Schweingruber
+usa,nm570,Ring Width,"Sierra Blanca, (Ruidoso)",PSME,3120,3320,-10540,1554,1983,Fritz Schweingruber
+usa,nm571,Ring Width,Sandia Crest,PSME,3000,3515,-10730,1735,1983,Fritz Schweingruber
+usa,nm573,Ring Width,"WEST SIDE ROAD, SACRAMENTO MOUNTAINS",PIPO,2250,3248,-10554,1610,1994,"M. Wilkinson Kaye, C. H. Baisan, T. W. Swetnam"
+usa,nm574,Ring Width,Cornay Ranch,PIPO,2020,3648,-10359,1613,1998,Connie A. Woodhouse And Peter M. Brown
+usa,nm575,Ring Width,Capulin Volcano,PIPO,2240,3646,-10358,1712,1998,Connie A. Woodhouse And Peter M. Brown
+usa,nm576,Ring Width,Capulin Volcano,PIED,2380,3646,-10357,1626,1998,Connie A. Woodhouse And Peter M. Brown
+usa,nm577,Ring Width,Mill Canyon,PIPO,1710,3604,-10421,1595,1998,Connie A. Woodhouse And Peter M. Brown
+usa,nm578,Ring Width,Capulin Volcano National Monument,PIED,2320,3647,-10356,1635,1992,D. Stahle
+usa,nm579,Ring Width,Sunspot,PSME,2865,3248,-10548,1627,1992,D. Stahle N. Montagu
+usa,nm580,Ring Width,El Malpais update,PSME,2375,3458,-10811,-136,2004,H. Grissino Mayer Updated By D. Stahle M. Therrell
+usa,nm581,Ring Width,Las Tablas,PIED,2300,3632,-10601,1520,2003,C. Woodhouse M. Losleben C. Chowanski J. Lukas
+usa,nm583,Ring Width,Echo Amphitheater Recollection,PSME,2059,3621,-10631,1295,2007,Ramzi Touchan Connie Woodhouse David Meko Craig Allen J. S.
+usa,nm584,Ring Width,Mesa Alta,PSME,2525,3617,-10637,644,2007,Ramzi Touchan Connie Woodhouse David Meko Craig Allen
+usa,nm585,Ring Width,Bear Canyon Middle,PISF,2597,3555,-10640,1568,2007,Ramzi Touchan Connie Woodhouse David Meko Craig Allen
+usa,nm586,Ring Width,Bear Canyon West,PSME,2561,3555,-10641,1298,2007,Ramzi Touchan Connie Woodhouse David Meko Craig Allen
+usa,nm587,Ring Width,Fenton Lake Recollection,PSME,2529,3553,-10641,1304,2007,Ramzi Touchan Connie Woodhouse David Meko Craig Allen T. S
+usa,nm589,Ring Width,"Narbona Pass, Chuska Mountains",PIPO,2650,3605,-10852,842,2010,C. H. Guiterman C. H. Baisan J. S. Dean
+usa,nm590,Ring Width,Black Mountain,PSME,2489,3321,-10816,1304,2008,Connie Woodhouse Daniel Griffin Mark Losleben Russ Biggs
+usa,nm591,Ring Width,Black Mountain,PIPO,2489,3321,-10816,1493,2008,Connie Woodhouse Daniel Griffin Mark Losleben Russ Biggs
+usa,nm595,Ring Width,Filmore Canyon,PIPO,2133,3220,-10634,1306,2008,Connie Woodhouse Mark Losleben
+usa,nm597,Ring Width,Gobernador Archaeological+Modern,PIPO,,3642,-10719,623,1989,Ltrr
+usa,nm599,Ring Width,Luna South,PSME,2600,3344,-10857,1665,2009,Connie Woodhouse Daniel Griffin Mark Losleben
+usa,nm600,Ring Width,Magdalena Mountains,PSME,3044,3359,-10710,622,2008,Daniel Griffin Russ Biggs
+usa,nm601,Ring Width,Organ Mountains,PSME,2475,3221,-10634,1597,2009,Connie Woodhouse Daniel Griffin Mark Losleben
+usa,nm602,Ring Width,Pueblita Canyon,PSME,2005,3642,-10719,1643,2009,Connie Woodhouse Daniel Griffin Mark Losleben Victor Majo
+usa,nm603,Ring Width,Reserve Archaeological+Modern,PIPO,,3323,-10814,532,1988,Ltrr
+usa,nm604,Ring Width,Rio Grande-Fort Burgwin,PISP,,3615,-10531,1104,1989,Ltrr
+usa,nm605,Ring Width,Rio Pueblo,PIPO,2455,3610,-10536,1541,2008,Connie Woodhouse Daniel Griffin Mark Losleben Victor Majo
+usa,nm606,Ring Width,Sandia Mountain,PSME,,3515,-10730,785,1995,Baisan Grissino Mayer
+usa,nm607,Ring Width,Santa Fe-Glorieta Mesa,PISP,,3527,-10544,878,1989,Ltrr
+usa,nm608,Ring Width,Satan Pass,PSME,2306,3536,-10808,1313,2008,Connie Woodhouse Daniel Griffin Mark Losleben Victor Majo
+usa,nm609,Ring Width,Sunspot,PSME,2870,3248,-10548,1627,2008,Daniel Griffin Russ Biggs
+usa,nm610,Ring Width,Turkey Springs,PIPO,2374,3524,-10832,1595,2008,Connie Woodhouse Daniel Griffin Mark Losleben Victor Majo
+usa,nm611,Ring Width,Wolf Hollow,PSME,2532,3324,-10813,1669,2008,Connie Woodhouse Daniel Griffin Mark Losleben Russ Biggs
+usa,nm612,Ring Width,Wolf Hollow,PIPO,2532,3324,-10813,1597,2008,Connie Woodhouse Daniel Griffin Mark Losleben Russ Biggs
+usa,nm613,Ring Width,Cebolleta Mesa Archaeological+Modern,PIED,,3455,-10750,680,1986,Ltrr
+usa,nm614,Ring Width,Cibola (Turkey Springs),PISP,,3524,-10831,435,1986,Ltrr
+usa,nm615,Ring Width,El Malpais National Monument Update,PSME,2423,3458,-10806,0,2004,Henri D. Grissino Mayer
+usa,nm616,Ring Width,Gallinas Mountains,PSME,2439,3415,-10548,1616,2008,Daniel Griffin Russ Biggs
+usa,nm617,Ring Width,Gallinas Mountains,PIPO,2439,3415,-10548,1655,2008,Daniel Griffin Russ Biggs
+usa,nv513,Ring Width,MOUNT WASHINGTON,PINE,3415,3854,-11419,825,1983,Donald A. Graybill
+usa,nv514,Ring Width,SPRUCE MOUNTAIN,PINE,3110,4033,-11449,302,1985,Donald A. Graybill 11
+usa,nv518,Ring Width,JACKSON MOUNTAINS OCT98 Re-collection,JUOC,2097,4118,-11826,975,1998,"Meko, Baisan, Funkhouser"
+usa,nv519,Ring Width,Lucky Horseshoe,PIFL,3140,3752,-11820,990,2000,John C. King
+usa,ny015,Ring Width,Middleburgh,JUVI,140,4235,-7417,1445,2004,E. Cook B. Buckley P. Krusic H. Grissino Mayer N. Peder
+usa,ny016,Ring Width,Goose Egg Ridge,QUAL,366,4305,-7323,1704,2002,N. Pederson M. Hopton D. Frank
+usa,ny017,Ring Width,Goose Egg Ridge,QUPR,366,4305,-7323,1666,2002,N. Pederson M. Hopton D. Frank
+usa,ny018,Ring Width,Goose Egg Ridge,QURU,366,4305,-7323,1799,2002,N. Pederson M. Hopton D. Frank
+usa,ny019,Ring Width,"Hunter Island, Bronx",QUST,3,4058,-7348,1773,2002,N. Pederson
+usa,ny020,Ring Width,Lake George,QUVE,387,4342,-7338,1836,2002,N. Pederson T. Norton
+usa,ny021,Ring Width,Lisha Kill,CYGL,122,4259,-7401,1753,2002,N. Pederson E. Mashig
+usa,ny022,Ring Width,Lisha Kill,QUAL,122,4259,-7401,1816,2002,N. Pederson E. Mashig
+usa,ny023,Ring Width,Mohonk Preserve,BELE,220,4202,-7419,1614,2002,N. Pederson E. Cook K. Vranes
+usa,ny024,Ring Width,Mohonk Preserve,CYGL,205,4149,-7411,1740,2002,N. Pederson
+usa,ny025,Ring Width,Mohonk Lake 1996 Update,PIRI,,4146,-7411,1618,1996,Paul Krusic Ed Cook
+usa,ny026,Ring Width,Mohonk Preserve,QUVE,220,4153,-7416,1793,2002,N. Pederson
+usa,ny027,Ring Width,Mohonk Lake Talus Slope update,TSCA,,4146,-7411,1690,2002,Paul Krusic Ed Cook
+usa,ny028,Ring Width,Rock Rift Road Mohonk Lake update,TSCA,,4146,-7410,1839,2002,Paul Krusic Ed Cook
+usa,ny029,Ring Width,Spruce Glen update,TSCA,,4146,-7411,1579,2000,Paul Krusic Ed Cook
+usa,ny030,Ring Width,Montgomery Place,LITU,61,4209,-7357,1754,2002,N. Pederson D. Dukpa K. Rock
+usa,ny031,Ring Width,Montgomery Place,QUPR,61,4211,-7359,1727,2002,N. Pederson D. Dukpa K. Rock
+usa,ny032,Ring Width,Montgomery Place,QURU,61,4211,-7359,1787,2002,N. Pederson D. Dukpa K. Rock
+usa,ny033,Ring Width,Prospect Mountain,BELE,305,4326,-7355,1820,2001,N. Pederson E. Mashig D. Frank
+usa,ny034,Ring Width,Prospect Mountain,CYOV,366,4330,-7337,1775,2001,N. Pederson E. Mashig D. Frank
+usa,ny035,Ring Width,Prospect Mountain,QUAL,305,4330,-7337,1659,2001,N. Pederson E. Mashig D. Frank
+usa,ny036,Ring Width,Prospect Mountain,QURU,366,4326,-7350,1816,2001,N. Pederson E. Mashig D. Frank
+usa,ny037,Ring Width,Old Maids Woods,QUVE,107,4249,-7359,1802,2001,N. Pederson
+usa,ny038,Ring Width,Dark Hollow Trail update,QUAL,488,4135,-7417,1704,2001,N. Pederson P. Krusic E. Cook
+usa,ny039,Ring Width,Middleburgh,QUPR,366,4244,-7420,1674,2002,N. Pederson F. Breglia P. Krusic
+usa,ny043,Ring Width,Crooked Lake,PIST,455,4421,-7444,1916,2012,Alexander K. Stewart Saddie R. Serviss
+usa,ny047,Ring Width,Plumb Brook,TSCA,230,4438,-7513,1900,2014,Eleanor Jones Luis H. A. Arujo Alexander K. Stewart
+usa,ny048,Ring Width,Gibbon's Sugarbush,ACSH,518,4200,-7818,1921,2011,C. A. Copenheaver
+usa,oh004,Ring Width,"Buffalo Beats North, Ridgetop Forest Site",QUAL,314,3927,-8209,1856,1995,Mcclenahen & Houston
+usa,oh005,Ring Width,"Buffalo Beats North, Clay Lens Prairie Soil",QUAL,314,3927,-8209,1681,1995,Mcclenahen & Houston
+usa,oh006,Ring Width,Dysart Woods,QUAL,384,3959,-8100,1625,1998,Darrin L. Rubino And Brian C. Mccarthy
+usa,ok007,Ring Width,Keystone Lake,QUST,274,3612,-9613,1611,1995,D. Stahle G. Hawks M. Therrell
+usa,ok022,Ring Width,Lake of the Arbuckles,QUST,282,3221,-9700,1698,1995,D. Stahle G. Hawks M. Therrell M. Cleaveland
+usa,ok025,Ring Width,Mud Creek,QUST,259,3406,-9740,1691,1995,D. Stahle M. Cleaveland M. Therrell
+usa,ok031,Ring Width,McCurtain County Wilderness,PIEC,259,3418,-9439,1685,1982,D. Stahle G. Jacoby E. Cook S. Schoenholtz
+usa,ok032,Ring Width,French Lake,QUST,494,3443,-9842,1713,2005,Michael Stambaugh Kellen Harper Joe Marschall Richard Guyett
+usa,ok033,Ring Width,Hog Creek,QUST,355,3516,-9714,1755,1982,David Stahle Daniel Stahle Jackson Adiar Graham Hawks
+usa,ok034,Ring Width,Nickel Preserve,PIEC,370,3602,-9450,1580,2006,Michael Stambaugh Joe Marschall Richard Guyette
+usa,ok035,Ring Width,Okmulgee Game Management Area update,QUST,235,3538,-9602,1691,2008,Ryan Desantis Stephen Hallgren David Stahle
+usa,ok036,Ring Width,Camp Tom Hale,PIEC,317,3445,-9453,1969,2009,Stevenson Lynch Heineman Holeman Wilson Anderson Guldin
+usa,ok037,Ring Width,Pigeon Creek,PIEC,334,3438,-9432,1943,2009,Stevenson Lynch Heineman Holeman Wilson Anderson Guldin
+usa,ok039,Ring Width,Eagletown,PITA,121,3402,-9434,1977,2004,Stevenson Hennessey Lynch Caterina Mota Heineman Holeman Wilson
+usa,ok042,Ring Width,Water Plant,QUPA,196,3530,-9600,1950,2013,Doug Stevenson Steve Hallgren Keith Anderson Cody Anderso
+usa,ok044,Ring Width,South Arcadia Lake,QUST,1060,3538,-9723,1826,2015,Chad King Justin Cheek Kaitlyn Lamere
+usa,ok045,Ring Width,Keystone,JUVI,283,3611,-9615,1305,2005,Edmondson
+usa,ok047,Ring Width,Quanah Mountain Update,QUST,427,3441,-9838,1686,2005,Stahle
+usa,or006,Ring Width,SPRING CANYON  16 MAY 85,JUOC,1366,4454,-11856,1405,1982,"R. L. Holmes, R. K. Adams, M. R. Rose, Wu X."
+usa,or015,Ring Width,FREDERICK BUTTE  06 MAY 85,JUOC,1494,4335,-12027,1097,1982,"R. L. Holmes, R. K. Adams, M. R. Rose, Wu X."
+usa,or018,Ring Width,LITTLE JUNIPER MOUNTAIN  21 NOV 85,JUOC,1596,4308,-11952,1377,1982,"R. L. Holmes, R. K. Adams, M. R. Rose, Wu X."
+usa,or030,Ring Width,GRIZZLY BEAR,PIPO,1231,4558,-11743,1502,1991,"T. W. Swetnam, C. H. Baisan, B. E. Wickman"
+usa,or031,Ring Width,DRUMHILL RIDGE,PIPO,0,4528,-11812,1672,1990,"B. E. Wickman, T. W. Swetnam, C. H. Baisan"
+usa,or032,Ring Width,INDIAN CROSSING,PIPO,0,4507,-11701,1550,1990,"B. E. Wickman, T. W. Swetnam, C. H. Baisan"
+usa,or033,Ring Width,BALLY MOUNTAIN,PIPO,0,4517,-11834,1469,1990,"B. E. Wickman, T. W. Swetnam, C. H. Baisan"
+usa,or034,Ring Width,EMIGRANT SPRINGS,PIPO,1169,4533,-11829,1761,1990,"B. E. Wickman, T. W. Swetnam, C. H. Baisan"
+usa,or035,Ring Width,LOOKOUT MOUNTAIN,PIPO,1372,4550,-11748,1665,1990,"B. E. Wickman, T. W. Swetnam, C. H. Baisan"
+usa,or037,Ring Width,SUMMIT SPRINGS,PIPO,1354,4541,-11728,1760,1990,"B. E. Wickman, T. W. Swetnam, C. H. Baisan"
+usa,or038,Ring Width,BIG SINK,PIPO,1206,4547,-11755,1665,1990,"B. E. Wickman, T. W. Swetnam, C. H. Baisan"
+usa,or039,Ring Width,FISH LAKE,PIPO,1600,4500,-11704,1585,1991,"B. E. Wickman, T. W. Swetnam, C. H. Baisan"
+usa,or040,Ring Width,LUGAR SPRINGS,PIPO,1200,4546,-11758,1675,1991,"B. E. Wickman, T. W. Swetnam, C. H. Baisan"
+usa,or042,Ring Width,"Crater Lake, NE-Medford",TSME,2200,4258,-12210,1564,1983,Fritz Schweingruber
+usa,or046,Ring Width,Lookout Mountain Lower,PIPO,1320,4345,-12139,1529,1995,James H. Speer And Thomas W. Swetnam
+usa,or047,Ring Width,Pringle Falls Prescribed Fire,PIPO,1320,4344,-12139,1493,1991,James H. Speer And Thomas W. Swetnam
+usa,or048,Ring Width,Pringle Falls RNA,PIPO,1460,4342,-12137,1476,1993,James H. Speer And Thomas W. Swetnam
+usa,or049,Ring Width,Experimental Forest,PIPO,1530,4343,-12136,1334,1993,James H. Speer And Thomas W. Swetnam
+usa,or052,Ring Width,Junction of HWYS 51 and 97,PIPO,1420,4319,-12145,1419,1995,James H. Speer And Thomas W. Swetnam
+usa,or053,Ring Width,Skookum Butte,PIPO,1670,4314,-12139,1639,1995,James H. Speer And Thomas W. Swetnam
+usa,or054,Ring Width,Diamond Lake,PIPO,1510,4305,-12157,1513,1995,James H. Speer And Thomas W. Swetnam
+usa,or059,Ring Width,Calimus Butte,PIPO,2020,4238,-12132,1653,1995,James H. Speer And Thomas W. Swetnam
+usa,or060,Ring Width,FREDERICK BUTTE,JUOC,1494,4335,-12027,870,1996,"Meko, Baisan, Adams, Holmes, Rose, Wu"
+usa,or062,Ring Width,TABLE ROCK/ARROW GAP,JUOC,1418,4311,-12054,530,1996,"Meko, Baisan,Touchan,Grow,Funkhouser"
+usa,or070,Ring Width,Sheridan Mountain Low,TSME,1755,4350,-12140,1613,1993,David W. Peterson And David L. Peterson
+usa,or071,Ring Width,Sheridan Mountain Medium,TSME,1920,4350,-12140,1605,1993,David W. Peterson And David L. Peterson
+usa,or072,Ring Width,Sheridan Mountain High,TSME,2090,4350,-12140,1465,1993,David W. Peterson And David L. Peterson
+usa,or076,Ring Width,Crater Lake West Low,TSME,1950,4300,-12220,1597,1992,David W. Peterson And David L. Peterson
+usa,or077,Ring Width,Crater Lake West Medium,TSME,2075,4300,-12220,1687,1992,David W. Peterson And David L. Peterson
+usa,or078,Ring Width,Crater Lake West High,TSME,2210,4300,-12220,1607,1992,David W. Peterson And David L. Peterson
+usa,or081,Ring Width,Page Mountain,CHLA,1070,4200,-12334,1420,2000,A. L. Carroll E. S. Jules
+usa,or082,Ring Width,Greenhorn Mountains,PIAL,2295,4442,-11833,1740,2002,John C. King
+usa,or083,Ring Width,Greenhorn Mountains,PICO,2295,4442,-11833,1892,2002,John C. King
+usa,or084,Ring Width,Greenhorn Mountains,ABLA,2295,4442,-11833,1740,2002,John C. King
+usa,or085,Ring Width,Mill Creek Research Natural Area,PIPO,1002,4530,-12125,1602,1999,P. A. Knapp P. T. Soule' T. A. Knight
+usa,or086,Ring Width,Husband Lake,TSME,1820,4408,-12150,1519,1990,Emily K. Heyerdahl Ralph C. Foster
+usa,or087,Ring Width,Lane Plateau,TSME,1945,4409,-12150,1436,1990,Emily K. Heyerdahl Ralph C. Foster
+usa,or088,Ring Width,Obsidian Lava Flow,TSME,1700,4411,-12150,1188,1990,Emily K. Heyerdahl
+usa,or089,Ring Width,The Island Natural Research Area,JUOC,730,4434,-12116,1733,1996,P. A. Knapp P. T. Soule'
+usa,or091,Ring Width,Strawberry Lake,LAOC,1915,4419,-11841,1180,2008,Laura Laubli Steven Voelker
+usa,or092,Ring Width,Table Rock - Arrow Gap Update,JUOC,1428,4310,-12053,530,2010,Malevich Woodhouse Danloe Losleben
+usa,or093,Ring Width,Frederick Butte Update,JUOC,1475,4342,-12028,870,2010,Malevich Woodhouse Danloe Losleben
+usa,or095,Ring Width,Little Juniper Mountain Update,JUOC,1514,4309,-11948,1337,2010,Malevich Woodhouse Danloe Losleben
+usa,or096,Ring Width,Santiam Pass SNOTEL,PSME,1139,4426,-12157,1838,2013,C. J. Ratcliff S. L. Voelker A. W. Nolin
+usa,pa014,Ring Width,Tunkhanock,JUVI,140,4128,-7613,1135,2002,E. Cook B. Buckley P. Krusic H. Grissino Mayer N. Peder
+usa,pa015,Ring Width,Raystown Lake,QUAL,240,4050,-7801,1808,2006,C. A. Copenheaver
+usa,pa016,Ring Width,Pennsylvania-HWA,TSCA,500,4000,-7748,1896,2010,D. Walker C. A. Copenheaver
+usa,sc004,Ring Width,Four Holes Swamp,TADI,12,3311,-8025,1001,1985,D. Stahle M. Cleaveland
+usa,sc005,Ring Width,Francis Beidler Swamp,QULY,12,3311,-8025,1639,1992,D. Stahle S. Sierzchula
+usa,sc006,Ring Width,Black River South Carolina,TADI,1,3348,-7952,549,1993,D. W. Stahle R. D. Griffin J. H. Jennings S. E. Sierzchula
+usa,sd020,Ring Width,Moreau River,PPDE,501,4517,-10044,1840,2006,John C. King
+usa,sd021,Ring Width,French Creek,QUMA,1170,4343,-10322,1609,2008,Steven Voelker
+usa,sd022,Ring Width,Lame Johnny Creek,QUMA,1210,4339,-10323,1883,2008,Steven Voelker
+usa,sd023,Ring Width,Lost Mine Draw,QUMA,1370,4345,-10324,1770,2008,Steven Voelker
+usa,sd024,Ring Width,Bear Gulch,QUMA,1370,4348,-10323,1724,2008,Steven Voelker
+usa,tn016,Ring Width,Boogerman Trail Tennessee,LITU,1065,3536,-8305,1736,1995,"J. Young, R. Keeland, J. Alford M"
+usa,tn017,Ring Width,Greenbriar,QUPR,765,3542,-8321,1654,1994,J. Young W. Blozan
+usa,tn018,Ring Width,Hen Wallow Falls,TSCA,233,3545,-8314,1765,1995,J. Young R. Keeland E. Nunes
+usa,tn019,Ring Width,Hen Wallow Falls [B],TSCA,218,3545,-8314,1793,1995,J. Young R. Keeland E. Nunes
+usa,tn020,Ring Width,Lynn Hollow,QUVE,700,3537,-8526,1743,1997,D. Stahle M. Therrell
+usa,tn021,Ring Width,Lynn Hollow,QUPR,700,3537,-8526,1750,1997,D. Stahle M. Therrell
+usa,tn022,Ring Width,Lynn Hollow and Look Rock Trail 2009 update,PIEC,610,3537,-8356,1683,1997,D. Stahle M. Therrell W. Blozan
+usa,tn023,Ring Width,Rainbow Falls Trail,LITU,825,3540,-8330,1796,1995,J. Young
+usa,tn024,Ring Width,Rainbow Falls Trail,TSCA,825,3540,-8330,1685,1995,J. Young
+usa,tn026,Ring Width,Snake Den Trail,TSCA,925,3545,-8314,1895,1995,J. Young R. Keeland J. Alford
+usa,tn027,Ring Width,Porter's Creek,LITU,1005,3540,-8223,1698,1997,D. Stahle M. Therrell
+usa,tn030,Ring Width,Forge Creek,LITU,670,3532,-8350,1500,2006,Neil Pederson Kacie Tackett 2007 Nadefw Group
+usa,tn031,Ring Width,Norris Basin Hawley Update,JUVI,140,3612,-8400,1378,2002,E. Cook B. Buckley P. Krusic H. Grissino Mayer N. Peder
+usa,tn032,Ring Width,Pine Camp,PIEC,174,3629,-8759,1791,2005,Michael Stambaugh Richard Guyette Joseph Marschall
+usa,tx009,Ring Width,Dwight Nichols Ranch,QUST,427,3259,-9911,1681,1995,D. Stahle G. Hawks
+usa,tx018,Ring Width,Brazos River,QUST,106,3056,-9648,1668,1995,D. Stahle G. Hawks M. Therrell M. Cleaveland
+usa,tx027,Ring Width,Mason Mountain,QUST,539,3053,-9911,1677,1995,D. Stahle
+usa,tx033,Ring Width,Lavaca River Halletsville,QUST,78,2918,-9658,1668,1995,D. Stahle G. Hawks M. Therrell M. Cleaveland
+usa,tx039,Ring Width,Coleto Creek,QUST,33,2846,-9711,1682,1995,D. Stahle G. Hawks M. Therrell M. Cleaveland
+usa,tx040,Ring Width,Peachtree Bottoms,TADI,6,3023,-9404,1670,1993,D. W. Stahle E. R. Cook M. D. Therrell M. K. Cleaveland
+usa,tx041,Ring Width,Ecleto Creek,QUST,230,2927,-9755,1695,1996,D. W. Stahle M. D. Therrell A. M. Dunne M. K. Cleaveland
+usa,tx046,Ring Width,Guadalupe Peak,PSME,2438,3154,-10451,1537,1992,D. Stahle N. Montagu M. Cleaveland
+usa,tx050,Ring Width,Fossil Hill,QUST,305,3327,-9752,1745,2006,D. Stahle J. Edmondson
+usa,tx051,Ring Width,Fort Wolters,QUST,275,3284,-9805,1793,2006,Stahle Griffin Edmondson
+usa,tx052,Ring Width,Guadalupe River State Park,TADI,300,2952,-9830,1486,2009,M. Cleaveland R. Casteel D. Stahle
+usa,tx053,Ring Width,Krause Springs,TADI,230,3029,-9809,1423,2009,M. Cleaveland R. Casteel D. Stahle
+usa,tx055,Ring Width,Bruck Mountain,QUST,440,3304,-9822,1774,2006,Stahle
+usa,tx056,Ring Width,Guadalupe Peak,PSME,2417,3154,-10450,1362,2008,Daniel Griffin Russ Biggs
+usa,tx057,Ring Width,LBJ National Grassland,QUST,312,3313,-9721,1684,2004,Stahle
+usa,tx058,Ring Width,Pine Springs Canyon,QUMU,2042,3153,-10451,1557,2001,Stahle
+usa,ut510,Ring Width,Electric Lake,PCEN,2970,3935,-11120,1542,1983,Fritz Schweingruber
+usa,ut511,Ring Width,Ceader Breaks,PCEN,3120,3735,-11351,1581,1983,Fritz Schweingruber
+usa,ut512,Ring Width,"Hidden Peak, Wasatch Mtn",PCEN,3150,4034,-11138,1511,1983,Fritz Schweingruber
+usa,ut513,Ring Width,Bryce Point,PSME,2500,3736,-11209,1336,1998,David E. Grow
+usa,ut516,Ring Width,Coal Bench,PIED,2100,3737,-11200,1555,2000,David E. Grow
+usa,ut517,Ring Width,Deer Springs Mesa,PIED,2200,3718,-11211,1477,1998,David E. Grow
+usa,ut520,Ring Width,Round Valley Draw,PIED,2000,3725,-11153,1561,1999,David E. Grow
+usa,ut521,Ring Width,Skutumpah Road #1,PIED,1800,3730,-11204,1590,2000,David E. Grow
+usa,ut522,Ring Width,Skutumpah Road #2,PIED,1900,3728,-11206,1406,2000,David E. Grow
+usa,ut525,Ring Width,Dutch John Mountain,PIED,2190,4058,-10925,1365,2001,Steve Gray Steve Jackson Julio Betancourt
+usa,ut530,Ring Width,Harmon Canyon,PSME,2134,3948,-11020,-322,2005,Dave Meko Chris Baisan Troy Knight
+usa,ut531,Ring Width,Left Hand Fork,JUSC,1980,4123,-11126,1173,2010,E. B. Allen L. C. Nam N. Thiet N. Hoai R. J. Derose D. Martin
+usa,ut532,Ring Width,Jardine Juniper Trail,JUSC,2100,4130,-11123,1227,2010,Derose Allen Nam Thiet Hoai Martin Benito Bekker
+usa,ut533,Ring Width,Tanner Ridge,PIED,1960,4008,-11120,1313,2011,Matthew F. Bekker Matthew W. Collier Chelsea Decker Joseph N
+usa,ut534,Ring Width,Rattlesnake Mountain,PIED,2130,4015,-11125,1428,2011,Matthew F. Bekker Matthew W. Collier Nathan S. Gill Chelsea
+usa,ut535,Ring Width,Big Flat Ridge,PIFL,3000,4034,-11135,351,2006,B. P. Tikalsky M. F. Bekker R. J. Derose M. Kershner B. C.
+usa,ut536,Ring Width,Maguire Canyon,PSME,2133,4121,-11158,1370,2012,R. J. Derose E. B. Allen J. Britton L. C. Nam M. Kershner
+usa,ut537,Ring Width,Willard Ridge,PSME,2750,4122,-11157,1133,2011,R. J. Derose E. B. Allen J. Britton L. C. Nam M. Kershner D.
+usa,ut539,Ring Width,Upper Sand Creek Research Natural Area,PIPO,2690,3759,-11136,1480,2005,P. A. Knapp P. T. Soule'
+usa,ut540,Ring Width,"Pando clone Fishlake, Utah",PPTR,2770,3831,-11145,1855,2006,R. Justin Derose
+usa,ut541,Ring Width,South Fork Chalk Creek,JUOS,2130,4055,-11113,736,2013,M. F. Bekker R. J. Derose H. Gray C. Nielsen S. H. Wheeler
+usa,ut542,Ring Width,Card Canyon,JUOS,2770,4146,-11140,1338,2012,R. Justin Derose Justin Britton Eric Allen
+usa,ut543,Ring Width,Natural Bridges Archaeological+Modern,PIED,,3732,-10954,94,1988,Ltrr
+usa,ut544,Ring Width,White Canyon,PSME,1895,3737,-11000,1347,2009,Connie Woodhouse Daniel Griffin Mark Losleben Voctor Majo
+usa,va020,Ring Width,"BRUSH MOUNTAIN, JEFFERSON NATIONAL FOREST",PIPU,823,3715,-8023,1822,1992,"Sutherland, Grissino Mayer, And Woodhouse"
+usa,va024,Ring Width,Shenandoah National Park,TSCA,975,3828,-7828,1755,1997,Pat Dougherty
+usa,va025,Ring Width,NOTTOWAY RIVER,TADI,5,3647,-7708,1171,1984,David W. Stahle Malcolm K. Cleaveland
+usa,va026,Ring Width,Montpelier National Natural Landmark Forest,QUAL,200,3812,-7809,1713,2000,Druckenbrod Mann Stahle Cleaveland Therrell Shugart
+usa,va027,Ring Width,Sweet Briar College Old-Growth White Oak,QUAL,230,3733,-7904,1749,1998,D. M. Lawrence S. L. Stephenson H. S. Adams
+usa,va028,Ring Width,Reynolds Homestead Forest Resources Res. Cntr.,QUAL,340,3623,-8037,1821,2000,C. A. Copenheaver
+usa,va029,Ring Width,Craig Creek,QUAL,550,3721,-8022,1722,2001,C. A. Copenheaver
+usa,va030,Ring Width,Zoar State Forest (terrace),FAGR,14,3747,-7706,1858,2004,C. A. Copenheaver
+usa,va031,Ring Width,Zoar State Forest (flood plain),FAGR,4,3747,-7706,1854,2004,C. A. Copenheaver
+usa,va032,Ring Width,Virginia-HWA,TSCA,570,3711,-8029,1869,2010,D. Walker C. A. Copenheaver
+usa,va033,Ring Width,Gap Mountain,QUAL,730,3717,-8028,1914,2005,C. A. Copenheaver
+usa,va034,Ring Width,Sinking Creek Mountain,QUAL,800,3717,-8017,1814,2002,C. A. Copenheaver
+usa,va035,Ring Width,Stroubles Creek,QUAL,600,3717,-8048,1919,2006,C. A. Copenheaver
+usa,va036,Ring Width,Brush Mountain,QUAL,800,3716,-8026,1918,2010,C. A. Copenheaver
+usa,va037,Ring Width,Stadium Woods,QUAL,636,3713,-8013,1697,2011,C. A. Copenheaver
+usa,vt003,Ring Width,Bolton Mountain Low,ACSH,550,4427,-7251,1808,2005,Daniel G. Gavin
+usa,vt004,Ring Width,Bolton Mountain Middle,ACSH,725,4427,-7251,1865,2005,Daniel G. Gavin
+usa,vt005,Ring Width,Bolton Mountain Middle,PCRU,725,4427,-7251,1668,2005,Daniel G. Gavin
+usa,vt006,Ring Width,Bolton Mountain High,PCRU,900,4427,-7251,1734,2005,Daniel G. Gavin
+usa,vt007,Ring Width,Bolton Mountain Low,TSCA,360,4427,-7251,1785,2005,Daniel G. Gavin
+usa,vt008,Ring Width,Bolton Mountain High,ABBA,900,4427,-7251,1879,2005,Daniel G. Gavin
+usa,wa064,Ring Width,Sunrise Lake,LALY,2195,4810,-12022,1487,1982,Lisa Graumlich
+usa,wa065,Ring Width,Enchantment Lakes,LALY,2164,4730,-12048,1542,1982,Lisa Graumlich
+usa,wa066,Ring Width,White Pass,TSME,1750,4637,-12125,1520,1982,Lisa Graumlich
+usa,wa081,Ring Width,Mt.St.Helens,ABAM,1200,4609,-12209,1609,1983,Fritz Schweingruber
+usa,wa082,Ring Width,Hurricane Ridge,ABAM,1560,4757,-12328,1698,1983,Fritz Schweingruber
+usa,wa083,Ring Width,Sherman Cr. Pass,LAOC,1800,4842,-11820,1605,1983,Fritz Schweingruber
+usa,wa084,Ring Width,Mt. Angeles,PSME,1360,4758,-12326,1750,1983,Fritz Schweingruber
+usa,wa085,Ring Width,ANNETTE LAKE TRAIL,PSME,798,4722,-12120,1234,5678,"C. J. Earle, L. B. Brubaker, G. Segura"
+usa,wa086,Ring Width,BIG QUILCENE RIVER TRAIL,PSME,867,4750,-12302,1288,1987,"C. J. Earle, L. B. Brubaker, G. Segura"
+usa,wa087,Ring Width,DEER CREEK PASS,PSME,1052,4820,-12143,1502,1987,"C. J. Earle, L. B. Brubaker, G. Segura"
+usa,wa088,Ring Width,OLYMPIC ROAD 3116,PSME,267,4800,-12400,1394,1987,"C. J. Earle, L. B. Brubaker, G. Segura"
+usa,wa089,Ring Width,SILVER CREEK,PSME,900,4638,-12150,1539,1987,"C. J. Earle, L. B. Brubaker, G. Segura"
+usa,wa090,Ring Width,SAN JUAN HILL,PSME,967,4753,-12120,1326,1987,"C. J. Earle, L. B. Brubaker, G. Segura"
+usa,wa091,Ring Width,TAHOMA CREEK TRAILHEAD,PSME,970,4648,-12153,1410,1987,"C. J. Earle, L. B. Brubaker, G. Segura"
+usa,wa092,Ring Width,Thornton Lakes Low,TSME,1220,4840,-12120,1731,1992,David W. Peterson And David L. Peterson
+usa,wa093,Ring Width,Thornton Lakes Medium,TSME,1370,4840,-12120,1706,1992,David W. Peterson And David L. Peterson
+usa,wa094,Ring Width,Thornton Lakes High,TSME,1525,4840,-12120,1765,1992,David W. Peterson And David L. Peterson
+usa,wa095,Ring Width,Hoh Lake Low,TSME,1220,4754,-12345,1571,1992,David W. Peterson And David L. Peterson
+usa,wa096,Ring Width,Hoh Lake Medium,TSME,1315,4754,-12345,1779,1992,David W. Peterson And David L. Peterson
+usa,wa097,Ring Width,Hoh Lake High,TSME,1465,4754,-12345,1570,1992,David W. Peterson And David L. Peterson
+usa,wa098,Ring Width,Lake Minotaur Low,TSME,1130,4750,-12100,1610,1992,David W. Peterson And David L. Peterson
+usa,wa099,Ring Width,Lake Minotaur Medium,TSME,1465,4750,-12100,1713,1992,David W. Peterson And David L. Peterson
+usa,wa100,Ring Width,Lake Minotaur High,TSME,1740,4750,-12100,1584,1992,David W. Peterson And David L. Peterson
+usa,wa101,Ring Width,Mount Rainier Low,TSME,1425,4650,-12145,1406,1992,David W. Peterson And David L. Peterson
+usa,wa102,Ring Width,Mount Rainier Medium,TSME,1645,4650,-12145,1719,1992,David W. Peterson And David L. Peterson
+usa,wa103,Ring Width,Mount Rainier High,TSME,1830,4650,-12145,1698,1992,David W. Peterson And David L. Peterson
+usa,wa104,Ring Width,Mount Adams Low,TSME,1495,4610,-12130,1610,1992,David W. Peterson And David L. Peterson
+usa,wa105,Ring Width,Mount Adams Medium,TSME,1735,4610,-12130,1721,1993,David W. Peterson And David L. Peterson
+usa,wa106,Ring Width,Mount Adams High,TSME,1890,4610,-12130,1690,1992,David W. Peterson And David L. Peterson
+usa,wa107,Ring Width,Mount Adams Low,ABLA,1465,4610,-12130,1853,1992,David W. Peterson And David L. Peterson
+usa,wa108,Ring Width,Mount Adams Medium,ABLA,1735,4610,-12130,1850,1992,David W. Peterson And David L. Peterson
+usa,wa109,Ring Width,Mount Adams High,ABLA,1890,4610,-12130,1850,1992,David W. Peterson And David L. Peterson
+usa,wa110,Ring Width,Mount Rainier Low,ABLA,1540,4650,-12145,1811,1992,David W. Peterson And David L. Peterson
+usa,wa111,Ring Width,Mount Rainier Medium,ABLA,1645,4650,-12145,1850,1992,David W. Peterson And David L. Peterson
+usa,wa112,Ring Width,Mount Rainier High,ABLA,1840,4650,-12145,1850,1992,David W. Peterson And David L. Peterson
+usa,wa113,Ring Width,Lake Minotaur Low,ABLA,1570,4750,-12100,1865,1992,David W. Peterson And David L. Peterson
+usa,wa114,Ring Width,Lake Minotaur Medium,ABLA,1630,4750,-12100,1863,1992,David W. Peterson And David L. Peterson
+usa,wa115,Ring Width,Lake Minotaur High,ABLA,1740,4750,-12100,1850,1992,David W. Peterson And David L. Peterson
+usa,wa116,Ring Width,Dodger Point Low,ABLA,1395,4750,-12331,1850,1990,David W. Peterson And David L. Peterson
+usa,wa117,Ring Width,Dodger Point Medium,ABLA,1525,4750,-12331,1850,1990,David W. Peterson And David L. Peterson
+usa,wa118,Ring Width,Dodger Point High,ABLA,1725,4750,-12331,1850,1990,David W. Peterson And David L. Peterson
+usa,wa119,Ring Width,Mount Dana Low,ABLA,1540,4751,-12329,1787,1990,David W. Peterson And David L. Peterson
+usa,wa120,Ring Width,Mount Dana Medium,ABLA,1675,4751,-12329,1850,1990,David W. Peterson And David L. Peterson
+usa,wa121,Ring Width,Mount Dana High,ABLA,1860,4751,-12329,1850,1990,David W. Peterson And David L. Peterson
+usa,wa122,Ring Width,Klahhane Ridge Low,ABLA,1375,4800,-12325,1839,1990,David W. Peterson And David L. Peterson
+usa,wa123,Ring Width,Klahhane Ridge Medium,ABLA,1560,4800,-12325,1850,1990,David W. Peterson And David L. Peterson
+usa,wa124,Ring Width,Klahhane Ridge High,ABLA,1820,4800,-12325,1850,1990,David W. Peterson And David L. Peterson
+usa,wa125,Ring Width,Blue Mountain Low,ABLA,1340,4755,-12315,1850,1990,David W. Peterson And David L. Peterson
+usa,wa126,Ring Width,Blue Mountain Medium,ABLA,1595,4755,-12315,1857,1990,David W. Peterson And David L. Peterson
+usa,wa127,Ring Width,Blue Mountain High,ABLA,1800,4755,-12315,1854,1990,David W. Peterson And David L. Peterson
+usa,wa128,Ring Width,Hart's Pass Low,ABLA,1495,4843,-12039,1851,1992,David W. Peterson And David L. Peterson
+usa,wa134,Ring Width,"Heather Meadows, Mt Baker Ski Area",TSME,1310,4886,-12168,1600,2006,Andy Bunn
+usa,wa135,Ring Width,NCAS      (Formerly MT121),LALY,2190,4816,-12027,1336,2005,Jeremy Littell
+usa,wa136,Ring Width,Bear Creek Ridge,PIPO,910,4642,-12055,1389,2013,Wise Beyerlein Csank Dannenberg Kuestner Mcafee
+usa,wa137,Ring Width,Burge Mountain,PIPO,1100,4847,-12016,1626,2011,Erika Wise Matthew Dannenberg Troy Knight
+usa,wa138,Ring Width,Foggy Dew,PIPO,1230,4811,-12016,1541,2012,Wise Beyerlein Csank Dannenberg Kuestner Mcafee
+usa,wa139,Ring Width,Rattlesnake Ridge Road,PIPO,965,4831,-11845,1600,2012,Wise Beyerlein Csank Dannenberg Knight Mcafee
+usa,wa140,Ring Width,Sneed Mountain,PIPO,1150,4835,-11908,1508,2013,Wise Beyerlein Csank Dannenberg Knight Mcafee
+usa,wa141,Ring Width,Sugarloaf Lake,PIPO,850,4836,-11942,1621,2012,Wise Beyerlein Csank Dannenberg Knight Mcafee
+usa,wa142,Ring Width,Tronson Meadow Ridge,PIPO,1400,4720,-12037,1464,2012,Wise Beyerlein Csank Dannenberg Kuestner Mcafee
+usa,wa2,Ring Width,WHITE PASS,PSME,1120,4638,-12129,1791,1986,Klaus F. Kaiser
+usa,wa4,Ring Width,"RIMROCK, VALLES GROUND, WHITE PASS",PSME,810,4620,-12110,1885,1986,Klaus F. Kaiser
+usa,wa5,Ring Width,"RIMROCK, SLOPE, WHITE PASS",PIPO,820,4620,-12110,1921,1986,Klaus F. Kaiser
+usa,wa6,Ring Width,"GOAT MOUNTAIN, MT.ST.HELENS NTL.MONUMENT",TSHE,980,4621,-12205,1630,1986,Klaus F. Kaiser
+usa,wi008,Ring Width,St. Croix River,QUMA,240,4541,-9253,1695,2008,Steven Voelker
+usa,wi009,Ring Width,Clam River,QUMA,290,4551,-9222,1858,2008,Steven Voelker
+usa,wi010,Ring Width,Brule River,QUMA,200,4642,-9136,1909,2008,Steven Voelker
+usa,wi011,Ring Width,Grindle Lake,PIRE,290,4513,-8821,1652,2008,Michael Stambaugh Richard Guyette Joseph Marschall
+usa,wv004,Ring Width,New River Gorge,PIVI,580,3803,-8103,1830,2005,"R. Stockton Maxwell Ray R. Hicks, Jr."
+usa,wv005,Ring Width,Cedar/Moser/Bible Knobs,JUVI,140,3839,-7922,481,1998,E. Cook B. Buckley P. Krusic H. Grissino Mayer N. Peder
+usa,wv006,Ring Width,Pipestem Resort State Park,TSCA,670,3731,-8059,1858,2012,T. Saladyga R. S. Maxwell
+usa,wv007,Ring Width,Cabwaylingo State Forest,TSCA,250,3759,-8222,1756,2012,T. Saladyga J. Gelinas N. Lawrence
+usa,wv008,Ring Width,West Virginia-HWA,TSCA,900,3837,-7947,1770,2010,D. Walker C. A. Copenheaver
+usa,wv009,Ring Width,Babcock State Park,PIRI,700,3758,-8056,1828,2014,T. Saladyga C. Raso T. Hatfield
+usa,wv010,Ring Width,Knob Job Update,JUVI,283,3839,-7922,481,1998,Cook
+usa,wy020,Ring Width,Medicine Bows 4,PCEN,3290,4124,-10617,1421,1990,C. J. Earle
+usa,wy021,Ring Width,Powder River Pass,PCEN,2850,4409,-10703,1496,1983,Fritz Schweingruber
+usa,wy022,Ring Width,Medicine Bow Peak,PCEN,3150,4118,-10742,1401,1983,Fritz Schweingruber
+usa,wy023,Ring Width,Sylvan Pass bei Cody,PCEN,2580,4422,-11008,1388,1983,Fritz Schweingruber
+usa,wy024,Ring Width,"Granite Pass, Hunt Mtn.",PCEN,2820,4447,-10752,1508,1983,Fritz Schweingruber
+usa,wy025,Ring Width,Togwatee Pass,PCEN,2820,4343,-11003,1672,1983,Fritz Schweingruber
+usa,wy026,Ring Width,FOSSIL BUTTE NATIONAL MONUMENT,PIFL,2225,4152,-11048,1480,1998,"Cook, Meko, Dai"
+usa,wy028,Ring Width,Whiskey Mountain,PSME,2696,4326,-10933,1459,2000,Lindsey A. Waggoner Sean Hill
+usa,wy029,Ring Width,Clarks Fork of the Yellowstone,PSME,1474,4411,-10843,1484,1999,Lindsey A. Waggoner Lisa J. Graumlich
+usa,wy030,Ring Width,Sheep Trail,PCEN,3235,4122,-10614,1097,1999,Peter M. Brown Connie A. Woodhouse Malcolm K. Hughes Lind Jo
+usa,wy031,Ring Width,Encampment,PSME,2500,4109,-10647,1380,2001,Connie A. Woodhouse Jeffrey Lukas Mark Losleben
+usa,wy032,Ring Width,Vedauwoo,PIPO,2500,4109,-10522,1511,2001,Connie A. Woodhouse Mark Losleben
+usa,wy033,Ring Width,Hot Springs Basin,PIAL,2542,4445,-11015,1390,2005,John C. King William C. Evans
+usa,wy034,Ring Width,Devils Tower National Monument,PIPO,1319,4435,-10442,1340,2000,Michael C. Stambaugh J. M. Marschall
+usa,wy037,Ring Width,Red Hills,PIFL,2300,4337,-11026,1315,2006,E. K. Wise
+usa,wy038,Ring Width,McDougal Pass,PIFL,2743,4248,-11036,870,1998,P. Brown C. Woodhouse
+usa,wy040,Ring Width,Dead Indian Hill update,PSME,1474,4411,-10843,1194,2000,Ferguson Despain Graumlich Waggoner
+usa,wy042,Ring Width,Anderson Ridge East,PIFL,2431,4227,-10852,1200,2006,Steve Gray Greg Pederson Tom Watson Anthony Barnett
+usa,wy052,Ring Width,Fish Creek North,PSME,2457,4334,-11013,1076,2007,Teton Science School Paul Brown Erika Wise
+usa,wy053,Ring Width,Gros Ventre Road,PIFL,2199,4338,-11030,1228,2006,Teton Science School Paul Brown Erika Wise
+usa,wy054,Ring Width,Hoback Ridge,PIFL,1997,4318,-11040,1074,2006,Teton Science School Paul Brown Erika Wise
+usa,wy055,Ring Width,Hoback Ridge,PSME,1997,4318,-11040,1584,2006,Teton Science School Paul Brown Erika Wise
+usa,wy056,Ring Width,Munger Mountain,PIFL,2085,4320,-11048,1495,2006,Teton Science School Paul Brown Erika Wise

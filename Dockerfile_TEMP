@@ -1,0 +1,42 @@
+# 使用官方的 Miniconda 基础镜像
+FROM continuumio/miniconda3
+
+# 设置工作目录
+WORKDIR /app
+
+# 复制环境文件和脚本到工作目录
+COPY environment.yml /app/environment.yml
+COPY . /app
+
+# 安装R包构建所需的依赖项（相当于Windows上的Rtools）
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    vim \
+    build-essential \
+    wget \
+    libxml2-dev \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libgit2-dev \
+    libfontconfig1-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    r-base-dev \
+    && apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# 创建 Conda 环境并激活
+RUN conda env create -f environment.yml
+RUN echo "source activate tr_env" > ~/.bashrc
+ENV PATH /opt/conda/envs/tr_env/bin:$PATH
+
+# 通过R安装devtools和remotes，然后安装allodb
+RUN /opt/conda/envs/tr_env/bin/Rscript -e 'install.packages(c("devtools", "remotes"), repos="https://cloud.r-project.org/")' && \
+    /opt/conda/envs/tr_env/bin/Rscript -e 'remotes::install_github("ropensci/allodb")'
+
+# 运行脚本
+CMD ["python", "TR_SNP.py"]
