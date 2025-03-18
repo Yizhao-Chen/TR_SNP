@@ -177,9 +177,10 @@ def plot_allometry_species(fk,min_value,max_value,times,file_Column_Randoms,dbh_
                             diameter[k] = (2 * pdf_sub[k])/10    # cm
 
                             if bark_method == 0:
-                                diameterr[k] = diameter[k] * 0.998 + 22.3
+                                diameter[k] = diameter[k]
                             else:
-                                diameterr[k] = (diameter[k] ** 0.89  * 0.95)/10 + diameter[k]                    
+                                #diameterr[k] = (diameter[k] ** 0.89  * 0.95)/10 + diameter[k]                    
+                                diameter[k] = diameter[k] + bark_dict_species(region, species, diameter[k])
 
                             # diameter estimated from rw is then corrected following the
                             # equation from Lockwood et al.,2021
@@ -188,7 +189,8 @@ def plot_allometry_species(fk,min_value,max_value,times,file_Column_Randoms,dbh_
                             else:
                                 #Aggregation with bark estimation
                                 #equation from Zeibig-Kichas et al. 2016
-                                diameterr[k] = (diameter[k] ** 0.89  * 0.95)/10 + diameter[k]
+                                #diameterr[k] = (diameter[k] ** 0.89  * 0.95)/10 + diameter[k]
+                                diameterr[k] = diameter[k] + bark_dict_species(region, species, diameter[k])
                             
                             # get biomass based allometric relationships
                             biomass[k] = allometric_dict_species(region, species, diameter[k])
@@ -207,9 +209,9 @@ def plot_allometry_species(fk,min_value,max_value,times,file_Column_Randoms,dbh_
                             age[k] = age[k-1] + 1
                             diameter[k] = diameter[k-1] + (2 * pdf_sub[k])/10    # cm
                             if bark_method == 0:
-                                diameterr[k] = diameter[k] * 0.998 + 22.3
+                                diameterr[k] = diameter[k]
                             else:
-                                diameterr[k] = (diameter[k] ** 0.89  * 0.95)/10 + diameter[k]  
+                                diameterr[k] = diameter[k] + bark_dict_species(region, species, diameter[k])  
 
                             if dbh_method == 0:
                             # diameter estimated from rw is then corrected following the

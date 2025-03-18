@@ -7,7 +7,7 @@ import os
 def allometric_dict(mm,dbh):
     #global biomass
     #mf = os.getcwd() + "\\rwl_metadata_2020_4_18_all_nontrw_non_species_removed_to_shp.csv"
-    mf = os.path.join(os.path.dirname(__file__), "rwl_metadata_2020_4_18_all_nontrw_non_species_removed_to_shp.csv")
+    mf = os.path.join(os.path.dirname(__file__), "rwl_metadata_ITRDB.csv")
     #mf = "C:\\rwl_metadata_2020_4_18_all_nontrw_non_species_removed_to_shp.csv"
     #mf = "/home/ning/qianniu/TR_NEW/rwl_metadata_2020_4_18_all_nontrw_non_species_removed_to_shp.csv"
     #print(os.getcwd())
@@ -17,8 +17,6 @@ def allometric_dict(mm,dbh):
     # lon_s = -13000
     # lon_e = -7000
 
-    #显示初始化
-    biomass = 0
     #print(mm)
     with open(mf) as f:
         reader = csv.DictReader(f)
@@ -39,7 +37,6 @@ def allometric_dict(mm,dbh):
                 #print(mm)
                 #print("yes")
                 nn = species
-                #print("name = ",name ,"species = ",species)
                 #print(nn)
 #Europe
                 # if (nn == "ABAL"):
@@ -124,141 +121,142 @@ def allometric_dict(mm,dbh):
                 or nn == 'ABMA'):
                     biomass = math.exp(-3.1774 + 2.6426 * math.log(dbh))
 
-                if (nn == 'ABLA'):
+                elif (nn == 'ABLA'):
                     biomass = math.exp(-2.3123  + 2.3482 * math.log(dbh))
 
-                if (nn == 'ACRU' or nn == 'BELE'):
+                elif (nn == 'ACRU' or nn == 'BELE'):
                     biomass = math.exp(-1.9123 + 2.3651 * math.log(dbh))
 
-                if (nn == 'ACSH'):
+                elif (nn == 'ACSH'):
                     biomass = math.exp(-2.0127 + 2.4342 * math.log(dbh))
 
-                if (nn == 'CADE'):
+                elif (nn == 'CADE'):
                     biomass = math.exp(-11.8235 + 2.7334 * math.log(dbh))
 
-                if (nn == 'CYGL' or nn == 'CYOV'):
+                elif (nn == 'CYGL' or nn == 'CYOV'):
                     biomass = math.exp(-1.326 + 2.761 * math.log(dbh))
 
-                if (nn == 'CHNO'or nn == 'JUOC'):
+                elif (nn == 'CHNO'or nn == 'JUOC'):
                     biomass = math.exp(-2.6327 + 2.4757 * math.log(dbh))
 
-                if (nn == 'FAGR'):
+                elif (nn == 'FAGR'):
                     biomass = 0.084 * math.pow(dbh,2.572)
 
-                if (nn == 'JUOS' or nn == 'JUSC'):
+                elif (nn == 'JUOS' or nn == 'JUSC'):
                     biomass = math.exp(-0.7152 + 1.7029 * math.log(dbh))
 
-                if (nn == 'JUVI'):
+                elif (nn == 'JUVI'):
                     biomass = math.exp(-2.0336 + 2.2592 * math.log(dbh))
 
-                if (nn == 'LALY' or nn == 'LAOC'):
+                elif (nn == 'LALY' or nn == 'LAOC'):
                     biomass = math.exp(-2.3012 + 2.3853 * math.log(dbh))
 
-                if (nn == 'LITU'):
+                elif (nn == 'LITU'):
                     biomass = math.exp(-2.48 + 2.4835 * math.log(dbh))
 
-                if (nn == 'PCEN'):
+                elif (nn == 'PCEN'):
                     biomass = math.exp(-3.03 + 2.5567 * math.log(dbh))
 
-                if (nn == 'PCGL'):
+                elif (nn == 'PCGL'):
                     #print(dbh)
                     biomass = math.exp(-2.1364 + 2.3233 * math.log(dbh))
                     #print(biomass)
 
-                if (nn == 'PCMA'):
+                elif (nn == 'PCMA'):
                     biomass = math.exp(-1.7823 + 2.1777 * math.log(dbh))
 
-                if (nn == 'PCPU'):
+                elif (nn == 'PCPU'):
                     biomass = math.exp(-2.1364 + 2.3233 * math.log(dbh))
 
-                if (nn == 'PCRU'):
+                elif (nn == 'PCRU'):
                     biomass = math.exp(-2.0773 + 2.3323 * math.log(dbh))
 
-                if (nn == 'PCSI'):
+                elif (nn == 'PCSI'):
                     biomass = math.exp(-3.03 + 2.5567 * math.log(dbh))
 
-                if (nn == 'PIAR' or nn == 'PIBA' or nn == 'PICO' or nn == 'PIEC'
+                elif (nn == 'PIAR' or nn == 'PIBA' or nn == 'PICO' or nn == 'PIEC'
                 or nn == 'PIJE' or nn == 'PILO' or nn == 'PIMR' or nn == 'PIPA'
                 or nn == 'PIPU'):
                     biomass = math.exp(-3.0506 + 2.6465 * math.log(dbh))
 
-                if (nn == 'PIED' or nn == 'PIRE' or nn == 'PIRI' or nn == 'PITA'):
+                elif (nn == 'PIED' or nn == 'PIRE' or nn == 'PIRI' or nn == 'PITA'):
                     biomass = math.exp(-2.5356 + 2.4349 * math.log(dbh))
 
-                if (nn == 'PIFL' or nn == 'PILA' or nn == 'PIPO' or nn == 'PIAL'
+                elif (nn == 'PIFL' or nn == 'PILA' or nn == 'PIPO' or nn == 'PIAL'
                 or nn == 'PISF'):
                     biomass = math.exp(-2.6177 + 2.4638 * math.log(dbh))
 
-                if (nn == 'PIST'):
+                elif (nn == 'PIST'):
                     biomass = math.exp(5.2831 + 2.0369 * math.log(dbh))
 
-                if (nn == 'PIVI'):
+                elif (nn == 'PIVI'):
                     biomass = math.exp(-2.5918 + 2.422 * math.log(dbh))
 
-                if (nn == 'PPDE' or nn == 'PPGR'):
+                elif (nn == 'PPDE' or nn == 'PPGR'):
                     biomass = math.exp(-2.2094 + 2.3867 * math.log(dbh))
 
-                if (nn == 'PPTR'):
+                elif (nn == 'PPTR'):
                     biomass = math.exp(4.4564 + 2.4486 * math.log(dbh))
 
-                if (nn == 'PSMA'):
+                elif (nn == 'PSMA'):
                     biomass = math.exp(-2.4623 + 2.4852 * math.log(dbh))
 
-                if (nn == 'PSME'):
+                elif (nn == 'PSME'):
                     biomass = math.exp(-2.3298 + 2.4818 * math.log(dbh))
 
-                if (nn == 'QUAL' or nn == 'QUCO'):
+                elif (nn == 'QUAL' or nn == 'QUCO'):
                     biomass = math.exp(-2.0127 + 2.4342 * math.log(dbh))
 
-                if (nn == 'QUDG'):
+                elif (nn == 'QUDG'):
                     biomass = 0.0683*math.pow(dbh,2.5697)
 
-                if (nn == 'QUFA' or nn == 'QULO' or nn == 'QULY'):
+                elif (nn == 'QUFA' or nn == 'QULO' or nn == 'QULY'):
                     biomass = math.exp(-2.0127 + 2.4342 * math.log(dbh))
 
-                if (nn == 'QUMA' or nn == 'QUMU' or nn == 'QUPA'):
+                elif (nn == 'QUMA' or nn == 'QUMU' or nn == 'QUPA'):
                     biomass = 0.1447* math.pow(dbh,2.282)
 
-                if (nn == 'QURU' or nn == 'QUSH' or nn == 'QUST' or 'QUVE'):
+                elif (nn == 'QURU' or nn == 'QUSH' or nn == 'QUST' or 'QUVE'):
                     biomass = math.exp(-2.0127 + 2.4342 * math.log(dbh))
 
-                if (nn == 'TADI' or nn =='THPL' or nn == 'TSCR' or nn == 'TSHE' or
+                elif (nn == 'TADI' or nn =='THPL' or nn == 'TSCR' or nn == 'TSHE' or
                 nn == 'TSME' or nn == 'LIDE'):
                     biomass = math.exp(-2.7096 + 2.1942 * math.log(dbh))
 
-                if (nn == 'THOC'):
+                elif (nn == 'THOC'):
                     biomass = math.exp(-2.0336 + 2.2592 * math.log(dbh))
 
-                if (nn == 'TSCA'):
+                elif (nn == 'TSCA'):
                     biomass = math.exp(-2.2304 + 2.4435 * math.log(dbh))
 
-                if (nn == 'CADN'):
+                elif (nn == 'CADN'):
                     biomass = math.exp(-2.0705 + 2.441 * math.log(dbh))
 
-                if (nn == 'CHLA'):
+                elif (nn == 'CHLA'):
                     biomass = math.exp(-2.6327 + 2.4757 * math.log(dbh))
 
-                if (nn == 'MIXD'):
+                elif (nn == 'MIXD'):
                     biomass = math.exp(-2.5497 + 2.5011 * math.log(dbh))
 
-                if (nn == 'PINE'):
+                elif (nn == 'PINE'):
                     biomass = math.exp(-2.6177 + 2.4638 * math.log(dbh))
 
-                if (nn == 'PISP'):
+                elif (nn == 'PISP'):
                     biomass = math.exp(-3.2007 + 2.5339 * math.log(dbh))
 
-                if (nn == 'PITO'):
+                elif (nn == 'PITO'):
                     biomass = math.exp(-2.6177 + 2.4638 * math.log(dbh))
 
-                if (nn == 'PLRA'):
+                elif (nn == 'PLRA'):
                     biomass = math.exp(-3.0506 + 2.6465 * math.log(dbh))
 
-                if (nn == 'QUCF' or nn == 'QUSP'):
+                elif (nn == 'QUCF' or nn == 'QUSP'):
                     biomass = math.exp(-2.0705 + 2.4410 * math.log(dbh))
 
-                if (nn == 'SAPC'):
+                elif (nn == 'SAPC'):
                     biomass = math.exp(-2.6863 + 2.4561 * math.log(dbh))
-
+                else:
+                    biomass = -999
 #canada
 #TO CORRECT ABLA ONLY
                 # if (nn == 'ABLA'):
