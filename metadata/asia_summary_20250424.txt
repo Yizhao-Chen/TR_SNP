@@ -1,0 +1,12 @@
+
+Asia Metadata Summary:
+  Total sites: 628
+  Species represented: 81
+  Top 5 species by count:
+    - Pinus sylvestris L.: 95 sites
+    - Larix sibirica Ledeb. = Larix russica (Endl.) Sabine ex Trautv.: 76 sites
+    - Larix gmelinii (Rupr.) Kuzen.=L.kurulensis(Maxim ex Regel)Pilg.=L.dahuricaTurcz.exTratv=Larix cajanderi Mayr: 41 sites
+    - Abies spectabilis (D. Don) Spach: 33 sites
+    - Tectona grandis L. f.: 23 sites
+  Earliest year: -2637.0
+  Latest year: 2022.0

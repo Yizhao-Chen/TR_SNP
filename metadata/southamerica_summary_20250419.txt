@@ -1,0 +1,12 @@
+
+Southamerica Metadata Summary:
+  Total sites: 288
+  Species represented: 64
+  Top 5 species by count:
+    - Nothofagus pumilio (Poepp. & Endl.) Reiche: 64 sites
+    - Austrocedrus chilensis (D. Don) Pic. Serm. & Bizzarri: 33 sites
+    - Araucaria araucana (Molina) K. Koch: 30 sites
+    - Juglans australis Griseb.: 20 sites
+    - Centrolobium microchaete (Benth.) H.C. Lima: 12 sites
+  Earliest year: -342.0
+  Latest year: 2020.0

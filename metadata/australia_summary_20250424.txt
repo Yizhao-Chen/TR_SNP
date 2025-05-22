@@ -1,0 +1,12 @@
+
+Australia Metadata Summary:
+  Total sites: 183
+  Species represented: 21
+  Top 5 species by count:
+    - Agathis australis (D. Don) Loudon: 40 sites
+    - Libocedrus bidwillii Hook. f.: 34 sites
+    - Nothofagus solanderi (Hook f.) Oerst.: 25 sites
+    - Phyllocladus aspleniifolius (Labill.) Hook. f.: 22 sites
+    - Athrotaxis selaginoides D. Don: 8 sites
+  Earliest year: -2145.0
+  Latest year: 2015.0

@@ -1,0 +1,406 @@
+Processing file: D:/TR_SNP_docker/Verson_0415/test_output/data/or100.rwl
+Species code: TSME
+Random values: [3.888, 5.995, 7.598, 9.18, 9.061]
+Years range: 1449 - 2012, Total years: 564
+DataFrame columns: ['Year', 'LTS01A', 'LTS01B', 'LTS02A', 'LTS02B', 'LTS03A', 'LTS03B', 'LTS04A', 'LTS04B', 'LTS05A', 'LTS05B', 'LTS06A', 'LTS06B', 'LTS07A', 'LTS07B', 'LTS08A', 'LTS08B', 'LTS09A', 'LTS09B', 'LTS10A', 'LTS10B', 'LTS11A', 'LTS11B', 'LTS12A', 'LTS12B', 'LTS13A', 'LTS13B', 'LTS14A', 'LTS14B', 'LTS15A', 'LTS15B', 'LTS16A', 'LTS17A', 'LTS17B', 'LTS18A', 'LTS19A', 'LTS20A', 'LTS20B', 'LTS21A', 'LTS21B', 'LTS22A', 'LTS22B', 'LTS23A', 'LTS23B', 'LTS24A', 'LTS24B', 'LTS25A', 'LTS25B', 'LTS26B', 'LTS27A', 'LTS27B', 'LTS28A', 'LTS28B', 'LTS29A', 'LTS29B', 'LTS30A', 'LTS30B', 'LTS31A', 'LTS31B', 'LTS32A', 'LTS32B', 'LTS33A', 'LTS33B', 'LTS34A', 'LTS34B', 'LTS35A', 'LTS35B', 'LTS36A', 'LTS36B', 'LTS37A', 'LTS37B', 'LTS38A', 'LTS38B', 'LTS39A', 'LTS39B', 'LTS40A', 'LTS40B', 'LTS41A', 'LTS41B', 'LTS42A', 'LTS42B']
+
+Sample: LTS01A
+  Valid values: 128
+  First few values: [0.97  0.548 0.998 0.947 1.612]
+  First valid index: 1885
+
+Sample: LTS01B
+  Valid values: 135
+  First few values: [1.593 1.73  0.75  0.524 0.588]
+  First valid index: 1878
+
+Sample: LTS02A
+  Valid values: 472
+  First few values: [0.838 0.78  0.589 0.96  0.902]
+  First valid index: 1541
+
+Sample: LTS02B
+  Valid values: 564
+  First few values: [2.322 1.856 1.477 1.178 1.854]
+  First valid index: 1449
+
+Sample: LTS03A
+  Valid values: 239
+  First few values: [2.551 1.976 2.969 3.006 2.481]
+  First valid index: 1774
+
+Sample: LTS03B
+  Valid values: 287
+  First few values: [2.805 2.33  3.278 2.751 1.501]
+  First valid index: 1726
+
+Sample: LTS04A
+  Valid values: 278
+  First few values: [1.665 1.707 2.294 1.976 1.776]
+  First valid index: 1735
+
+Sample: LTS04B
+  Valid values: 395
+  First few values: [0.58  0.469 0.528 0.639 0.704]
+  First valid index: 1618
+
+Sample: LTS05A
+  Valid values: 461
+  First few values: [0.296 0.289 0.264 0.197 0.298]
+  First valid index: 1552
+
+Sample: LTS05B
+  Valid values: 349
+  First few values: [0.603 0.761 0.623 0.815 0.228]
+  First valid index: 1664
+
+Sample: LTS06A
+  Valid values: 321
+  First few values: [1.091 1.073 0.831 1.089 0.117]
+  First valid index: 1692
+
+Sample: LTS06B
+  Valid values: 329
+  First few values: [0.418 0.604 1.431 1.026 0.72 ]
+  First valid index: 1684
+
+Sample: LTS07A
+  Valid values: 359
+  First few values: [0.891 0.738 0.817 0.808 1.536]
+  First valid index: 1654
+
+Sample: LTS07B
+  Valid values: 489
+  First few values: [0.9   1.785 1.171 1.268 1.095]
+  First valid index: 1524
+
+Sample: LTS08A
+  Valid values: 283
+  First few values: [0.615 0.987 1.087 1.094 0.976]
+  First valid index: 1730
+
+Sample: LTS08B
+  Valid values: 328
+  First few values: [0.967 0.997 0.703 0.467 0.4  ]
+  First valid index: 1682
+
+Sample: LTS09A
+  Valid values: 282
+  First few values: [0.898 1.163 1.161 1.057 1.239]
+  First valid index: 1731
+
+Sample: LTS09B
+  Valid values: 492
+  First few values: [1.177 1.787 1.465 1.728 2.03 ]
+  First valid index: 1521
+
+Sample: LTS10A
+  Valid values: 357
+  First few values: [1.046 1.12  1.035 0.821 0.879]
+  First valid index: 1656
+
+Sample: LTS10B
+  Valid values: 182
+  First few values: [1.092 1.804 1.932 1.821 1.426]
+  First valid index: 1831
+
+Sample: LTS11A
+  Valid values: 183
+  First few values: [1.395 1.144 1.052 0.96  1.401]
+  First valid index: 1818
+
+Sample: LTS11B
+  Valid values: 551
+  First few values: [1.115 0.828 0.926 0.791 0.988]
+  First valid index: 1460
+
+Sample: LTS12A
+  Valid values: 480
+  First few values: [0.751 0.741 0.757 0.603 0.902]
+  First valid index: 1533
+
+Sample: LTS12B
+  Valid values: 347
+  First few values: [0.881 0.917 0.441 0.44  0.827]
+  First valid index: 1666
+
+Sample: LTS13A
+  Valid values: 256
+  First few values: [1.246 1.321 1.262 0.99  1.498]
+  First valid index: 1757
+
+Sample: LTS13B
+  Valid values: 143
+  First few values: [1.867 1.561 1.924 1.97  2.805]
+  First valid index: 1870
+
+Sample: LTS14A
+  Valid values: 335
+  First few values: [1.659 1.567 1.613 2.419 1.35 ]
+  First valid index: 1678
+
+Sample: LTS14B
+  Valid values: 376
+  First few values: [0.781 1.293 1.058 1.054 0.549]
+  First valid index: 1637
+
+Sample: LTS15A
+  Valid values: 178
+  First few values: [1.674 2.28  3.013 3.207 2.916]
+  First valid index: 1835
+
+Sample: LTS15B
+  Valid values: 193
+  First few values: [1.347 1.966 1.682 1.704 1.275]
+  First valid index: 1820
+
+Sample: LTS16A
+  Valid values: 451
+  First few values: [1.845 1.245 1.435 1.3   1.173]
+  First valid index: 1562
+
+Sample: LTS17A
+  Valid values: 213
+  First few values: [1.839 2.087 0.686 1.018 1.001]
+  First valid index: 1800
+
+Sample: LTS17B
+  Valid values: 332
+  First few values: [2.194 1.962 2.007 1.672 1.376]
+  First valid index: 1681
+
+Sample: LTS18A
+  Valid values: 243
+  First few values: [2.777 2.5   2.241 2.21  1.466]
+  First valid index: 1770
+
+Sample: LTS19A
+  Valid values: 458
+  First few values: [1.968 1.351 1.343 1.235 1.364]
+  First valid index: 1545
+
+Sample: LTS20A
+  Valid values: 288
+  First few values: [1.104 1.192 1.058 1.605 1.076]
+  First valid index: 1725
+
+Sample: LTS20B
+  Valid values: 274
+  First few values: [0.716 0.914 0.921 0.531 2.083]
+  First valid index: 1739
+
+Sample: LTS21A
+  Valid values: 289
+  First few values: [1.569 1.81  2.541 1.865 2.715]
+  First valid index: 1724
+
+Sample: LTS21B
+  Valid values: 123
+  First few values: [1.084 1.291 0.921 0.608 0.849]
+  First valid index: 1890
+
+Sample: LTS22A
+  Valid values: 441
+  First few values: [1.6   0.914 0.764 1.884 1.98 ]
+  First valid index: 1572
+
+Sample: LTS22B
+  Valid values: 315
+  First few values: [0.848 1.529 1.384 0.869 1.303]
+  First valid index: 1698
+
+Sample: LTS23A
+  Valid values: 235
+  First few values: [1.672 1.694 1.662 1.177 1.893]
+  First valid index: 1778
+
+Sample: LTS23B
+  Valid values: 300
+  First few values: [1.389 1.463 0.467 1.364 2.268]
+  First valid index: 1713
+
+Sample: LTS24A
+  Valid values: 357
+  First few values: [0.548 0.617 0.724 0.744 0.629]
+  First valid index: 1656
+
+Sample: LTS24B
+  Valid values: 199
+  First few values: [1.362 1.353 1.351 1.115 1.001]
+  First valid index: 1814
+
+Sample: LTS25A
+  Valid values: 308
+  First few values: [0.136 0.213 0.085 0.26  0.082]
+  First valid index: 1705
+
+Sample: LTS25B
+  Valid values: 299
+  First few values: [0.47  0.163 0.502 0.971 0.457]
+  First valid index: 1714
+
+Sample: LTS26B
+  Valid values: 100
+  First few values: [0.629 1.085 1.183 0.878 0.484]
+  First valid index: 1913
+
+Sample: LTS27A
+  Valid values: 322
+  First few values: [0.692 0.854 0.767 0.722 0.819]
+  First valid index: 1691
+
+Sample: LTS27B
+  Valid values: 375
+  First few values: [2.098 1.068 1.192 0.964 2.3  ]
+  First valid index: 1638
+
+Sample: LTS28A
+  Valid values: 291
+  First few values: [0.881 0.781 0.7   0.839 0.829]
+  First valid index: 1722
+
+Sample: LTS28B
+  Valid values: 278
+  First few values: [0.805 0.698 0.5   0.352 0.824]
+  First valid index: 1735
+
+Sample: LTS29A
+  Valid values: 254
+  First few values: [0.22  0.216 0.324 0.279 0.2  ]
+  First valid index: 1759
+
+Sample: LTS29B
+  Valid values: 332
+  First few values: [0.31  0.258 0.328 0.381 0.282]
+  First valid index: 1681
+
+Sample: LTS30A
+  Valid values: 373
+  First few values: [0.63  0.735 0.488 0.815 0.861]
+  First valid index: 1640
+
+Sample: LTS30B
+  Valid values: 490
+  First few values: [0.201 0.345 1.092 0.813 0.378]
+  First valid index: 1523
+
+Sample: LTS31A
+  Valid values: 292
+  First few values: [1.251 1.243 0.835 1.104 0.9  ]
+  First valid index: 1721
+
+Sample: LTS31B
+  Valid values: 296
+  First few values: [0.781 0.58  0.73  0.758 0.784]
+  First valid index: 1717
+
+Sample: LTS32A
+  Valid values: 257
+  First few values: [2.07  1.775 2.191 1.89  1.093]
+  First valid index: 1756
+
+Sample: LTS32B
+  Valid values: 302
+  First few values: [0.303 0.794 0.442 0.521 0.065]
+  First valid index: 1711
+
+Sample: LTS33A
+  Valid values: 380
+  First few values: [1.955 2.322 1.737 1.608 2.066]
+  First valid index: 1633
+
+Sample: LTS33B
+  Valid values: 246
+  First few values: [1.162 0.487 0.445 0.924 0.763]
+  First valid index: 1767
+
+Sample: LTS34A
+  Valid values: 173
+  First few values: [1.68  2.017 1.884 2.704 1.938]
+  First valid index: 1840
+
+Sample: LTS34B
+  Valid values: 334
+  First few values: [1.329 1.553 1.459 1.824 1.46 ]
+  First valid index: 1678
+
+Sample: LTS35A
+  Valid values: 220
+  First few values: [1.941 2.095 1.542 1.178 1.335]
+  First valid index: 1793
+
+Sample: LTS35B
+  Valid values: 194
+  First few values: [1.002 0.939 1.051 1.48  1.125]
+  First valid index: 1819
+
+Sample: LTS36A
+  Valid values: 233
+  First few values: [1.086 0.675 0.382 0.382 0.299]
+  First valid index: 1780
+
+Sample: LTS36B
+  Valid values: 265
+  First few values: [0.559 0.779 0.593 0.464 0.864]
+  First valid index: 1748
+
+Sample: LTS37A
+  Valid values: 279
+  First few values: [0.932 1.007 1.08  1.298 1.424]
+  First valid index: 1734
+
+Sample: LTS37B
+  Valid values: 271
+  First few values: [0.356 1.326 1.662 1.493 1.52 ]
+  First valid index: 1742
+
+Sample: LTS38A
+  Valid values: 279
+  First few values: [1.969 2.183 2.061 1.837 1.088]
+  First valid index: 1734
+
+Sample: LTS38B
+  Valid values: 264
+  First few values: [0.747 0.93  1.102 0.104 0.502]
+  First valid index: 1749
+
+Sample: LTS39A
+  Valid values: 304
+  First few values: [1.062 1.873 1.831 1.826 1.57 ]
+  First valid index: 1709
+
+Sample: LTS39B
+  Valid values: 335
+  First few values: [1.665 0.99  1.05  0.961 0.732]
+  First valid index: 1678
+
+Sample: LTS40A
+  Valid values: 262
+  First few values: [1.544 1.243 0.552 0.552 0.557]
+  First valid index: 1751
+
+Sample: LTS40B
+  Valid values: 470
+  First few values: [0.578 0.332 0.648 0.329 0.31 ]
+  First valid index: 1543
+
+Sample: LTS41A
+  Valid values: 250
+  First few values: [0.866 1.391 1.223 0.96  1.243]
+  First valid index: 1763
+
+Sample: LTS41B
+  Valid values: 260
+  First few values: [0.41  0.397 0.694 0.988 0.599]
+  First valid index: 1753
+
+Sample: LTS42A
+  Valid values: 440
+  First few values: [0.91  1.065 1.06  1.178 0.941]
+  First valid index: 1573
+
+Sample: LTS42B
+  Valid values: 437
+  First few values: [1.466 1.194 1.379 1.389 1.586]
+  First valid index: 1576
+

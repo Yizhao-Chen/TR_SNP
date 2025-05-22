@@ -1,0 +1,346 @@
+Processing file: D:/TR_SNP_docker/Verson_0415/test_output/data/or099.rwl
+Species code: TSME
+Random values: [2.186, 3.228, 4.188, 2.722, 6.384]
+Years range: 1566 - 2012, Total years: 447
+DataFrame columns: ['Year', 'LLR01A', 'LLR01B', 'LLR02A', 'LLR02B', 'LLR03A', 'LLR03B', 'LLR04A', 'LLR04B', 'LLR05A', 'LLR05B', 'LLR06A', 'LLR06B', 'LLR07A', 'LLR07B', 'LLR08A', 'LLR08B', 'LLR09A', 'LLR09B', 'LLR10A', 'LLR10B', 'LLR11A', 'LLR11B', 'LLR12A', 'LLR12B', 'LLR13A', 'LLR13B', 'LLR14A', 'LLR14B', 'LLR15A', 'LLR15B', 'LLR16A', 'LLR16B', 'LLR17A', 'LLR17B', 'LLR18A', 'LLR18B', 'LLR19A', 'LLR19B', 'LLR20A', 'LLR20B', 'LLR21A', 'LLR21B', 'LLR21C', 'LLR22A', 'LLR22B', 'LLR23A', 'LLR23B', 'LLR24A', 'LLR24B', 'LLR25A', 'LLR25B', 'LLR26A', 'LLR26B', 'LLR27A', 'LLR27B', 'LLR28A', 'LLR28B', 'LLR28C', 'LLR29A', 'LLR29B', 'LLR30A', 'LLR30B', 'LLR31A', 'LLR31B', 'LLR32A', 'LLR32B', 'LLR33A', 'LLR33B']
+
+Sample: LLR01A
+  Valid values: 264
+  First few values: [1.56  1.397 1.483 0.71  0.451]
+  First valid index: 1749
+
+Sample: LLR01B
+  Valid values: 231
+  First few values: [0.598 0.894 0.781 0.588 0.315]
+  First valid index: 1781
+
+Sample: LLR02A
+  Valid values: 386
+  First few values: [1.621 1.267 1.214 1.04  1.163]
+  First valid index: 1627
+
+Sample: LLR02B
+  Valid values: 317
+  First few values: [1.317 0.907 1.526 1.69  1.239]
+  First valid index: 1696
+
+Sample: LLR03A
+  Valid values: 233
+  First few values: [1.171 1.334 1.417 1.698 1.279]
+  First valid index: 1780
+
+Sample: LLR03B
+  Valid values: 228
+  First few values: [0.969 1.323 1.168 1.387 1.06 ]
+  First valid index: 1785
+
+Sample: LLR04A
+  Valid values: 296
+  First few values: [1.27  1.029 0.984 1.368 1.534]
+  First valid index: 1717
+
+Sample: LLR04B
+  Valid values: 276
+  First few values: [1.335 1.237 1.432 1.227 1.244]
+  First valid index: 1737
+
+Sample: LLR05A
+  Valid values: 200
+  First few values: [1.178 1.517 1.03  1.513 1.424]
+  First valid index: 1813
+
+Sample: LLR05B
+  Valid values: 317
+  First few values: [0.389 0.145 1.321 1.115 1.465]
+  First valid index: 1696
+
+Sample: LLR06A
+  Valid values: 396
+  First few values: [1.125 1.895 1.386 1.197 1.378]
+  First valid index: 1617
+
+Sample: LLR06B
+  Valid values: 400
+  First few values: [0.476 0.676 0.754 0.747 0.786]
+  First valid index: 1613
+
+Sample: LLR07A
+  Valid values: 267
+  First few values: [1.003 0.843 1.172 0.95  0.964]
+  First valid index: 1746
+
+Sample: LLR07B
+  Valid values: 240
+  First few values: [2.134 1.516 1.327 2.322 1.837]
+  First valid index: 1773
+
+Sample: LLR08A
+  Valid values: 232
+  First few values: [1.629 1.768 1.426 1.086 0.896]
+  First valid index: 1781
+
+Sample: LLR08B
+  Valid values: 249
+  First few values: [1.195 0.834 0.635 1.405 1.365]
+  First valid index: 1764
+
+Sample: LLR09A
+  Valid values: 223
+  First few values: [1.026 1.399 1.279 1.524 1.358]
+  First valid index: 1790
+
+Sample: LLR09B
+  Valid values: 164
+  First few values: [1.126 1.131 1.27  1.351 1.358]
+  First valid index: 1849
+
+Sample: LLR10A
+  Valid values: 292
+  First few values: [3.24  2.977 2.42  2.087 2.292]
+  First valid index: 1721
+
+Sample: LLR10B
+  Valid values: 248
+  First few values: [1.142 1.381 1.483 2.74  2.264]
+  First valid index: 1765
+
+Sample: LLR11A
+  Valid values: 418
+  First few values: [1.318 1.113 1.018 1.143 0.625]
+  First valid index: 1595
+
+Sample: LLR11B
+  Valid values: 403
+  First few values: [1.438 0.849 0.751 0.842 1.063]
+  First valid index: 1610
+
+Sample: LLR12A
+  Valid values: 190
+  First few values: [0.537 0.626 0.549 0.576 0.54 ]
+  First valid index: 1823
+
+Sample: LLR12B
+  Valid values: 352
+  First few values: [1.071 0.749 0.58  1.144 1.784]
+  First valid index: 1661
+
+Sample: LLR13A
+  Valid values: 200
+  First few values: [0.386 0.588 0.455 0.638 0.77 ]
+  First valid index: 1813
+
+Sample: LLR13B
+  Valid values: 293
+  First few values: [1.25  1.159 1.162 1.359 0.925]
+  First valid index: 1720
+
+Sample: LLR14A
+  Valid values: 274
+  First few values: [0.835 1.192 0.848 2.017 1.305]
+  First valid index: 1739
+
+Sample: LLR14B
+  Valid values: 254
+  First few values: [0.875 0.95  1.501 1.368 1.109]
+  First valid index: 1759
+
+Sample: LLR15A
+  Valid values: 263
+  First few values: [0.681 1.101 0.779 0.633 0.146]
+  First valid index: 1750
+
+Sample: LLR15B
+  Valid values: 226
+  First few values: [0.592 0.672 0.993 0.371 0.576]
+  First valid index: 1787
+
+Sample: LLR16A
+  Valid values: 199
+  First few values: [1.451 1.09  1.311 1.011 0.919]
+  First valid index: 1814
+
+Sample: LLR16B
+  Valid values: 229
+  First few values: [0.854 0.623 0.766 0.733 1.215]
+  First valid index: 1784
+
+Sample: LLR17A
+  Valid values: 182
+  First few values: [1.539 1.275 1.659 1.727 1.403]
+  First valid index: 1831
+
+Sample: LLR17B
+  Valid values: 243
+  First few values: [2.729 2.34  1.707 1.439 1.411]
+  First valid index: 1770
+
+Sample: LLR18A
+  Valid values: 435
+  First few values: [1.52  1.461 1.335 0.77  0.716]
+  First valid index: 1578
+
+Sample: LLR18B
+  Valid values: 447
+  First few values: [0.285 0.385 0.35  0.495 0.623]
+  First valid index: 1566
+
+Sample: LLR19A
+  Valid values: 372
+  First few values: [0.602 1.338 1.836 1.601 1.545]
+  First valid index: 1641
+
+Sample: LLR19B
+  Valid values: 405
+  First few values: [1.467 1.608 1.948 1.994 1.693]
+  First valid index: 1608
+
+Sample: LLR20A
+  Valid values: 357
+  First few values: [0.345 0.52  0.895 0.765 0.635]
+  First valid index: 1656
+
+Sample: LLR20B
+  Valid values: 207
+  First few values: [0.673 0.528 1.022 0.647 0.264]
+  First valid index: 1806
+
+Sample: LLR21A
+  Valid values: 222
+  First few values: [1.254 0.692 0.743 1.014 0.756]
+  First valid index: 1791
+
+Sample: LLR21B
+  Valid values: 282
+  First few values: [1.175 1.196 1.073 0.602 1.295]
+  First valid index: 1731
+
+Sample: LLR21C
+  Valid values: 338
+  First few values: [1.078 0.86  0.766 1.024 0.88 ]
+  First valid index: 1675
+
+Sample: LLR22A
+  Valid values: 184
+  First few values: [1.331 1.114 1.044 1.415 1.481]
+  First valid index: 1829
+
+Sample: LLR22B
+  Valid values: 171
+  First few values: [3.236 5.429 2.878 2.345 6.151]
+  First valid index: 1842
+
+Sample: LLR23A
+  Valid values: 284
+  First few values: [1.778 0.789 1.701 1.343 1.359]
+  First valid index: 1729
+
+Sample: LLR23B
+  Valid values: 325
+  First few values: [0.935 0.986 1.287 1.271 0.261]
+  First valid index: 1688
+
+Sample: LLR24A
+  Valid values: 142
+  First few values: [0.931 1.01  1.192 1.488 1.429]
+  First valid index: 1871
+
+Sample: LLR24B
+  Valid values: 209
+  First few values: [0.786 0.784 0.747 0.694 1.179]
+  First valid index: 1804
+
+Sample: LLR25A
+  Valid values: 239
+  First few values: [2.457 1.548 2.975 2.462 2.096]
+  First valid index: 1774
+
+Sample: LLR25B
+  Valid values: 347
+  First few values: [0.64  0.953 0.756 1.106 0.314]
+  First valid index: 1666
+
+Sample: LLR26A
+  Valid values: 325
+  First few values: [0.961 1.092 1.155 0.874 1.14 ]
+  First valid index: 1688
+
+Sample: LLR26B
+  Valid values: 322
+  First few values: [0.908 1.189 1.224 1.024 1.161]
+  First valid index: 1691
+
+Sample: LLR27A
+  Valid values: 291
+  First few values: [0.973 1.112 1.059 0.936 1.34 ]
+  First valid index: 1722
+
+Sample: LLR27B
+  Valid values: 268
+  First few values: [0.798 0.887 0.736 0.703 0.653]
+  First valid index: 1745
+
+Sample: LLR28A
+  Valid values: 99
+  First few values: [0.632 0.505 0.241 0.394 0.308]
+  First valid index: 1914
+
+Sample: LLR28B
+  Valid values: 126
+  First few values: [0.588 1.072 0.705 0.608 0.832]
+  First valid index: 1887
+
+Sample: LLR28C
+  Valid values: 143
+  First few values: [0.491 0.391 0.402 0.48  0.787]
+  First valid index: 1870
+
+Sample: LLR29A
+  Valid values: 112
+  First few values: [0.56  0.696 0.557 0.728 0.959]
+  First valid index: 1901
+
+Sample: LLR29B
+  Valid values: 362
+  First few values: [1.023 0.938 0.562 0.73  0.92 ]
+  First valid index: 1651
+
+Sample: LLR30A
+  Valid values: 214
+  First few values: [1.275 1.872 1.524 1.398 0.393]
+  First valid index: 1799
+
+Sample: LLR30B
+  Valid values: 286
+  First few values: [1.072 1.437 1.573 0.862 1.111]
+  First valid index: 1727
+
+Sample: LLR31A
+  Valid values: 201
+  First few values: [0.832 0.601 0.869 1.055 1.582]
+  First valid index: 1812
+
+Sample: LLR31B
+  Valid values: 201
+  First few values: [0.521 0.485 0.516 0.255 0.675]
+  First valid index: 1812
+
+Sample: LLR32A
+  Valid values: 235
+  First few values: [2.576 2.007 1.646 1.186 1.402]
+  First valid index: 1778
+
+Sample: LLR32B
+  Valid values: 319
+  First few values: [1.293 1.131 1.271 0.677 0.639]
+  First valid index: 1694
+
+Sample: LLR33A
+  Valid values: 329
+  First few values: [1.495 2.151 1.381 0.378 2.029]
+  First valid index: 1684
+
+Sample: LLR33B
+  Valid values: 363
+  First few values: [0.75  2.377 2.204 1.213 1.386]
+  First valid index: 1650
+

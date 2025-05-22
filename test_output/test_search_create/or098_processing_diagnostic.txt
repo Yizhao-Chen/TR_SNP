@@ -1,0 +1,326 @@
+Processing file: D:/TR_SNP_docker/Verson_0415/test_output/data/or098.rwl
+Species code: TSME
+Random values: [1.549, 2.844, 3.013, 5.103, 7.781]
+Years range: 1510 - 2012, Total years: 503
+DataFrame columns: ['Year', 'CTR01A', 'CTR01B', 'CTR02A', 'CTR02B', 'CTR03A', 'CTR03B', 'CTR04A', 'CTR04B', 'CTR05A', 'CTR05B', 'CTR06A', 'CTR06B', 'CTR07A', 'CTR07B', 'CTR07C', 'CTR08A', 'CTR08B', 'CTR08C', 'CTR09A', 'CTR09B', 'CTR10A', 'CTR10B', 'CTR11A', 'CTR11B', 'CTR12A', 'CTR12B', 'CTR12C', 'CTR13A', 'CTR13B', 'CTR14A', 'CTR14B', 'CTR15A', 'CTR15B', 'CTR16A', 'CTR16B', 'CTR17A', 'CTR17B', 'CTR18A', 'CTR18B', 'CTR19A', 'CTR19B', 'CTR20A', 'CTR20B', 'CTR21A', 'CTR21B', 'CTR22A', 'CTR22B', 'CTR23A', 'CTR23B', 'CTR24A', 'CTR24B', 'CTR25A', 'CTR25B', 'CTR26A', 'CTR26B', 'CTR27A', 'CTR27B', 'CTR28A', 'CTR28B', 'CTR29A', 'CTR29B', 'CTR30A', 'CTR30B', 'CTR30C']
+
+Sample: CTR01A
+  Valid values: 215
+  First few values: [2.116 1.625 1.69  0.26  1.17 ]
+  First valid index: 1798
+
+Sample: CTR01B
+  Valid values: 196
+  First few values: [2.818 2.423 1.469 1.513 1.814]
+  First valid index: 1817
+
+Sample: CTR02A
+  Valid values: 234
+  First few values: [1.267 0.975 0.991 1.402 1.861]
+  First valid index: 1779
+
+Sample: CTR02B
+  Valid values: 234
+  First few values: [1.741 1.387 1.488 1.586 1.993]
+  First valid index: 1779
+
+Sample: CTR03A
+  Valid values: 224
+  First few values: [1.407 1.469 1.234 1.729 1.133]
+  First valid index: 1789
+
+Sample: CTR03B
+  Valid values: 265
+  First few values: [1.602 1.423 1.978 1.841 1.228]
+  First valid index: 1748
+
+Sample: CTR04A
+  Valid values: 230
+  First few values: [0.966 0.925 0.787 0.984 0.81 ]
+  First valid index: 1783
+
+Sample: CTR04B
+  Valid values: 160
+  First few values: [0.762 1.244 1.251 1.019 1.019]
+  First valid index: 1853
+
+Sample: CTR05A
+  Valid values: 254
+  First few values: [1.006 0.701 0.878 0.684 0.756]
+  First valid index: 1759
+
+Sample: CTR05B
+  Valid values: 160
+  First few values: [0.704 1.084 0.998 0.759 1.047]
+  First valid index: 1853
+
+Sample: CTR06A
+  Valid values: 235
+  First few values: [1.452 1.567 1.469 1.315 1.97 ]
+  First valid index: 1778
+
+Sample: CTR06B
+  Valid values: 188
+  First few values: [2.031 2.583 2.101 2.528 2.105]
+  First valid index: 1825
+
+Sample: CTR07A
+  Valid values: 161
+  First few values: [1.203 1.794 1.719 1.423 1.743]
+  First valid index: 1852
+
+Sample: CTR07B
+  Valid values: 111
+  First few values: [1.248 1.375 1.182 1.493 1.017]
+  First valid index: 1902
+
+Sample: CTR07C
+  Valid values: 147
+  First few values: [1.103 1.281 1.718 1.161 1.139]
+  First valid index: 1866
+
+Sample: CTR08A
+  Valid values: 150
+  First few values: [1.486 1.58  1.226 1.003 1.086]
+  First valid index: 1863
+
+Sample: CTR08B
+  Valid values: 118
+  First few values: [1.53  1.11  1.261 1.257 0.933]
+  First valid index: 1895
+
+Sample: CTR08C
+  Valid values: 142
+  First few values: [1.3   1.001 1.264 1.212 1.25 ]
+  First valid index: 1871
+
+Sample: CTR09A
+  Valid values: 218
+  First few values: [1.132 0.823 0.973 1.593 1.681]
+  First valid index: 1795
+
+Sample: CTR09B
+  Valid values: 184
+  First few values: [1.504 1.544 1.432 1.929 2.437]
+  First valid index: 1829
+
+Sample: CTR10A
+  Valid values: 226
+  First few values: [1.574 2.75  1.839 1.422 1.806]
+  First valid index: 1787
+
+Sample: CTR10B
+  Valid values: 162
+  First few values: [3.127 3.349 2.416 3.593 3.318]
+  First valid index: 1851
+
+Sample: CTR11A
+  Valid values: 183
+  First few values: [1.139 1.124 0.961 1.411 1.536]
+  First valid index: 1830
+
+Sample: CTR11B
+  Valid values: 168
+  First few values: [1.019 1.451 0.959 1.023 0.814]
+  First valid index: 1845
+
+Sample: CTR12A
+  Valid values: 213
+  First few values: [0.97  0.168 0.39  0.664 0.862]
+  First valid index: 1800
+
+Sample: CTR12B
+  Valid values: 214
+  First few values: [0.748 0.489 0.194 0.307 0.601]
+  First valid index: 1799
+
+Sample: CTR12C
+  Valid values: 169
+  First few values: [0.673 0.788 0.885 0.583 0.606]
+  First valid index: 1844
+
+Sample: CTR13A
+  Valid values: 197
+  First few values: [3.145 3.056 3.044 2.182 2.384]
+  First valid index: 1816
+
+Sample: CTR13B
+  Valid values: 298
+  First few values: [0.593 0.659 1.332 1.103 1.129]
+  First valid index: 1715
+
+Sample: CTR14A
+  Valid values: 284
+  First few values: [1.612 0.898 1.542 1.33  2.087]
+  First valid index: 1729
+
+Sample: CTR14B
+  Valid values: 276
+  First few values: [1.549 0.839 1.22  0.984 2.401]
+  First valid index: 1737
+
+Sample: CTR15A
+  Valid values: 144
+  First few values: [1.945 1.587 1.656 1.675 2.183]
+  First valid index: 1869
+
+Sample: CTR15B
+  Valid values: 176
+  First few values: [2.282 1.899 2.087 2.391 2.321]
+  First valid index: 1837
+
+Sample: CTR16A
+  Valid values: 116
+  First few values: [2.224 2.219 1.342 2.654 3.045]
+  First valid index: 1897
+
+Sample: CTR16B
+  Valid values: 126
+  First few values: [1.983 1.942 1.746 2.014 2.618]
+  First valid index: 1887
+
+Sample: CTR17A
+  Valid values: 259
+  First few values: [0.501 1.001 1.01  0.606 0.642]
+  First valid index: 1754
+
+Sample: CTR17B
+  Valid values: 256
+  First few values: [0.686 0.705 0.69  0.789 0.844]
+  First valid index: 1757
+
+Sample: CTR18A
+  Valid values: 136
+  First few values: [3.113 2.718 2.982 1.337 2.383]
+  First valid index: 1877
+
+Sample: CTR18B
+  Valid values: 174
+  First few values: [3.522 1.69  3.897 2.809 3.336]
+  First valid index: 1839
+
+Sample: CTR19A
+  Valid values: 278
+  First few values: [2.015 2.46  2.206 1.417 1.518]
+  First valid index: 1735
+
+Sample: CTR19B
+  Valid values: 268
+  First few values: [1.972 1.942 2.115 2.512 1.845]
+  First valid index: 1745
+
+Sample: CTR20A
+  Valid values: 234
+  First few values: [1.544 1.542 1.014 1.735 1.17 ]
+  First valid index: 1779
+
+Sample: CTR20B
+  Valid values: 367
+  First few values: [0.769 0.788 0.751 0.731 0.702]
+  First valid index: 1646
+
+Sample: CTR21A
+  Valid values: 487
+  First few values: [0.642 0.431 0.354 0.754 0.417]
+  First valid index: 1526
+
+Sample: CTR21B
+  Valid values: 503
+  First few values: [1.402 1.516 1.251 1.3   0.836]
+  First valid index: 1510
+
+Sample: CTR22A
+  Valid values: 338
+  First few values: [1.59  1.437 1.69  1.413 1.537]
+  First valid index: 1675
+
+Sample: CTR22B
+  Valid values: 360
+  First few values: [0.896 1.236 1.209 1.425 1.286]
+  First valid index: 1653
+
+Sample: CTR23A
+  Valid values: 251
+  First few values: [1.501 1.372 1.477 1.536 1.081]
+  First valid index: 1762
+
+Sample: CTR23B
+  Valid values: 343
+  First few values: [1.008 1.43  0.713 0.984 0.651]
+  First valid index: 1670
+
+Sample: CTR24A
+  Valid values: 374
+  First few values: [0.468 0.391 0.155 0.499 0.496]
+  First valid index: 1639
+
+Sample: CTR24B
+  Valid values: 431
+  First few values: [0.301 0.376 0.29  0.392 0.293]
+  First valid index: 1582
+
+Sample: CTR25A
+  Valid values: 218
+  First few values: [1.965 1.486 1.53  1.9   1.893]
+  First valid index: 1795
+
+Sample: CTR25B
+  Valid values: 303
+  First few values: [0.973 0.988 1.086 1.195 1.121]
+  First valid index: 1710
+
+Sample: CTR26A
+  Valid values: 298
+  First few values: [0.261 0.417 0.851 0.687 0.957]
+  First valid index: 1715
+
+Sample: CTR26B
+  Valid values: 278
+  First few values: [1.165 1.493 1.51  0.973 1.54 ]
+  First valid index: 1735
+
+Sample: CTR27A
+  Valid values: 266
+  First few values: [0.79  0.656 0.699 0.441 0.941]
+  First valid index: 1747
+
+Sample: CTR27B
+  Valid values: 342
+  First few values: [0.697 0.389 0.602 0.555 0.526]
+  First valid index: 1671
+
+Sample: CTR28A
+  Valid values: 165
+  First few values: [3.27  1.639 2.151 2.249 2.379]
+  First valid index: 1848
+
+Sample: CTR28B
+  Valid values: 194
+  First few values: [1.922 1.909 2.824 3.746 2.152]
+  First valid index: 1819
+
+Sample: CTR29A
+  Valid values: 347
+  First few values: [2.145 1.891 0.745 1.448 1.895]
+  First valid index: 1666
+
+Sample: CTR29B
+  Valid values: 161
+  First few values: [0.895 1.276 1.158 0.758 0.431]
+  First valid index: 1852
+
+Sample: CTR30A
+  Valid values: 99
+  First few values: [2.923 2.845 1.829 1.776 1.215]
+  First valid index: 1914
+
+Sample: CTR30B
+  Valid values: 134
+  First few values: [1.98  1.217 2.157 1.626 2.249]
+  First valid index: 1879
+
+Sample: CTR30C
+  Valid values: 172
+  First few values: [1.687 1.249 1.633 1.547 1.625]
+  First valid index: 1841
+

@@ -1,7 +1,7 @@
-#==================================================================
-#Sub-routine to convert TRW into DBH and AABI for output and plot
-#==================================================================
-
+from rpy2.robjects import FloatVector
+from improved_allodb import batch_estimate_biomass, estimate_biomass_using_get_biomass_cached
+from bark_dict_species import bark_dict_species
+from allometric_dict import *
 import rpy2
 import tzlocal
 import random
@@ -9,998 +9,1192 @@ from rpy2.robjects import r
 from rpy2.robjects.packages import importr
 from rpy2.robjects.vectors import StrVector
 
-from rpy2.robjects.packages import importr,data
+from rpy2.robjects.packages import importr, data
 from rpy2.robjects.vectors import DataFrame, StrVector
 from rpy2.robjects.conversion import localconverter
-from rpy2.robjects import r, pandas2ri
-#import numpy as np
+from rpy2.robjects import r, pandas2ri, numpy2ri
+import numpy as np
 import pandas as pd
 from pandas import *
+from io import StringIO
+import logging
+import os
+import csv
+import time
+import tkinter as tk
+from tkinter import messagebox
 
-#plot
-#import ggplot
-#import ggpy
-from matplotlib import *
+# plot
 from matplotlib import pyplot
-#import plotnine
 
-#import R package
+# import R package
 dplR = importr('dplR')
 r_base = importr('base')
 pandas2ri.activate()
+numpy2ri.activate()
 
-#import function to get the site allometric relationships
-from allometric_dict_species import *
+# import function to get the site allometric relationships
 
 
-def plot_allometry_species(fk,min_value,max_value,times,file_Column_Randoms,dbh_method,bark_method,output_path,region, species):
-    print(f"Correction Value:",min_value,max_value,times)
+# Add memoization decorator for expensive functions
+def memoize(func):
+    cache = {}
+    def wrapper(*args):
+        key = str(args)
+        if key not in cache:
+            cache[key] = func(*args)
+        return cache[key]
+    return wrapper
+
+# Apply memoization to expensive functions
+bark_dict_species_original = bark_dict_species
+bark_dict_species = memoize(bark_dict_species_original)
+
+# Add biomass calculation caching
+biomass_cache = {}
+def cached_calculate_biomass_batch(diameter_values, species_code, lat, lon, logger=None):
+    # Create a cache key from the parameters
+    cache_key = f"{species_code}_{lat}_{lon}"
+    
+    # Convert diameter_values to tuple for hashability if it's a list
+    if isinstance(diameter_values, list):
+        diameters_tuple = tuple(diameter_values)
+    elif isinstance(diameter_values, np.ndarray):
+        diameters_tuple = tuple(diameter_values.tolist())
+    else:
+        diameters_tuple = (diameter_values,)
+    
+    # If we have cached values for this species/location
+    if cache_key in biomass_cache:
+        cached_results = biomass_cache[cache_key]
+        # Check if we already calculated this exact diameter
+        if diameters_tuple in cached_results:
+            return cached_results[diameters_tuple]
+    else:
+        biomass_cache[cache_key] = {}
+    
+    # Calculate the biomass
+    result = calculate_biomass_batch(diameter_values, species_code, lat, lon, logger)
+    
+    # Cache the result
+    biomass_cache[cache_key][diameters_tuple] = result
+    
+    return result
+# Import bark thickness calculation function
+
+# 导入改进的批处理函数
+
+
+# 全局缓存，用于存储元数据以避免重复IO操作
+SPECIES_CACHE = {}
+
+
+def process_tree_data(r_result, orig_dataframe=None, years=None, var_type='dia'):
+    """处理树木数据并计算均值
+
+    参数:
+    r_result: R对象或pandas DataFrame
+    orig_dataframe: 原始数据框(用于fallback)
+    years: 年份列表(用于fallback)
+    var_type: 变量类型，例如'dia'或'dia_0.123'，用于正确命名结果列
+    """
+    try:
+        # 首先检查是否是R对象
+        if hasattr(r_result, 'rx2'):
+            # 是R对象，直接提取数据
+            with localconverter(rpy2.robjects.default_converter + pandas2ri.converter):
+                year = np.array(r_result.rx2('year'))
+                mean_val = np.array(r_result.rx2('std'))
+                samp_depth_val = np.array(r_result.rx2('samp.depth'))
+
+                # 创建一致的列名格式 (mean_dia or mean_dia_0.123)
+                mean_col_name = f"mean_{var_type}"
+                # 创建对应的样本深度列名 (samp.depth_dia or samp.depth_dia_0.123)
+                # Let's simplify to just samp.depth_<rand_val> or samp.depth
+                if '_' in var_type: # Check if it contains random value suffix
+                    rand_val_suffix = var_type.split('_')[-1]
+                    samp_depth_col_name = f"samp.depth_{rand_val_suffix}"
+                else:
+                    samp_depth_col_name = "samp.depth" # Standard name for single simulation
+                
+                # 这里是关键修复 - 确保使用正确的年份索引
+                # 创建一个映射，将R返回的年份索引映射到原始年份
+                if orig_dataframe is not None and years is not None:
+                    # 确保year和years的长度匹配，可能需要截断或者填充
+                    if len(year) <= len(years):
+                        # 如果R处理后的数据少于等于原始数据，使用年份前缀对齐
+                        result_df = pd.DataFrame({
+                            'Year': years[:len(year)],
+                            mean_col_name: mean_val,
+                            samp_depth_col_name: samp_depth_val
+                        })
+                    else:
+                        # 如果R处理后的数据比原始数据多，需要截断
+                        result_df = pd.DataFrame({
+                            'Year': years,
+                            mean_col_name: mean_val[:len(years)],
+                            samp_depth_col_name: samp_depth_val[:len(years)]
+                        })
+                else:
+                    # 如果没有原始数据框和年份，使用R返回的year
+                    result_df = pd.DataFrame({
+                        'Year': year,
+                        mean_col_name: mean_val,
+                        samp_depth_col_name: samp_depth_val
+                    })
+
+                return result_df
+        else:
+            # 已经是pandas DataFrame，直接返回
+            # 假设r_result已经包含正确的列名 (This part might need review if fallback needs specific samp.depth naming)
+            return r_result
+
+    except Exception as e:
+        print(f"Error in R-Python conversion: {str(e)}")
+        # 确保回退方案有必要的参数
+        if orig_dataframe is not None and years is not None:
+            # 回退到简单的pandas计算
+            mean_col_name = f"mean_{var_type}"
+            # Determine fallback samp.depth column name
+            if '_' in var_type: 
+                rand_val_suffix = var_type.split('_')[-1]
+                samp_depth_col_name = f"samp.depth_{rand_val_suffix}"
+            else:
+                samp_depth_col_name = "samp.depth"
+                
+            return pd.DataFrame({
+                'Year': years,
+                mean_col_name: orig_dataframe.mean(axis=1),
+                samp_depth_col_name: orig_dataframe.count(axis=1)
+            })
+        else:
+            # 没有足够的信息来创建回退数据框
+            print("Warning: Not enough information for fallback calculation")
+            return pd.DataFrame()  # 返回空DataFrame
+
+# 优化的生物量计算函数，使用批处理和矢量化操作
+
+
+def calculate_biomass_batch(
+        diameter_values,
+        species_code,
+        lat,
+        lon,
+        logger=None):
+    """
+    批量计算生物量，使用批处理API减少R调用次数
+
+    参数:
+    diameter_values: 直径值列表
+    species_code: 树种代码
+    lat, lon: 坐标
+    logger: 日志记录器
+
+    返回:
+    生物量值列表
+    """
+    # 使用批处理API
+    try:
+        # 检查输入参数
+        if not isinstance(diameter_values, (list, np.ndarray)):
+            if logger:
+                logger.warning(
+                    f"diameter_values不是列表或数组类型: {type(diameter_values)}")
+            diameter_values = [diameter_values]
+
+        # 确保无NaN/None值
+        if isinstance(diameter_values, np.ndarray):
+            has_invalid = np.isnan(diameter_values).any()
+            if has_invalid:
+                if logger:
+                    logger.warning(f"diameter_values包含NaN值，将被替换为0.01")
+                diameter_values = np.nan_to_num(diameter_values, nan=0.01)
+        else:
+            valid_values = []
+            for v in diameter_values:
+                if v is None or (isinstance(v, float) and np.isnan(v)):
+                    valid_values.append(0.01)
+                else:
+                    valid_values.append(v)
+            diameter_values = valid_values
+
+        # 确保坐标有效
+        if lat is not None and lon is not None:
+            coords = (lon, lat)
+        else:
+            coords = (-76.8, 39.2)  # 默认北美坐标
+            if logger:
+                logger.info(f"使用默认坐标: {coords}")
+
+        # 获取拉丁名
+        latin_name = SPECIES_CODE_MAP.get(species_code, species_code)
+        if species_code != latin_name:
+            if logger:
+                logger.info(f"已将物种代码 {species_code} 映射为拉丁名 {latin_name}")
+        else:
+            if logger:
+                logger.info(f"未找到物种代码 {species_code} 的映射，直接使用该代码")
+
+        # 批量计算
+        if logger:
+            logger.debug(f"开始批量计算 {len(diameter_values)} 个直径值")
+
+        results = batch_estimate_biomass(
+            [diameter_values], latin_name, coords=coords)
+
+        if not results:
+            if logger:
+                logger.error("批量计算返回空结果")
+            raise ValueError("批量计算返回空结果")
+
+        if not results[0].empty:
+            if logger:
+                logger.debug(f"批量计算成功，返回 {len(results[0]['agb'])} 个结果")
+
+            # 确保结果长度与输入长度相同
+            if len(results[0]['agb']) != len(diameter_values):
+                if logger:
+                    logger.warning(
+                        f"结果长度 ({len(results[0]['agb'])}) 与输入长度 ({len(diameter_values)}) 不匹配")
+
+                # 填充结果到正确长度
+                output_values = np.full(len(diameter_values), np.nan)
+                min_len = min(len(results[0]['agb']), len(diameter_values))
+                output_values[:min_len] = results[0]['agb'].values[:min_len]
+                return output_values
+
+            return results[0]['agb'].values
+        else:
+            if logger:
+                logger.warning("批量计算结果为空，回退到逐一计算")
+
+        # 如果批处理失败，退回到逐一计算
+        biomass_values = []
+        for dbh in diameter_values:
+            biomass = allometric_dict(dbh, species_code, lat, lon, logger)
+            biomass_values.append(biomass)
+
+        if logger:
+            logger.debug(f"逐一计算完成，返回 {len(biomass_values)} 个结果")
+
+        return np.array(biomass_values)
+
+    except Exception as e:
+        error_msg = f"批量计算生物量出错: {e}"
+        print(error_msg)
+        if logger:
+            logger.error(error_msg, exc_info=True)
+
+        # 退回到逐一计算，包含异常处理
+        biomass_values = []
+        for dbh in diameter_values:
+            try:
+                biomass = allometric_dict(dbh, species_code, lat, lon, logger)
+                biomass_values.append(biomass)
+            except Exception as e2:
+                if logger:
+                    logger.error(f"计算单个生物量时出错: dbh={dbh}, error={e2}")
+                biomass_values.append(np.nan)
+
+        return np.array(biomass_values)
+
+
+def plot_allometry_species(
+        fk,
+        min_value,
+        max_value,
+        times,
+        file_Column_Randoms,
+        dbh_method,
+        bark_method,
+        output_path,
+        site_ids,
+        regionls,
+        speciesls,
+        latls,
+        lonls,
+        geometric_correction_rates=None,
+        bark_correction_rates=None,
+        default_geometric_rate=1.0,
+        default_bark_rate=0.05):
+    """
+    处理树木生物量计算和绘图 - 优化版本 (适用于自定义物种)
+
+    参数说明:
+    - site_ids: 站点ID列表，用于匹配文件与站点信息
+    - bark_method: 树皮处理方法
+        - -1: 自定义处理 (Custom)
+        - 0: 不处理树皮 (No)
+        - 1: 基于生物计量学处理 (Allometry)
+
+    - geometric_correction_rates: 每个文件的每个样本的几何校正率字典列表
+    - bark_correction_rates: 每个文件的每个样本的树皮校正率字典列表
+    - default_geometric_rate: 默认几何校正率
+    - default_bark_rate: 默认树皮校正率
+
+    注意: 当bark_method=1时，使用bark_dict_species函数计算树皮厚度。
+    """
+    start_time = time.time()
+    print(f"Correction Value:", min_value, max_value, times)
     print(f"dbh_method: {dbh_method}")
     print(f"bark_method: {bark_method}")
     print(f"output_path: {output_path}")
+    
+    # Log site IDs and their corresponding parameters
+    for i, site_id in enumerate(site_ids):
+        print(f"Site ID: {site_id}, Region: {regionls[i]}, Species: {speciesls[i]}, Lat: {latls[i]}, Lon: {lonls[i]}")
+
+    # Debug print the geometric_correction_rates
+    print("\n=== DEBUG: GEOMETRIC CORRECTION RATES ===")
+    if geometric_correction_rates:
+        for idx, rates in enumerate(geometric_correction_rates):
+            if rates:
+                print(f"File #{idx}: {type(rates)}, {len(rates)} rate entries")
+                if isinstance(rates, dict) and len(rates) > 0:
+                    # Print first 5 items or fewer if less available
+                    sample_items = list(rates.items())[:min(5, len(rates))]
+                    print(f"Sample entries: {sample_items}")
+            else:
+                print(f"File #{idx}: No rates defined")
+    else:
+        print("No geometric correction rates defined")
+    print("=======================================\n")
+    
+    # Initialize correction rates if not provided
+    if geometric_correction_rates is None:
+        geometric_correction_rates = [{} for _ in fk]
+    if bark_correction_rates is None:
+        bark_correction_rates = [{} for _ in fk]
+
+    # 初始化日志记录器
+    logger = logging.getLogger('biomass_estimation')
+    logger.setLevel(logging.INFO)
+
+    # 创建日志文件处理器
+    log_file = os.path.join(output_path, 'biomass_processing.log')
+    fh = logging.FileHandler(log_file)
+    fh.setLevel(logging.INFO)
+
+    # 创建格式化器
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    fh.setFormatter(formatter)
+
+    # 如果logger没有处理器,添加处理器
+    if not logger.handlers:
+        logger.addHandler(fh)
+
+    logger.info(f"开始处理生物量计算 - 参数配置:")
+    logger.info(f"Correction Value: {min_value}, {max_value}, {times}")
+    logger.info(f"DBH method: {dbh_method}")
+    logger.info(f"Bark method: {bark_method}")
+    logger.info(f"Output path: {output_path}")
+    
+    # Log the geometric correction rates
+    logger.info("=== GEOMETRIC CORRECTION RATES ===")
+    if geometric_correction_rates:
+        for idx, rates in enumerate(geometric_correction_rates):
+            if rates:
+                logger.info(f"File #{idx}: {type(rates)}, {len(rates)} rate entries")
+                if isinstance(rates, dict) and len(rates) > 0:
+                    # Log first 5 items or fewer if less available
+                    sample_items = list(rates.items())[:min(5, len(rates))]
+                    logger.info(f"Sample entries: {sample_items}")
+            else:
+                logger.info(f"File #{idx}: No rates defined")
+    else:
+        logger.info("No geometric correction rates defined")
+    logger.info("=======================================")
+
     pyplot.rcParams['savefig.dpi'] = 300
     pyplot.rcParams['figure.dpi'] = 300
-    pyplot.figure()
-    
-    for indexF in range(len(fk)):
-        TR_input_dir = fk[indexF]
-        #get the file name without direction and extension
-        mm = os.path.splitext(os.path.basename(fk[indexF]))[0]
-        print("mm1" + mm)
-        TR_input = r['read.tucson'](TR_input_dir)
-        start = r['min'](r['as.numeric'](r['rownames'](TR_input)))
-        end = r['max'](r['as.numeric'](r['rownames'](TR_input)))
-        #r['as.numeric'](r['max'](r['rownames'](TR_input)))
-        # get observation period
-        TRW = r['data.frame'](year=r['seq'](start, end, 1))
-        # select only important rows ( the tree (?) or series names, e.g. "LF317s")
-        all = r['names'](TR_input)
-
-        #test for detrending
-        #The heteroscedastic variance structure was stabilized using adaptive power transformation prior to detrending.
-        #The age/size-related trends in the raw data were removed from
-        # all series using cubic smoothing spline detrending with a 50% frequency
-        # from Babst et al 2019 DOI: 10.1126/sciadv.aat4313
-        #TR_powt = dplR.powt(TR_input)
-        #TR_de = dplR.detrend(TR_input, method="Spline")
-
-        #biweight robust mean (an average that is unaffected by outliers)
-        #TR_de1 = dplR.chron(TR_de)
-    #======================================================================================
-    #start of first file processing
-    #======================================================================================
-        with localconverter(rpy2.robjects.default_converter + pandas2ri.converter):
-            pdf_input = rpy2.robjects.conversion.ri2py(TR_input)
-            #pdf_mean = rpy2.robjects.conversion.ri2py(TR_de1)  #TRW mean
-            t_start = rpy2.robjects.conversion.ri2py(start)
-            t_end = rpy2.robjects.conversion.ri2py(end)
-            # dataframe processing for plot
-            years = range(int(t_start), int(t_end) + 1)  # get the year index in the data
-            pdf_input.index = years  # put the year as the index in the data
-            #pdf_mean.index = years
-            pdf_input.insert(0, "Year", years)  # put years as the first column
-            #pdf_mean.insert(0, "Year", years)
-            pdf_input = pdf_input.drop(pdf_input.columns[0], axis=1)  # delect the first column of years
-            #pdf_mean = pdf_mean.drop(pdf_mean.columns[2],axis=1)
-            #pdf_mean.columns = ['Year', 'TRW_mean']
-
-            #pdf_mean = pdf_input.mean(axis=1)
-            #pdf_mean = pdf_input.mean(axis=1)
-            #pdf_mean_input = DataFrame(pdf_mean)
-            #pdf_mean_input.index = years  # put the year as the index in the data
-            #pdf_mean_input.insert(0, "Year", years)  # put years as the first column
-            #pdf_mean_input.columns = ['Year', 'TRW_mean']
-
-            pdf_max = pdf_input.max(axis=1)
-            pdf_min = pdf_input.min(axis=1)
-            pdf_std = pdf_input.std(axis=1)
-            pdf_c_summary = pdf_input.describe()
-
-            # 初始化多个数据框用于存储最终结果
-            final_dia = pd.DataFrame(index=pdf_input.index)
-            final_bio = pd.DataFrame(index=pdf_input.index)
-            final_delta_dia = pd.DataFrame(index=pdf_input.index)
-            final_delta_bio = pd.DataFrame(index=pdf_input.index)
-            final_diaa = pd.DataFrame(index=pdf_input.index)
-            final_bioo = pd.DataFrame(index=pdf_input.index)
-            final_delta_diaa = pd.DataFrame(index=pdf_input.index)
-            final_delta_bioo = pd.DataFrame(index=pdf_input.index)
-            final_age = pd.DataFrame(index=pdf_input.index)
-
-            final_dia_mean = pd.DataFrame(index=pdf_input.index)
-            final_bio_mean = pd.DataFrame(index=pdf_input.index)
-            final_delta_dia_mean = pd.DataFrame(index=pdf_input.index)
-            final_delta_bio_mean = pd.DataFrame(index=pdf_input.index)
-            final_diaa_mean = pd.DataFrame(index=pdf_input.index)
-            final_bioo_mean = pd.DataFrame(index=pdf_input.index)   
-            final_delta_diaa_mean = pd.DataFrame(index=pdf_input.index)
-            final_delta_bioo_mean = pd.DataFrame(index=pdf_input.index)
-            final_age_mean = pd.DataFrame(index=pdf_input.index)
-
-            # 初始化随机值列表
-            random_values = []
-
-            # 如果 times 大于 0，生成随机值；否则，设置默认值为 0
-            if times > 0:
-                random_values = [round(random.uniform(min_value, max_value), 2) for _ in range(times)]
-            else:
-                random_values = [0]
-
-            print("df_input.columns = ", pdf_input.columns)
-            for rand_val in random_values:
-                print("rand_val = ", rand_val)
-                #create output dataframes
-                pdf_dia = pdf_input.copy()      #diameter df
-                pdf_diaa = pdf_input.copy()     #bias corrected diameter df
-                pdf_delta_dia = pdf_input.copy() #delta diameter df
-                pdf_delta_diaa = pdf_input.copy() #bias corrected delta diameter df
-                pdf_bio = pdf_input.copy()      #biomass df
-                pdf_bioo = pdf_input.copy()      #bias corrected biomass df
-                pdf_delta_bio = pdf_input.copy()  #delta biomass df
-                pdf_delta_bioo = pdf_input.copy()  #bias corrected delta biomass df
-                pdf_age = pdf_input.copy()
-                #calculate biomass increment for each tree
-                #column/tree loop
-                for i in range (0,len(pdf_input.columns)):
-                    #one column
-                    pdf_sub = pdf_input.iloc[:,i]
-                    diameter = pdf_sub.copy()
-                    diameterr = pdf_sub.copy()      #bias corrected 
-                    biomass = pdf_sub.copy()
-                    biomasss = pdf_sub.copy()       #bias corrected
-                    delta_dia = pdf_sub.copy()
-                    delta_diaa = pdf_sub.copy()     #bias corrected
-                    delta_bio = pdf_sub.copy()
-                    delta_bioo = pdf_sub.copy()     #bias corrected
-                    age = pdf_sub.copy()
-                    #get the first non-NAN value and the year
-
-                    y_start = pdf_sub.first_valid_index()
-                    y_end = pdf_sub.last_valid_index()
-                    length = y_end - y_start + 1
-                    #year loop
-                    print("y_start = ", y_start,y_end)
-                    for k in range (y_start,(y_end +1)):
-                        if k == y_start:
-
-                            if pdf_sub[k] == 0:
-                                pdf_sub[k] = 1e-8
-                            #add random width to the start year of the tree ring width
-                            #pdf_sub[k] = pdf_sub[k] + random.uniform(0, 1)
-                            if times < 0:
-                                pdf_sub[k] = pdf_sub[k] + file_Column_Randoms[indexF][i]
-                                column_random_index += 1
-                            else:
-                                pdf_sub[k] = pdf_sub[k] + rand_val
-                                
-                            age[k] = 1
-                            diameter[k] = (2 * pdf_sub[k])/10    # cm
-
-                            if bark_method == 0:
-                                diameter[k] = diameter[k]
-                            else:
-                                #diameterr[k] = (diameter[k] ** 0.89  * 0.95)/10 + diameter[k]                    
-                                diameter[k] = diameter[k] + bark_dict_species(region, species, diameter[k])
-
-                            # diameter estimated from rw is then corrected following the
-                            # equation from Lockwood et al.,2021
-                            if dbh_method == 0:
-                                diameterr[k] = diameter[k] * 0.998 + 22.3
-                            else:
-                                #Aggregation with bark estimation
-                                #equation from Zeibig-Kichas et al. 2016
-                                #diameterr[k] = (diameter[k] ** 0.89  * 0.95)/10 + diameter[k]
-                                diameterr[k] = diameter[k] + bark_dict_species(region, species, diameter[k])
-                            
-                            # get biomass based allometric relationships
-                            biomass[k] = allometric_dict_species(region, species, diameter[k])
-                            biomasss[k] = allometric_dict_species(region, species, diameterr[k])
-                            #print(biomass[k])
-                            delta_dia[k] = diameter[k]
-                            delta_bio[k] = biomass[k]
-                            
-                            delta_diaa[k] = diameterr[k]
-                            delta_bioo[k] = biomasss[k]
-
-                        
-                        else:
-                            if pdf_sub[k] == 0:
-                                pdf_sub[k] = 1e-8
-                            age[k] = age[k-1] + 1
-                            diameter[k] = diameter[k-1] + (2 * pdf_sub[k])/10    # cm
-                            if bark_method == 0:
-                                diameterr[k] = diameter[k]
-                            else:
-                                diameterr[k] = diameter[k] + bark_dict_species(region, species, diameter[k])  
-
-                            if dbh_method == 0:
-                            # diameter estimated from rw is then corrected following the
-                            # equation from Lockwood et al.,2021
-                                diameterr[k] = diameter[k] * 0.998 + 22.3
-                            else:
-                                #Aggregation with bark estimation
-                                #equation from Zeibig-Kichas et al. 2016
-                                diameterr[k] = (diameter[k] ** 0.89  * 0.95)/10 + diameter[k]
-                            #if (k == 134):
-                            #    print(pdf_sub[k])
-                            #    print(diameter[k])
-                            #print(diameter[k-1])
-                            #get biomass based allometric relationships
-                            biomass[k] = allometric_dict_species(region, species,diameter[k])
-                            biomasss[k] = allometric_dict_species(region, species, diameterr[k])
-                            #print(biomass[k])
-                            delta_dia[k] = diameter[k] - diameter[k - 1]
-                            delta_bio[k] = biomass[k] - biomass[k-1]
-                            
-                            delta_diaa[k] = diameterr[k] - diameterr[k - 1]
-                            delta_bioo[k] = biomasss[k] - biomasss[k-1]
-
-                            #print(k)
-                            #print(pdf_sub[k])
-                            #print(i)
-
-                        count = k - pdf_sub.index[0]
-                        pdf_dia.iloc[count,i] = diameter[k]
-                        pdf_delta_dia.iloc[count,i] = delta_dia[k]
-                        pdf_bio.iloc[count,i] = biomass[k]  # biomass df
-                        pdf_delta_bio.iloc[count,i] = delta_bio[k]  # delta biomass df
-                        pdf_diaa.iloc[count,i] = diameterr[k]
-                        pdf_delta_diaa.iloc[count,i] = delta_diaa[k]
-                        pdf_bioo.iloc[count,i] = biomasss[k]  # biomass df
-                        pdf_delta_bioo.iloc[count,i] = delta_bioo[k]  # delta biomass df
-                        pdf_age.iloc[count,i] = age[k]
-
-                #Get the mean values using biweight robust mean
-                #convert to r df first
-                r_pdf_dia = rpy2.robjects.conversion.py2ri(pdf_dia)
-                r_pdf_delta_dia = rpy2.robjects.conversion.py2ri(pdf_delta_dia)
-                r_pdf_bio = rpy2.robjects.conversion.py2ri(pdf_bio)
-                r_pdf_delta_bio = rpy2.robjects.conversion.py2ri(pdf_delta_bio)
-                r_pdf_diaa = rpy2.robjects.conversion.py2ri(pdf_diaa)
-                r_pdf_delta_diaa = rpy2.robjects.conversion.py2ri(pdf_delta_diaa)
-                r_pdf_bioo = rpy2.robjects.conversion.py2ri(pdf_bioo)
-                r_pdf_delta_bioo = rpy2.robjects.conversion.py2ri(pdf_delta_bioo)
-                r_pdf_age = rpy2.robjects.conversion.py2ri(pdf_age)
-
-                r_pdf_dia_mean = dplR.chron(r_pdf_dia)
-                r_pdf_delta_dia_mean = dplR.chron(r_pdf_delta_dia)
-                r_pdf_bio_mean = dplR.chron(r_pdf_bio)
-                r_pdf_delta_bio_mean = dplR.chron(r_pdf_delta_bio)
-                r_pdf_diaa_mean = dplR.chron(r_pdf_diaa)
-                r_pdf_delta_diaa_mean = dplR.chron(r_pdf_delta_diaa)
-                r_pdf_bioo_mean = dplR.chron(r_pdf_bioo)
-                r_pdf_delta_bioo_mean = dplR.chron(r_pdf_delta_bioo)
-                r_pdf_age_mean = dplR.chron(r_pdf_age)
-
-                pdf_dia_mean = rpy2.robjects.conversion.ri2py(r_pdf_dia_mean)
-                pdf_delta_dia_mean = rpy2.robjects.conversion.ri2py(r_pdf_delta_dia_mean)
-                pdf_bio_mean = rpy2.robjects.conversion.ri2py(r_pdf_bio_mean)
-                pdf_delta_bio_mean = rpy2.robjects.conversion.ri2py(r_pdf_delta_bio_mean)
-                pdf_diaa_mean = rpy2.robjects.conversion.ri2py(r_pdf_diaa_mean)
-                pdf_delta_diaa_mean = rpy2.robjects.conversion.ri2py(r_pdf_delta_diaa_mean)
-                pdf_bioo_mean = rpy2.robjects.conversion.ri2py(r_pdf_bioo_mean)
-                pdf_delta_bioo_mean = rpy2.robjects.conversion.ri2py(r_pdf_delta_bioo_mean)
-                pdf_age_mean = rpy2.robjects.conversion.ri2py(r_pdf_age_mean)
-
-                pdf_dia_mean.insert(0, "Year", years)
-                #pdf_dia_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-                pdf_dia_mean.columns = ['Year', 'dia_mean','samp.depth']
-
-                pdf_delta_dia_mean.insert(0, "Year", years)
-                #pdf_delta_dia_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-                pdf_delta_dia_mean.columns = ['Year', 'd_dia_mean','samp.depth']
-
-                pdf_bio_mean.insert(0, "Year", years)
-                #pdf_bio_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-                pdf_bio_mean.columns = ['Year', 'bio_mean','samp.depth']
-
-                pdf_delta_bio_mean.insert(0, "Year", years)
-                #pdf_delta_bio_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-                pdf_delta_bio_mean.columns = ['Year', 'd_bio_mean','samp.depth']
-
-                pdf_diaa_mean.insert(0, "Year", years)
-                # pdf_dia_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-                pdf_diaa_mean.columns = ['Year', 'dia_mean', 'samp.depth']
-
-                pdf_delta_diaa_mean.insert(0, "Year", years)
-                # pdf_delta_dia_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-                pdf_delta_diaa_mean.columns = ['Year', 'd_dia_mean', 'samp.depth']
-
-                pdf_bioo_mean.insert(0, "Year", years)
-                # pdf_bio_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-                pdf_bioo_mean.columns = ['Year', 'bio_mean', 'samp.depth']
-
-                pdf_delta_bioo_mean.insert(0, "Year", years)
-                # pdf_delta_bio_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-                pdf_delta_bioo_mean.columns = ['Year', 'd_bio_mean', 'samp.depth']
-
-                pdf_age_mean.insert(0, "Year", years)
-                pdf_age_mean.columns = ['Year','age','samp.depth']
-                #simple mean values
-                #pdf_dia_mean = pdf_dia.iloc[:,1:(len(pdf_dia.columns)+1)].mean(1)
-                #pdf_delta_dia_mean = pdf_delta_dia.iloc[:,1:(len(pdf_delta_dia.columns)+1)].mean(1)
-                #pdf_bio_mean = pdf_bio.iloc[:,1:(len(pdf_bio.columns)+1)].mean(1)
-                #pdf_delta_bio_mean = pdf_delta_bio.iloc[:,1:(len(pdf_delta_bio.columns)+1)].mean(1)
-                
-                if times > 0:
-                    # 更新列名
-                    pdf_dia.columns = [f"{pdf_dia.columns[0]}_{rand_val}"] + list(pdf_dia.columns[1:])
-                    pdf_bio.columns = [f"{pdf_bio.columns[0]}_{rand_val}"] + list(pdf_bio.columns[1:])
-                    pdf_delta_dia.columns = [f"{pdf_delta_dia.columns[0]}_{rand_val}"] + list(pdf_delta_dia.columns[1:])
-                    pdf_delta_bio.columns = [f"{pdf_delta_bio.columns[0]}_{rand_val}"] + list(pdf_delta_bio.columns[1:])
-                    pdf_diaa.columns = [f"{pdf_diaa.columns[0]}_{rand_val}"] + list(pdf_diaa.columns[1:])
-                    pdf_bioo.columns = [f"{pdf_bioo.columns[0]}_{rand_val}"] + list(pdf_bioo.columns[1:])
-                    pdf_delta_diaa.columns = [f"{pdf_delta_diaa.columns[0]}_{rand_val}"] + list(pdf_delta_diaa.columns[1:])
-                    pdf_delta_bioo.columns = [f"{pdf_delta_bioo.columns[0]}_{rand_val}"] + list(pdf_delta_bioo.columns[1:])
-                    pdf_age.columns = [f"{pdf_age.columns[0]}_{rand_val}"] + list(pdf_age.columns[1:])            
-
-                    # 给第二列的列名追加上对应的随机值 {rand_val}
-                    pdf_dia_mean.columns = [pdf_dia_mean.columns[0], f"{pdf_dia_mean.columns[1]}_{rand_val}"] + list(pdf_dia_mean.columns[2:])
-                    pdf_delta_dia_mean.columns = [pdf_delta_dia_mean.columns[0], f"{pdf_delta_dia_mean.columns[1]}_{rand_val}"] + list(pdf_delta_dia_mean.columns[2:])
-                    pdf_bio_mean.columns = [pdf_bio_mean.columns[0], f"{pdf_bio_mean.columns[1]}_{rand_val}"] + list(pdf_bio_mean.columns[2:])
-                    pdf_delta_bio_mean.columns = [pdf_delta_bio_mean.columns[0], f"{pdf_delta_bio_mean.columns[1]}_{rand_val}"] + list(pdf_delta_bio_mean.columns[2:])
-                    pdf_diaa_mean.columns = [pdf_diaa_mean.columns[0], f"{pdf_diaa_mean.columns[1]}_{rand_val}"] + list(pdf_diaa_mean.columns[2:])
-                    pdf_delta_diaa_mean.columns = [pdf_delta_diaa_mean.columns[0], f"{pdf_delta_diaa_mean.columns[1]}_{rand_val}"] + list(pdf_delta_diaa_mean.columns[2:])
-                    pdf_bioo_mean.columns = [pdf_bioo_mean.columns[0], f"{pdf_bioo_mean.columns[1]}_{rand_val}"] + list(pdf_bioo_mean.columns[2:])
-                    pdf_delta_bioo_mean.columns = [pdf_delta_bioo_mean.columns[0], f"{pdf_delta_bioo_mean.columns[1]}_{rand_val}"] + list(pdf_delta_bioo_mean.columns[2:])
-                    pdf_age_mean.columns = [pdf_age_mean.columns[0], f"{pdf_age_mean.columns[1]}_{rand_val}"] + list(pdf_age_mean.columns[2:])
-
-                # 在合并之前打印数据框的内容和形状
-                print("pdf_dia shape:", pdf_dia.shape)
-                print(pdf_dia.head())
-
-                # 将结果合并到最终数据框
-                final_dia = pd.concat([final_dia, pdf_dia], axis=1)
-                final_bio = pd.concat([final_bio, pdf_bio], axis=1)
-                final_delta_dia = pd.concat([final_delta_dia, pdf_delta_dia], axis=1)
-                final_delta_bio = pd.concat([final_delta_bio, pdf_delta_bio], axis=1)
-                final_diaa = pd.concat([final_diaa, pdf_diaa], axis=1)
-                final_bioo = pd.concat([final_bioo, pdf_bioo], axis=1)
-                final_delta_diaa = pd.concat([final_delta_diaa, pdf_delta_diaa], axis=1)
-                final_delta_bioo = pd.concat([final_delta_bioo, pdf_delta_bioo], axis=1)
-                final_age = pd.concat([final_age, pdf_age], axis=1)
-                
-                print("pdf_dia_mean shape:", pdf_dia_mean.shape)
-                print(pdf_dia_mean.head())
-
-                # Concatenate mean data
-                if final_dia_mean.empty:
-                    final_dia_mean = pdf_dia_mean
-                else:
-                    # Extract the third column and insert it before the last column
-                    new_col = pdf_dia_mean.iloc[:, 1]
-                    final_dia_mean.insert(len(final_dia_mean.columns) - 1, new_col.name, new_col)
-
-                if final_delta_dia_mean.empty:
-                    final_delta_dia_mean = pdf_delta_dia_mean
-                else:
-                    new_col = pdf_delta_dia_mean.iloc[:, 1]
-                    final_delta_dia_mean.insert(len(final_delta_dia_mean.columns) - 1, new_col.name, new_col)
-
-                if final_bio_mean.empty:
-                    final_bio_mean = pdf_bio_mean
-                else:
-                    new_col = pdf_bio_mean.iloc[:, 1]
-                    final_bio_mean.insert(len(final_bio_mean.columns) - 1, new_col.name, new_col)
-
-                if final_delta_bio_mean.empty:
-                    final_delta_bio_mean = pdf_delta_bio_mean
-                else:
-                    new_col = pdf_delta_bio_mean.iloc[:, 1]
-                    final_delta_bio_mean.insert(len(final_delta_bio_mean.columns) - 1, new_col.name, new_col)
-
-                if final_diaa_mean.empty:
-                    final_diaa_mean = pdf_diaa_mean
-                else:
-                    new_col = pdf_diaa_mean.iloc[:, 1]
-                    final_diaa_mean.insert(len(final_diaa_mean.columns) - 1, new_col.name, new_col)
-
-                if final_delta_diaa_mean.empty:
-                    final_delta_diaa_mean = pdf_delta_diaa_mean
-                else:
-                    new_col = pdf_delta_diaa_mean.iloc[:, 1]
-                    final_delta_diaa_mean.insert(len(final_delta_diaa_mean.columns) - 1, new_col.name, new_col)
-
-                if final_bioo_mean.empty:
-                    final_bioo_mean = pdf_bioo_mean
-                else:
-                    new_col = pdf_bioo_mean.iloc[:, 1]
-                    final_bioo_mean.insert(len(final_bioo_mean.columns) - 1, new_col.name, new_col)
-
-                if final_delta_bioo_mean.empty:
-                    final_delta_bioo_mean = pdf_delta_bioo_mean
-                else:
-                    new_col = pdf_delta_bioo_mean.iloc[:, 1]
-                    final_delta_bioo_mean.insert(len(final_delta_bioo_mean.columns) - 1, new_col.name, new_col)
-
-                if final_age_mean.empty:
-                    final_age_mean = pdf_age_mean
-                else:
-                    new_col = pdf_age_mean.iloc[:, 1]
-                    final_age_mean.insert(len(final_age_mean.columns) - 1, new_col.name, new_col)
-
-            if bark_method == 0:
-                a = 1
-            else:
-                a = 0
-
-            initbias0 = random_values[0]   
-            if dbh_method == 0:
-                name_dia = mm + "_dia_"+ str(round(initbias0,3)) +".csv"
-                name_dia_mean = mm + "_dia_mean_"+ str(round(initbias0,3)) + ".csv"
-                name_bio = mm + "_bio_"+ str(round(initbias0,3)) + ".csv"
-                name_bio_mean = mm + "_bio_mean_"+ str(round(initbias0,3)) + ".csv"
-
-                name_delta_dia = mm + "_delta_dia_"+ str(round(initbias0,3)) + ".csv"
-                name_delta_dia_mean = mm + "_delta_dia_mean_"+ str(round(initbias0,3)) +".csv"
-                name_delta_bio = mm + "_delta_bio_"+ str(round(initbias0,3)) +".csv"
-                name_delta_bio_mean = mm + "_delta_bio_mean_"+ str(round(initbias0,3)) +".csv"
-
-                name_diaa = mm + "_dia_bias_corr_"+ str(round(initbias0,3)) + "_L.csv"
-                name_diaa_mean = mm + "_dia_mean_bias_corr_" + str(round(initbias0,3)) + "_L.csv"
-                name_bioo = mm + "_bio_bias_corr_" + str(round(initbias0,3)) + "_L.csv"
-                name_bioo_mean = mm + "_bio_mean_bias_corr_" + str(round(initbias0,3)) + "_L.csv"
-
-                name_delta_diaa = mm + "_delta_dia_bias_corr_" + str(round(initbias0,3)) + "_L.csv"
-                name_delta_diaa_mean = mm + "_delta_dia_mean_bias_corr_" + str(round(initbias0,3)) +"_L.csv"
-                name_delta_bioo = mm + "_delta_bio_bias_corr_" + str(round(initbias0,3)) + "_L.csv"
-                name_delta_bioo_mean = mm + "_delta_bio_mean_bias_corr_" + str(round(initbias0,3)) +"_L.csv"
-
-                name_age = mm + "_age.csv"
-                name_age_mean = mm + "_age_mean.csv"
-            else:
-                name_dia = mm + "_dia_"+ str(round(initbias0,3)) +".csv"
-                name_dia_mean = mm + "_dia_mean_"+ str(round(initbias0,3)) + ".csv"
-                name_bio = mm + "_bio_"+ str(round(initbias0,3)) + ".csv"
-                name_bio_mean = mm + "_bio_mean_"+ str(round(initbias0,3)) + ".csv"
-
-                name_delta_dia = mm + "_delta_dia_"+ str(round(initbias0,3)) + ".csv"
-                name_delta_dia_mean = mm + "_delta_dia_mean_"+ str(round(initbias0,3)) +".csv"
-                name_delta_bio = mm + "_delta_bio_"+ str(round(initbias0,3)) +".csv"
-                name_delta_bio_mean = mm + "_delta_bio_mean_"+ str(round(initbias0,3)) +".csv"
-
-                name_diaa = mm + "_dia_bias_corr_"+ str(round(initbias0,3)) + "_N.csv"
-                name_diaa_mean = mm + "_dia_mean_bias_corr_" + str(round(initbias0,3)) + "_N.csv"
-                name_bioo = mm + "_bio_bias_corr_" + str(round(initbias0,3)) + "_N.csv"
-                name_bioo_mean = mm + "_bio_mean_bias_corr_" + str(round(initbias0,3)) + "_N.csv"
-
-                name_delta_diaa = mm + "_delta_dia_bias_corr_" + str(round(initbias0,3)) + "_N.csv"
-                name_delta_diaa_mean = mm + "_delta_dia_mean_bias_corr_" + str(round(initbias0,3)) +"_N.csv"
-                name_delta_bioo = mm + "_delta_bio_bias_corr_" + str(round(initbias0,3)) + "_N.csv"
-                name_delta_bioo_mean = mm + "_delta_bio_mean_bias_corr_" + str(round(initbias0,3)) +"_N.csv"
-
-                name_age = mm + "_age.csv"
-                name_age_mean = mm + "_age_mean.csv"
-                #pdf_input.to_csv(path_or_buf=name_tr, sep=',', na_rep="-999")
-                #pdf_mean.to_csv(path_or_buf=name_tr_mean, sep=',', na_rep="-999")
-                
-
-            output_dia = os.path.join(output_path, name_dia)
-            final_dia.to_csv(output_dia, sep=',', na_rep="-999")
-            
-            output_dia_mean = os.path.join(output_path, name_dia_mean)
-            final_dia_mean.to_csv(output_dia_mean, sep=',', na_rep="-999")
-
-            output_bio = os.path.join(output_path, name_bio)
-            final_bio.to_csv(output_bio, sep=',', na_rep="-999")
-
-            output_bio_mean = os.path.join(output_path, name_bio_mean)
-            final_bio_mean.to_csv(output_bio_mean, sep=',', na_rep="-999")
-
-            output_delta_dia = os.path.join(output_path, name_delta_dia)
-            final_delta_dia.to_csv(output_delta_dia, sep=',', na_rep="-999")
-
-            output_delta_dia_mean = os.path.join(output_path, name_delta_dia_mean)
-            final_delta_dia_mean.to_csv(output_delta_dia_mean, sep=',', na_rep="-999")
-            
-            output_delta_bio = os.path.join(output_path, name_delta_bio)
-            final_delta_bio.to_csv(output_delta_bio, sep=',', na_rep="-999")
-
-            output_delta_bio_mean = os.path.join(output_path, name_delta_bio_mean)
-            final_delta_bio_mean.to_csv(output_delta_bio_mean, sep=',', na_rep="-999")
-            
-            output_diaa = os.path.join(output_path, name_diaa)
-            final_diaa.to_csv(output_diaa, sep=',', na_rep="-999")
-
-            output_diaa_mean = os.path.join(output_path, name_diaa_mean)
-            final_diaa_mean.to_csv(output_diaa_mean, sep=',', na_rep="-999")
-
-            output_bioo = os.path.join(output_path, name_bioo)
-            final_bioo.to_csv(output_bioo, sep=',', na_rep="-999")
-
-            output_bioo_mean = os.path.join(output_path, name_bioo_mean)
-            final_bioo_mean.to_csv(output_bioo_mean, sep=',', na_rep="-999")
-
-            output_delta_diaa = os.path.join(output_path, name_delta_diaa)
-            final_delta_diaa.to_csv(output_delta_diaa, sep=',', na_rep="-999")
-
-            output_delta_diaa_mean = os.path.join(output_path, name_delta_diaa_mean)
-            final_delta_diaa_mean.to_csv(output_delta_diaa_mean, sep=',', na_rep="-999")
-
-            output_delta_bioo = os.path.join(output_path, name_delta_bioo)
-            final_delta_bioo.to_csv(output_delta_bioo, sep=',', na_rep="-999")
-
-            output_delta_bioo_mean = os.path.join(output_path, name_delta_bioo_mean) 
-            final_delta_bioo_mean.to_csv(output_delta_bioo_mean, sep=',', na_rep="-999")
-            
-
-            #pdf_mean.plot(label='TR mean')
-            #pdf_upper.plot(label='upper error')
-            #pdf_lower.plot(label='lower error')
-            #remove the first year for the delta_bio output, as no past year exists
-            final_delta_bioo_mean1 = final_delta_bioo_mean[1:]
-            #set up for plot
-            #pyplot.plot(final_delta_bioo_mean1['Year'],final_elta_bioo_mean1['d_bio_mean'],label = mm)
-
-            # 获取更新后的列名
-            d_bio_mean_col = [col for col in final_delta_bioo_mean1.columns if col.startswith('d_bio_mean_')][0]
-
-            # 绘制图形
-            pyplot.plot(final_delta_bioo_mean1['Year'], final_delta_bioo_mean1[d_bio_mean_col], label=mm)
-
-            #final_delta_bioo_mean["d_bio_mean"] .plot(label=mm)
-
-    print('bingo')
-    pyplot.legend(loc='upper left')
-    pyplot.ylabel('AABI (kgC $tree^{-1} year^{-1}$)')
-    pyplot.xlabel('year')
-    pyplot.show()
-#====================================================================================
-#end of first file processing
-#====================================================================================
-
-
-#====================================================================================
-#start of the processing of the rest files
-#====================================================================================
-'''
-    for i in range(1, len(fk)):
-        TR_input_dir = fk[i]
-        TR_input = r['read.tucson'](TR_input_dir)
-        start = r['min'](r['as.numeric'](r['rownames'](TR_input)))
-        end = r['max'](r['as.numeric'](r['rownames'](TR_input)))
-        # get observation period
-        TRW = r['data.frame'](year=r['seq'](start, end, 1))
-        # select only important rows ( the tree (?) or series names, e.g. "LF317s")
-        all = r['names'](TR_input)
-
-        # The heteroscedastic variance structure was stabilized using adaptive power transformation prior to detrending.
-        # The age/size-related trends in the raw data were removed from
-        # all series using cubic smoothing spline detrending with a 50% frequency
-        # from Babst et al 2019 DOI: 10.1126/sciadv.aat4313
-        #TR_powt = dplR.powt(TR_input)
-        #TR_de = dplR.detrend(TR_input, method="Spline")
-        # TR_de1 = dplR.chron(TR_de, prefix="CAM")
-        # print("test")
-        # print(TR_de1)
-
-        # biweight robust mean (an average that is unaffected by outliers)
-        #TR_de1 = dplR.chron(TR_de)
-
-        #get the file name without direct and file type Yizhao 2019/12/23
-        mm = os.path.splitext(os.path.basename(fk[i]))[0]
-        print("mm2"+ mm)
-        with localconverter(rpy2.robjects.default_converter + pandas2ri.converter):
-            pdf_input1 = rpy2.robjects.conversion.ri2py(TR_input)
-            #pdf_mean1 = rpy2.robjects.conversion.ri2py(TR_de1)  #TRW mean
-            t_start = rpy2.robjects.conversion.ri2py(start)
-            t_end = rpy2.robjects.conversion.ri2py(end)
-            # dataframe processing for plot
-            years = range(int(t_start), int(t_end) + 1)  # get the year index in the data
-            pdf_input1.index = years  # put the year as the index in the data
-            #pdf_mean1.index = years
-            pdf_input1.insert(0, "Year", years)  # put years as the first column
-            #pdf_mean1.insert(0, "Year", years)
-            pdf_input1 = pdf_input1.drop(pdf_input1.columns[0], axis=1)  # delect the first column of years
-            #pdf_mean1 = pdf_mean1.drop(pdf_mean1.columns[2], axis=1)
-            #pdf_mean1.columns = ['Year', 'TRW_mean']
-
-
-            # pdf_mean1 = pdf_input1.mean(axis=1)
-            # pdf_mean1_input = DataFrame(pdf_mean1)
-            # pdf_mean1_input.index = years  # put the year as the index in the data
-            # pdf_mean1_input.insert(0, "Year", years)  # put years as the first column
-            # pdf_mean1_input.columns = ['Year','TRW_mean']
-
-            pdf_max1 = pdf_input1.max(axis=1)
-            pdf_min1 = pdf_input1.min(axis=1)
-            pdf_std1 = pdf_input1.std(axis=1)
-            pdf_c_summary1 = pdf_input1.describe()
-
-            # create
-            pdf_dia1 = pdf_input1.copy()  # diameter df
-            pdf_dia2 = pdf_input1.copy()  # bias corrected diamter df
-            pdf_delta_dia1 = pdf_input1.copy()  # delta diameter df
-            pdf_delta_dia2 = pdf_input1.copy()  # bias corrected delta diameter df
-            pdf_bio1 = pdf_input1.copy()  # biomass df
-            pdf_bio2 = pdf_input1.copy()  # bias corrected biomass df
-            pdf_delta_bio1 = pdf_input1.copy()  # delta biomass df
-            pdf_delta_bio2 = pdf_input1.copy()  # bias corrected delta biomass df
-            pdf_age1 = pdf_input1.copy()
-            # calculate biomass increment for each tree
-            # column loop
-            for i in range(0, len(pdf_input1.columns)):
-                # one column
-                pdf_sub1 = pdf_input1.iloc[:, i]
-                diameter1 = pdf_sub1.copy()
-                diameter2 = pdf_sub1.copy()
-                biomass1 = pdf_sub1.copy()
-                biomass2 = pdf_sub1.copy()
-                delta_dia1 = pdf_sub1.copy()
-                delta_dia2 = pdf_sub1.copy()
-                delta_bio1 = pdf_sub1.copy()
-                delta_bio2 = pdf_sub1.copy()
-                age1 = pdf_sub1.copy()
-                # get the first non-NAN value and the year
-
-                y_start1 = pdf_sub1.first_valid_index()
-                y_end1 = pdf_sub1.last_valid_index()
-                length1 = y_end1 - y_start1 + 1
-
-                # year loop
-                for k in range(y_start1, (y_end1 + 1)):
-                    if k == y_start1:
-
-                        if pdf_sub1[k] == 0:
-                            pdf_sub1[k] = 1e-8
-                        #add random width to the start year of the tree ring width
-                        #pdf_sub1[k] = pdf_sub1[k] + random.uniform(0, 1)
-                        pdf_sub1[k] = pdf_sub1[k] + initbias[i]
-                        age1[k] = 1
-                        diameter1[k] = (2 * pdf_sub1[k]) / 10  # cm
-                        if bark_method == 0:
-                            diameter2[k] = diameter1[k] * 0.998 + 22.3
-                        else:
-                            diameter2[k] = (diameter1[k] ** 0.89  * 0.95)/10 + diameter1[k]
-
-                        #diameter estimated from rw is then corrected following the
-                        #equation from Lockwood et al.,2021
-                        if dbh_method == 0:
-                            diameter2[k] = diameter1[k] * 0.998 + 22.3
-                        else: 
-                        #Aggregation with bark estimation
-                        #equation from Zeibig-Kichas et al. 2016
-                            diameter2[k] = (diameter1[k] ** 0.89  * 0.95)/10 + diameter1[k]
-                        # get biomass based allometric relationships
-                        biomass1[k] = allometric_dict_species(region, species, diameter1[k])
-                        biomass2[k] = allometric_dict_species(region, species, diameter2[k])
-                        # print(biomass[k])
-                        delta_dia1[k] = diameter1[k]
-                        delta_bio1[k] = biomass1[k]
-
-                        delta_dia2[k] = diameter2[k]
-                        delta_bio2[k] = biomass2[k]
-
-                    else:
-                        if pdf_sub1[k] == 0:
-                            pdf_sub1[k] = 1e-8
-                        age1[k] = age1[k-1] + 1
-                        diameter1[k] = diameter1[k - 1] + (2 * pdf_sub1[k]) / 10  # cm
-                        if bark_method == 0:
-                            diameter2[k] = diameter1[k] * 0.998 + 22.3
-                        else:
-                            diameter2[k] = (diameter1[k] ** 0.89  * 0.95)/10 + diameter1[k]
-
-                        #diameter estimated from rw is then corrected following the
-                        #equation from Lockwood et al.,2021
-                        if dbh_method ==0:
-                            diameter2[k] = diameter1[k] * 0.998 + 22.3
-                        else:
-                        #Aggregation with bark estimation
-                        #equation from Zeibig-Kichas et al. 2016
-                            diameter2[k] = (diameter1[k] ** 0.89  * 0.95)/10 + diameter1[k]
-                        # get biomass based allometric relationships
-                        biomass1[k] = allometric_dict_species(region, species, diameter1[k])
-                        biomass2[k] = allometric_dict_species(region, species, diameter2[k])
-                        # print(biomass[k])
-                        delta_dia1[k] = diameter1[k] - diameter1[k - 1]
-                        delta_bio1[k] = biomass1[k] - biomass1[k - 1]
-
-                        delta_dia2[k] = diameter2[k] - diameter2[k - 1]
-                        delta_bio2[k] = biomass2[k] - biomass2[k - 1]
-
-
-                    count1 = k - pdf_sub1.index[0]
-                    pdf_dia1.iloc[count1, i] = diameter1[k]
-                    pdf_delta_dia1.iloc[count1, i] = delta_dia1[k]
-                    pdf_bio1.iloc[count1, i] = biomass1[k]  # biomass df
-                    pdf_delta_bio1.iloc[count1, i] = delta_bio1[k]  # delta biomass df
-                    pdf_dia2.iloc[count1, i] = diameter2[k]
-                    pdf_delta_dia2.iloc[count1, i] = delta_dia2[k]
-                    pdf_bio2.iloc[count1, i] = biomass2[k]  # biomass df
-                    pdf_delta_bio2.iloc[count1, i] = delta_bio2[k]  # delta biomass df
-                    pdf_age1.iloc[count1,i] = age1[k]
-            # Get the mean values using biweight robust mean
-            # convert to r df first
-            r_pdf_dia1 = rpy2.robjects.conversion.py2ri(pdf_dia1)
-            r_pdf_delta_dia1 = rpy2.robjects.conversion.py2ri(pdf_delta_dia1)
-            r_pdf_bio1 = rpy2.robjects.conversion.py2ri(pdf_bio1)
-            r_pdf_delta_bio1 = rpy2.robjects.conversion.py2ri(pdf_delta_bio1)
-            r_pdf_dia2 = rpy2.robjects.conversion.py2ri(pdf_dia2)
-            r_pdf_delta_dia2 = rpy2.robjects.conversion.py2ri(pdf_delta_dia2)
-            r_pdf_bio2 = rpy2.robjects.conversion.py2ri(pdf_bio2)
-            r_pdf_delta_bio2 = rpy2.robjects.conversion.py2ri(pdf_delta_bio2)
-            r_pdf_age1 = rpy2.robjects.conversion.py2ri(pdf_age1)
-
-            r_pdf_dia_mean1 = dplR.chron(r_pdf_dia1)
-            r_pdf_delta_dia_mean1 = dplR.chron(r_pdf_delta_dia1)
-            r_pdf_bio_mean1 = dplR.chron(r_pdf_bio1)
-            r_pdf_delta_bio_mean1 = dplR.chron(r_pdf_delta_bio1)
-            r_pdf_dia_mean2 = dplR.chron(r_pdf_dia2)
-            r_pdf_delta_dia_mean2 = dplR.chron(r_pdf_delta_dia2)
-            r_pdf_bio_mean2 = dplR.chron(r_pdf_bio2)
-            r_pdf_delta_bio_mean2 = dplR.chron(r_pdf_delta_bio2)
-            r_pdf_age_mean1 = dplR.chron(r_pdf_age1)
-
-            pdf_dia_mean1 = rpy2.robjects.conversion.ri2py(r_pdf_dia_mean1)
-            pdf_delta_dia_mean1 = rpy2.robjects.conversion.ri2py(r_pdf_delta_dia_mean1)
-            pdf_bio_mean1 = rpy2.robjects.conversion.ri2py(r_pdf_bio_mean1)
-            pdf_delta_bio_mean1 = rpy2.robjects.conversion.ri2py(r_pdf_delta_bio_mean1)
-            pdf_dia_mean2 = rpy2.robjects.conversion.ri2py(r_pdf_dia_mean2)
-            pdf_delta_dia_mean2 = rpy2.robjects.conversion.ri2py(r_pdf_delta_dia_mean2)
-            pdf_bio_mean2 = rpy2.robjects.conversion.ri2py(r_pdf_bio_mean2)
-            pdf_delta_bio_mean2 = rpy2.robjects.conversion.ri2py(r_pdf_delta_bio_mean2)
-            pdf_age_mean1 = rpy2.robjects.conversion.ri2py(r_pdf_age_mean1)
-
-            # Get the mean values
-            #pdf_dia_mean1 = pdf_dia1.iloc[:, 1:(len(pdf_dia1.columns) + 1)].mean(1)
-            #pdf_delta_dia_mean1 = pdf_delta_dia1.iloc[:, 1:(len(pdf_delta_dia1.columns) + 1)].mean(1)
-            #pdf_bio_mean1 = pdf_bio1.iloc[:, 1:(len(pdf_bio1.columns) + 1)].mean(1)
-            #pdf_delta_bio_mean1 = pdf_delta_bio1.iloc[:, 1:(len(pdf_delta_bio1.columns) + 1)].mean(1)
-
-            pdf_dia_mean1.insert(0, "Year", years)
-            # pdf_dia_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-            pdf_dia_mean1.columns = ['Year', 'dia_mean', 'samp.depth']
-
-            pdf_delta_dia_mean1.insert(0, "Year", years)
-            # pdf_delta_dia_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-            pdf_delta_dia_mean1.columns = ['Year', 'd_dia_mean', 'samp.depth']
-
-            pdf_bio_mean1.insert(0, "Year", years)
-            # pdf_bio_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-            pdf_bio_mean1.columns = ['Year', 'bio_mean', 'samp.depth']
-
-            pdf_delta_bio_mean1.insert(0, "Year", years)
-            # pdf_delta_bio_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-            pdf_delta_bio_mean1.columns = ['Year', 'd_bio_mean', 'samp.depth']
-            
-            pdf_dia_mean2.insert(0, "Year", years)
-            # pdf_dia_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-            pdf_dia_mean2.columns = ['Year', 'dia_mean', 'samp.depth']
-
-            pdf_delta_dia_mean2.insert(0, "Year", years)
-            # pdf_delta_dia_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-            pdf_delta_dia_mean2.columns = ['Year', 'd_dia_mean', 'samp.depth']
-
-            pdf_bio_mean2.insert(0, "Year", years)
-            # pdf_bio_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-            pdf_bio_mean2.columns = ['Year', 'bio_mean', 'samp.depth']
-
-            pdf_delta_bio_mean2.insert(0, "Year", years)
-            # pdf_delta_bio_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-            pdf_delta_bio_mean2.columns = ['Year', 'd_bio_mean', 'samp.depth']
-
-            pdf_age_mean1.insert(0, "Year", years)
-            # pdf_delta_bio_mean = pdf_dia_mean.drop(pdf_dia_mean.columns[2],axis=1)
-            pdf_age_mean1.columns = ['Year', 'age_mean', 'samp.depth']
-        
-        if bark_method == 0:
-            a = 0
-        else:
-            a = 1
-        
-        if dbh_method == 0:
-            name_dia1 = mm + "_dia_"+ str(round(initbias[i],3)) +".csv"
-            name_dia_mean1 = mm + "_dia_mean_"+ str(round(initbias[i],3)) + ".csv"
-            name_bio1 = mm + "_bio_"+ str(round(initbias[i],3)) + ".csv"
-            name_bio_mean1 = mm + "_bio_mean_"+ str(round(initbias[i],3)) + ".csv"
-
-            name_delta_dia1 = mm + "_delta_dia_"+ str(round(initbias[i],3)) + ".csv"
-            name_delta_dia_mean1 = mm + "_delta_dia_mean_"+ str(round(initbias[i],3)) +".csv"
-            name_delta_bio1 = mm + "_delta_bio_"+ str(round(initbias[i],3)) +".csv"
-            name_delta_bio_mean1 = mm + "_delta_bio_mean_"+ str(round(initbias[i],3)) +".csv"
-
-            name_dia2 = mm + "_dia_bias_corr_"+ str(round(initbias[i],3)) + "_L.csv"
-            name_dia_mean2 = mm + "_dia_mean_bias_corr_" + str(round(initbias[i],3)) + "_L.csv"
-            name_bio2 = mm + "_bio_bias_corr_" + str(round(initbias[i],3)) + "_L.csv"
-            name_bio_mean2 = mm + "_bio_mean_bias_corr_" + str(round(initbias[i],3)) + "_L.csv"
-
-            name_delta_dia2 = mm + "_delta_dia_bias_corr_" + str(round(initbias[i],3)) + "_L.csv"
-            name_delta_dia_mean2 = mm + "_delta_dia_mean_bias_corr_" + str(round(initbias[i],3)) +"_L.csv"
-            name_delta_bio2 = mm + "_delta_bio_bias_corr_" + str(round(initbias[i],3)) + "_L.csv"
-            name_delta_bio_mean2 = mm + "_delta_bio_mean_bias_corr_" + str(round(initbias[i],3)) +"_L.csv"
-
-            name_age = mm + "_age.csv"
-            name_age_mean = mm + "_age_mean.csv"
-        else:
-            name_dia1 = mm + "_dia_"+ str(round(initbias[i],3)) +".csv"
-            name_dia_mean1 = mm + "_dia_mean_"+ str(round(initbias[i],3)) + ".csv"
-            name_bio1 = mm + "_bio_"+ str(round(initbias[i],3)) + ".csv"
-            name_bio_mean1 = mm + "_bio_mean_"+ str(round(initbias[i],3)) + ".csv"
-
-            name_delta_dia1 = mm + "_delta_dia_"+ str(round(initbias[i],3)) + ".csv"
-            name_delta_dia_mean1 = mm + "_delta_dia_mean_"+ str(round(initbias[i],3)) +".csv"
-            name_delta_bio1 = mm + "_delta_bio_"+ str(round(initbias[i],3)) +".csv"
-            name_delta_bio_mean1 = mm + "_delta_bio_mean_"+ str(round(initbias[i],3)) +".csv"
-
-            name_dia2 = mm + "_dia_bias_corr_"+ str(round(initbias[i],3)) + "_N.csv"
-            name_dia_mean2 = mm + "_dia_mean_bias_corr_" + str(round(initbias[i],3)) + "_N.csv"
-            name_bio2 = mm + "_bio_bias_corr_" + str(round(initbias[i],3)) + "_N.csv"
-            name_bio_mean2 = mm + "_bio_mean_bias_corr_" + str(round(initbias[i],3)) + "_N.csv"
-
-            name_delta_dia2 = mm + "_delta_dia_bias_corr_" + str(round(initbias[i],3)) + "_N.csv"
-            name_delta_dia_mean2 = mm + "_delta_dia_mean_bias_corr_" + str(round(initbias[i],3)) +"_N.csv"
-            name_delta_bio2 = mm + "_delta_bio_bias_corr_" + str(round(initbias[i],3)) + "_N.csv"
-            name_delta_bio_mean2 = mm + "_delta_bio_mean_bias_corr_" + str(round(initbias[i],3)) +"_N.csv"
-
-
-            # pdf_input.to_csv(path_or_buf=name_tr, sep=',', na_rep="-999")
-            # pdf_mean.to_csv(path_or_buf=name_tr_mean, sep=',', na_rep="-999")
-            #pdf_dia1.to_csv(name_dia1, sep=',', na_rep="-999")
-            #pdf_dia_mean1.to_csv(name_dia_mean1, sep=',', na_rep="-999")
-            #pdf_bio1.to_csv(name_bio1, sep=',', na_rep="-999")
-            #pdf_bio_mean1.to_csv(name_bio_mean1, sep=',', na_rep="-999")
-
-            #pdf_delta_dia1.to_csv(name_delta_dia1, sep=',', na_rep="-999")
-            #pdf_delta_dia_mean1.to_csv(name_delta_dia_mean1, sep=',', na_rep="-999")
-            #pdf_delta_bio1.to_csv(name_delta_bio1, sep=',', na_rep="-999")
-            #pdf_delta_bio_mean1.to_csv(name_delta_bio_mean1, sep=',', na_rep="-999")
-
-            #pdf_dia2.to_csv(name_dia2, sep=',', na_rep="-999")
-            #pdf_dia_mean2.to_csv(name_dia_mean2, sep=',', na_rep="-999")
-            #pdf_bio2.to_csv(name_bio2, sep=',', na_rep="-999")
-            #pdf_bio_mean2.to_csv(name_bio_mean2, sep=',', na_rep="-999")
-
-            #pdf_delta_dia2.to_csv(name_delta_dia2, sep=',', na_rep="-999")
-            #pdf_delta_dia_mean2.to_csv(name_delta_dia_mean2, sep=',', na_rep="-999")
-            #pdf_delta_bio2.to_csv(name_delta_bio2, sep=',', na_rep="-999")
-
-            output_dia1 = os.path.join(output_path, name_dia1)
-            pdf_dia1.to_csv(output_dia1, sep=',', na_rep="-999")
-         
-            output_dia_mean1 = os.path.join(output_path, name_dia_mean1)
-            pdf_dia_mean1.to_csv(output_dia_mean1, sep=',', na_rep="-999")
-            output_bio1 = os.path.join(output_path, name_bio1)
-            pdf_bio1.to_csv(output_bio1, sep=',', na_rep="-999")
-            output_bio_mean1 = os.path.join(output_path, name_bio_mean1)
-            pdf_bio_mean1.to_csv(output_bio_mean1, sep=',', na_rep="-999")
-
-            output_delta_dia1 = os.path.join(output_path, name_delta_dia1)
-            pdf_delta_dia1.to_csv(output_delta_dia1, sep=',', na_rep="-999")
-            output_delta_dia_mean1 = os.path.join(output_path, name_delta_dia_mean1)
-            pdf_delta_dia_mean1.to_csv(output_delta_dia_mean1, sep=',', na_rep="-999")
-            output_delta_bio1 = os.path.join(output_path, name_delta_bio1)
-            pdf_delta_bio1.to_csv(output_delta_bio1, sep=',', na_rep="-999")
-            output_delta_bio_mean1 = os.path.join(output_path, name_delta_bio_mean1)
-            pdf_delta_bio_mean1.to_csv(output_delta_bio_mean1, sep=',', na_rep="-999")
-        
-            output_dia2 = os.path.join(output_path, name_dia2)
-            pdf_dia2.to_csv(output_dia2, sep=',', na_rep="-999")
-            output_dia_mean2 = os.path.join(output_path, name_dia_mean2)
-            pdf_dia_mean2.to_csv(output_dia_mean2, sep=',', na_rep="-999")
-            output_bio2 = os.path.join(output_path, name_bio2)
-            pdf_bio2.to_csv(output_bio2, sep=',', na_rep="-999")
-            output_bio_mean2 = os.path.join(output_path, name_bio_mean2)
-            pdf_bio_mean2.to_csv(output_bio_mean2, sep=',', na_rep="-999")
-            output_delta_dia2 = os.path.join(output_path, name_delta_dia2)
-            pdf_delta_dia2.to_csv(output_delta_dia2, sep=',', na_rep="-999")
-            output_delta_dia_mean2 = os.path.join(output_path, name_delta_dia_mean2)
-            pdf_delta_dia_mean2.to_csv(output_delta_dia_mean2, sep=',', na_rep="-999")
-            output_delta_bio2 = os.path.join(output_path, name_delta_bio2)
-            pdf_delta_bio2.to_csv(output_delta_bio2, sep=',', na_rep="-999")
-            output_delta_bio_mean2 = os.path.join(output_path, name_delta_bio_mean2) 
-            pdf_delta_bio_mean2.to_csv(output_delta_bio_mean2, sep=',', na_rep="-999")
-
-            
-            #remove the first row of the delta_bio
-            pdf_delta_bio_mean22 = pdf_delta_bio_mean2[1:]
-            #pdf_delta_bio_mean2["d_bio_mean"] .plot(label=mm)
-            #pdf_delta_bio_mean2.to_csv(name_delta_bio_mean2, sep=',', na_rep="-999")
-            #set up plot
-            pyplot.plot(pdf_delta_bio_mean22['Year'],pdf_delta_bio_mean22['d_bio_mean'],label = mm)
-#======================================================================================
-#end for the rest file processing
-#======================================================================================
-            #pdf_age1.to_csv(name_age1, sep=',', na_rep="-999")
-            #pdf_age_mean1.to_csv(name_age_mean1, sep=',', na_rep="-999")
-
-            #name_tr = mm + "_tr.csv"  # "output_tr.csv"
-            #name_tr_mean = mm + "_tr_mean.csv"  # "output_tr_mean.csv"
-
-            #pdf_input1.to_csv(path_or_buf=name_tr, sep=',', na_rep="-999")
-            #pdf_mean1.to_csv(path_or_buf=name_tr_mean, sep=',', na_rep="-999")
-            print('bingo')
-
-
-
-#        pdf_input = pd.merge(pdf_input, pdf_input1, how='outer')  # merge the input dataframes
-#        pdf_input.sort_values("year", inplace=True)  # sort values according to years
-
-    #years_index = pdf_input["year"]                          #get the "year" column for the final dataframe
-    #pdf_input.index = years_index                            #put it as the final index
-    #pdf_input = pdf_input.drop(pdf_input.columns[0],axis=1)              #delect the first column of years
-    #correct the index Yizhao 2019/7/10
-#    index = list(range(0, len(pdf_input["year"])))
-#    pdf_input.index = index
-#    index_length = len(pdf_input["year"])
-#    pdf_input2 = pdf_input.copy()
-#    pdf_input2 = pdf_input2.drop(pdf_input.columns[0], axis=1)  # delect the first column of years
-    #copy the values to another dataframe
-
-
-    #remove the years column for BAI calculation Yizhao 2019/7/10
-    #pdf_input2 = pdf_input.drop(columns=["year"])
-    #BAI calculation Yizhao 2019/7/10
-#    bai_sum = pdf_input.copy()
-#    bai_sum[bai_sum.columns[1:len(bai_sum.columns)]] = np.nan
-
-    #do calculation in each column
-#    for key, value in pdf_input2.iteritems():
-#        col_current = value
-#        # set initial values
-#        bai = np.zeros(index_length + 1)  # basal area increment
-#        tr_accum = np.zeros(index_length + 1)  # tree ring accumulation
-#        for i in range(len(col_current)):
-#            #print(col_current[i])
-#            if pd.isna(col_current[i]):
-#                col_current[i] = 0
-#                bai[i + 1] = bai[i]
-#                tr_accum[i + 1] = tr_accum[i]
-#            else:
-#                tr_accum[i + 1] = tr_accum[i] + col_current[i]
-#                bai[i + 1] = 3.1415926 * (tr_accum[i + 1] * tr_accum[i + 1] - tr_accum[i] * tr_accum[i])
-#                bai[i + 1] = bai[i + 1] / 100      #translate into cm2
-#        bai_sum[key] = bai[1:(index_length + 1)]
-
-        # put the row names(years) back
-#    years = range(int(t_start), int(t_end) + 1)
-#    pdf_input2.index = years
-#    bai_sum.index = years
-
-    # statistical summary
-   # pdf_mean = pdf_input2.mean(axis=1)
-   # pdf_max = pdf_input2.max(axis=1)
-   # pdf_min = pdf_input2.min(axis=1)
-   # pdf_std = pdf_input2.std(axis=1)
-   # pdf_c_summary = pdf_input2.describe()
-    #pdf_upper = pdf_mean + pdf_std
-    #pdf_lower = pdf_mean - pdf_std
-
-   # bai_mean = bai_sum.mean(axis=1)
-   # bai_max = bai_sum.max(axis=1)
-   # bai_min = bai_sum.min(axis=1)
-   # bai_std = bai_sum.std(axis=1)
-   # bai_summary = bai_sum.describe()
-
-
-    # need to put a transposition here to get the index summary
-    # pdf_r_summary
-    # print(pdf_mean)
-    # ===================================================================================
-    # plotting configuration
-    # ===================================================================================
-    #noted for global synthesis Yizhao 2019/12/23
-    #pyplot.plot(pdf_delta_bioo_mean1['Year'],pdf_delta_bioo_mean1['d_bio_mean'],label = mm)
-    #pyplot.plot(pdf_delta_bio_mean22['Year'],pdf_delta_bio_mean22['d_bio_mean'],label = mm)
-    pyplot.legend(loc='upper left')
-    pyplot.ylabel('AABI (kgC $tree^{-1} year^{-1}$)')
-    pyplot.xlabel('year')
-    pyplot.show()
-
+    # Remove global figure initialization - we'll create per-site figures
     # pyplot.figure()
-    # bai_mean.plot(label = 'BAI mean')
-    # pyplot.legend(loc = 'upper left')
-    # pyplot.ylabel('BAI (cm2)')
-    # pyplot.xlabel('year')
 
-    #change name pattern for global synthesis Yizhao 2019/12/22
-    # n_lat = str(lat_in)
-    # n_lon = str(lon_in)
-    #name_tr = mm+"_tr.csv" #"output_tr.csv"
-    #name_tr_mean = mm+"_tr_mean.csv"#"output_tr_mean.csv"
-    # output the plot file
-    #pdf_input.to_csv(path_or_buf=name_tr, sep=',', na_rep="-999")
-    # bai_sum.to_csv(path_or_buf="output_bai_sum.csv", sep=',', na_rep="-999")
-    # pdf_mean.to_csv(path_or_buf=name_tr_mean, sep=',', na_rep="-999")
-    # bai_mean.to_csv(path_or_buf="output_bai_mean.csv", sep=',', na_rep="-999")
-'''
+    # 记录处理时间和总文件数，用于估算剩余时间
+    total_files = len(fk)
+    processed_files = 0
+
+    for indexF in range(len(fk)):
+        # Create a new figure for each site
+        pyplot.figure()
+        
+        file_start_time = time.time()
+        TR_input_dir = fk[indexF]
+        # get the file name without direction and extension
+        mm = os.path.splitext(os.path.basename(fk[indexF]))[0]
+
+        # Get site-specific information using index
+        site_id = site_ids[indexF]
+        region = regionls[indexF]
+        species = speciesls[indexF]
+        lat = latls[indexF]
+        lon = lonls[indexF]
+
+        logger.info(f"开始处理文件: {mm} (Site ID: {site_id})")
+        print(f"Processing {mm} (Site ID: {site_id})")
+        logger.info(f"站点信息: Region={region}, Species={species}, Lat={lat}, Lon={lon}")
+
+        # 使用传入的物种代码和坐标，而不是从元数据中查找
+        species_code = species
+
+        TR_input = r['read.tucson'](TR_input_dir)
+        start = r['min'](r['as.numeric'](r['rownames'](TR_input)))
+        end = r['max'](r['as.numeric'](r['rownames'](TR_input)))
+
+        # 优化: 一次性获取年份范围
+        with localconverter(rpy2.robjects.default_converter + pandas2ri.converter):
+            t_start = float(start[0])
+            t_end = float(end[0])
+            years = range(int(t_start), int(t_end) + 1)
+
+            # 一次性转换 R 数据框为 pandas
+            pdf_input = pandas2ri.rpy2py(TR_input)
+            pdf_input.index = years
+            pdf_input.insert(0, "Year", years)
+            pdf_input = pdf_input.drop(pdf_input.columns[0], axis=1)
+
+        # 初始化收集数据的字典，用于减少DataFrame碎片化
+        data_columns = {
+            'dia': {'Year': years},
+            'bio': {'Year': years},
+            'delta_dia': {'Year': years},
+            'delta_bio': {'Year': years},
+            'diaa': {'Year': years},
+            'bioo': {'Year': years},
+            'delta_diaa': {'Year': years},
+            'delta_bioo': {'Year': years},
+            'age': {'Year': years}
+        }
+        
+        # Initialize dataframes dictionary to store all DataFrames
+        dataframes = {}
+
+        # 记录每列的第一个非空值索引，优化后续计算
+        first_valid_indices = {}
+        for i, col in enumerate(pdf_input.columns):
+            first_valid_indices[i] = pdf_input.iloc[:, i].first_valid_index()
+
+        # 生成随机值列表 - 使用集合保证唯一性
+        random_values = []
+        if times > 0:
+            # 使用集合保证唯一性
+            random_value_set = set()
+            while len(random_value_set) < times:
+                random_value = round(random.uniform(min_value, max_value), 3)
+                random_value_set.add(random_value)
+            random_values = list(random_value_set)
+        else:
+            # times = 0 或 times < 0 时，只使用一个固定的随机值
+            random_values = [0]
+
+        print("random_values = ", random_values)
+        logger.info(f"Using random values: {random_values}")
+
+        for rand_val in random_values:
+            print("rand_val = ", rand_val)
+            logger.info(f"Processing random value: {rand_val}")
+
+            # Process each random value and store results in temporary
+            # dataframes
+            for i in range(len(pdf_input.columns)):
+                col_start_time = time.time()
+                # 提取一列数据并创建副本
+                pdf_sub = pdf_input.iloc[:, i].copy()
+                column_name = pdf_input.columns[i]
+
+                # 获取该列的第一个和最后一个非NaN值的索引
+                y_start = first_valid_indices[i]
+                y_end = pdf_sub.last_valid_index()
+
+                if y_start is None or y_end is None:
+                    continue  # 跳过全是NaN的列
+
+                # 为当前样本获取自定义校正率
+                user_geometric_rate = default_geometric_rate
+                user_bark_rate = default_bark_rate
+
+                # Get sample name (column name in the dataframe)
+                column_name = pdf_input.columns[i]
+                
+                # EXTENSIVE DEBUGGING FOR GEOMETRIC RATES
+                logger.info(f"======= DEBUGGING GEOMETRIC RATES FOR SAMPLE {column_name} =======")
+                if geometric_correction_rates and len(geometric_correction_rates) > indexF:
+                    logger.info(f"Geometric correction rates available for file #{indexF}")
+                    if isinstance(geometric_correction_rates[indexF], dict):
+                        logger.info(f"Correction rates stored as dictionary with {len(geometric_correction_rates[indexF])} entries")
+                        logger.info(f"Available keys: {list(geometric_correction_rates[indexF].keys())}")
+                        if column_name in geometric_correction_rates[indexF]:
+                            logger.info(f"MATCH FOUND! Sample name '{column_name}' exists in correction rates")
+                        else:
+                            logger.info(f"No match for sample '{column_name}' in correction rates dictionary")
+                    else:
+                        logger.info(f"Correction rates not stored as dictionary but as: {type(geometric_correction_rates[indexF])}")
+                else:
+                    logger.info(f"No geometric correction rates defined for file #{indexF}")
+                
+                # Look up geometric correction rate by sample name if available
+                if geometric_correction_rates and len(geometric_correction_rates) > indexF and isinstance(geometric_correction_rates[indexF], dict):
+                    # First try to find by sample name (column_name)
+                    if column_name in geometric_correction_rates[indexF]:
+                        prev_rate = user_geometric_rate
+                        user_geometric_rate = geometric_correction_rates[indexF][column_name]
+                        logger.info(f"Applied custom geometric rate for sample {column_name}: changed from {prev_rate} to {user_geometric_rate}")
+                    # Fall back to index-based lookup for backward compatibility
+                    elif i in geometric_correction_rates[indexF]:
+                        prev_rate = user_geometric_rate
+                        user_geometric_rate = geometric_correction_rates[indexF][i]
+                        logger.info(f"Applied index-based geometric rate for sample {column_name}: changed from {prev_rate} to {user_geometric_rate}")
+                else:
+                    logger.info(f"Using default geometric rate for sample {column_name}: {user_geometric_rate}")
+
+                # 检查是否有为该样本设置的自定义树皮校正率
+                if bark_correction_rates and len(bark_correction_rates) > indexF and isinstance(bark_correction_rates[indexF], dict):
+                    # First try to find by sample name
+                    if column_name in bark_correction_rates[indexF]:
+                        user_bark_rate = bark_correction_rates[indexF][column_name]
+                        logger.info(f"Using custom bark rate for sample {column_name}: {user_bark_rate}")
+                    # Fall back to index-based lookup for backward compatibility
+                    elif i in bark_correction_rates[indexF]:
+                        user_bark_rate = bark_correction_rates[indexF][i]
+                        logger.info(f"Using index-based bark rate for sample {column_name}: {user_bark_rate}")
+                else:
+                    logger.info(f"Using default bark rate for sample {column_name}: {user_bark_rate}")
+                    
+                # 初始化向量
+                diameter = pd.Series(np.nan, index=pdf_sub.index)
+                diameterr = pd.Series(np.nan, index=pdf_sub.index)
+                diameterr_geo = pd.Series(np.nan, index=pdf_sub.index)  # Initialize diameterr_geo
+                diameterr_geo_bark = pd.Series(np.nan, index=pdf_sub.index)  # Initialize diameterr_geo_bark
+                biomass = pd.Series(np.nan, index=pdf_sub.index)
+                biomasss = pd.Series(np.nan, index=pdf_sub.index)
+                delta_dia = pd.Series(np.nan, index=pdf_sub.index)
+                delta_diaa = pd.Series(np.nan, index=pdf_sub.index)
+                delta_bio = pd.Series(np.nan, index=pdf_sub.index)
+                delta_bioo = pd.Series(np.nan, index=pdf_sub.index)
+                age = pd.Series(np.nan, index=pdf_sub.index)
+
+                # 分别处理第一年和后续年份
+                # 第一年
+                if pdf_sub[y_start] == 0:
+                    pdf_sub[y_start] = 1e-8
+
+                # 添加随机宽度
+                # 为保留原始数据，创建一个带有初始宽度修正的副本用于计算diaa相关指标
+                pdf_sub_corrected = pdf_sub.copy()
+
+                # 只有在有效的条件下才应用初始宽度校正
+                if times < 0 and file_Column_Randoms is not None and indexF < len(
+                        file_Column_Randoms) and file_Column_Randoms[indexF] is not None and i < len(file_Column_Randoms[indexF]):
+                    # 只对校正后的数据应用初始宽度偏差
+                    pdf_sub_corrected[y_start] = pdf_sub_corrected[y_start] + \
+                        file_Column_Randoms[indexF][i]
+                elif times > 0:
+                    # 随机校正
+                    pdf_sub_corrected[y_start] = pdf_sub_corrected[y_start] + rand_val
+
+                # 初始年龄和直径
+                age[y_start] = 1
+
+                # 计算原始直径 (无校正)
+                diameter[y_start] = (2 * pdf_sub[y_start]) / 10  # cm
+
+                # 计算校正后的直径 (应用了初始宽度校正)
+                diameterr[y_start] = (2 * pdf_sub_corrected[y_start]) / 10  # cm
+
+                # geometric correction
+                if dbh_method == -1:
+                    # No correction for both
+                    diameterr_geo[y_start] = diameterr[y_start]
+                    logger.info(f"No geometric correction applied - Sample: {column_name}, Diameter: {diameterr[y_start]:.4f} cm")
+                elif dbh_method == 0:
+                    # Lockwood et al.,2021方程
+                    orig_value = diameterr[y_start]
+                    diameterr_geo[y_start] = diameterr[y_start] * 0.998 + 22.3
+                    logger.info(f"Lockwood geometric correction - Sample: {column_name}, Original: {orig_value:.4f} cm, Corrected: {diameterr_geo[y_start]:.4f} cm")
+                elif dbh_method == 1:
+                    # user defined correction rate
+                    orig_value = diameterr[y_start]
+                    diameterr_geo[y_start] = diameterr[y_start] * user_geometric_rate
+                    logger.info(
+                        f"Custom geometric correction - Sample: {column_name}, Original: {orig_value:.4f} cm, Rate: {user_geometric_rate}, Corrected: {diameterr_geo[y_start]:.4f} cm")
+
+                # bark correction
+                if bark_method == -1:
+                    # Custom bark thickness based on user-defined rate
+                    #original_diameter = diameterr[y_start]
+                    bark_thickness = diameterr_geo[y_start] * user_bark_rate
+                    diameterr_geo_bark[y_start] = diameterr_geo[y_start] + bark_thickness
+                    logger.info(
+                        f"Custom bark correction - Sample: {column_name}, Original diameter: {diameterr_geo[y_start]:.4f} cm, Rate: {user_bark_rate}, Bark thickness: {bark_thickness:.4f} cm, Corrected: {diameterr_geo[y_start]:.4f} cm")
+                elif bark_method == 0:
+                    # No bark correction
+                    diameterr_geo_bark[y_start] = diameterr_geo[y_start]
+                elif bark_method == 1:
+                    # Allometry-based bark correction using bark_dict_species
+                    # function
+                    bark_thickness = bark_dict_species(
+                        region, species_code, diameterr[y_start])
+                    logger.info(
+                        f"Initial bark correction - Species: {species_code}, Sample: {column_name}, Original diameter: {diameterr[y_start]:.4f} cm, Bark thickness: {bark_thickness:.4f} cm, Corrected: {diameterr[y_start] + bark_thickness:.4f} cm")
+                    diameterr_geo_bark[y_start] = diameterr_geo[y_start] + bark_thickness
+
+                # 批量计算后续年份的直径
+                for k in range(y_start + 1, y_end + 1):
+                    if pd.isna(pdf_sub[k]):
+                        continue
+
+                    # 替换零值
+                    if pdf_sub[k] == 0:
+                        pdf_sub[k] = 1e-8
+
+                    # 同样替换校正数据中的零值
+                    if pdf_sub_corrected[k] == 0:
+                        pdf_sub_corrected[k] = 1e-8
+
+                    # 计算年龄和累积直径
+                    if not pd.isna(age[k - 1]):
+                        age[k] = age[k - 1] + 1
+
+                    # 计算原始直径 (无校正)
+                    diameter[k] = diameter[k - 1] + (2 * pdf_sub[k]) / 10
+
+                    # 计算校正后的直径 (应用了初始宽度校正)
+                    diameterr[k] = diameterr[k - 1] + \
+                        (2 * pdf_sub_corrected[k]) / 10
+                    
+
+                    # geometric correction
+                    if dbh_method == -1:
+                        diameterr_geo[k] = diameterr[k]
+                    elif dbh_method == 0:
+                        # Lockwood et al.,2021方程
+                        diameterr_geo[k] = diameterr[k] * 0.998 + 22.3
+                        if k % 20 == 0: # Log only every 20th entry to avoid excessive logging
+                            logger.info(f"Year {k} Lockwood correction - Sample: {column_name}, Original: {diameterr[k]:.4f} cm, Corrected: {diameterr_geo[k]:.4f} cm")
+                    elif dbh_method == 1:
+                        # user defined correction rate
+                        orig_value = diameterr[k]
+                        diameterr_geo[k] = diameterr[k] * user_geometric_rate
+                        if k % 20 == 0: # Log only every 20th entry to avoid excessive logging
+                            logger.info(f"Year {k} custom geometric correction - Sample: {column_name}, Original: {orig_value:.4f} cm, Rate: {user_geometric_rate}, Corrected: {diameterr_geo[k]:.4f} cm")
+
+                    # bark correction
+                    if bark_method == -1:
+                        # Custom bark thickness based on user-defined rate
+                        #original_diameter = diameterr[k]
+                        bark_thickness = diameterr_geo[k] * user_bark_rate
+                        diameterr_geo_bark[k] = diameterr_geo[k] + bark_thickness
+                        if k % 20 == 0:  # Log less frequently to avoid excessive logging
+                            logger.info(
+                                f"Year {k} custom bark correction - Sample: {column_name}, Original diameter: {diameterr_geo[k]:.4f} cm, Rate: {user_bark_rate}, Bark thickness: {bark_thickness:.4f} cm, Corrected: {diameterr_geo[k]:.4f} cm")
+                    elif bark_method == 0:
+                        # No bark correction
+                        diameterr_geo_bark[k] = diameterr_geo[k]
+                    elif bark_method == 1:
+                        # Allometry-based bark correction using bark_dict_species
+                        # function
+                        bark_thickness = bark_dict_species(
+                            region, species_code, diameterr[k])
+                        if k % 20 == 0:  # Log only every 20th entry to avoid excessive logging
+                            logger.info(
+                                f"Year {k} bark correction - Species: {species_code}, Sample: {column_name}, Original diameter: {diameterr_geo[k]:.4f} cm, Bark thickness: {bark_thickness:.4f} cm, Corrected: {diameterr_geo[k] + bark_thickness:.4f} cm")
+                        diameterr_geo_bark[k] = diameterr_geo[k] + bark_thickness
+
+                # 计算直径增量
+                delta_dia[y_start] = diameter[y_start]
+                delta_diaa[y_start] = diameterr_geo_bark[y_start]
+
+                # 计算后续年份的直径增量
+                for k in range(y_start + 1, y_end + 1):
+                    if not pd.isna(diameter[k]) and not pd.isna(diameter[k - 1]):
+                        delta_dia[k] = diameter[k] - diameter[k - 1]
+                    if not pd.isna(diameterr_geo_bark[k]) and not pd.isna(diameterr_geo_bark[k - 1]):
+                        delta_diaa[k] = diameterr_geo_bark[k] - diameterr_geo_bark[k - 1]
+
+                # 批量计算生物量 - 使用批处理函数
+                valid_indices = ~diameter.isna()
+                valid_diameters = diameter[valid_indices].values
+
+                if len(valid_diameters) > 0:
+                    try:
+                        biomass_values = cached_calculate_biomass_batch(
+                            valid_diameters, species_code, lat, lon, logger)
+
+                        # 检查长度是否匹配
+                        if len(biomass_values) == sum(valid_indices):
+                            biomass[valid_indices] = biomass_values
+                        else:
+                            logger.error(
+                                f"生物量计算结果长度不匹配: 预期 {sum(valid_indices)}, 实际 {len(biomass_values)}")
+                            # 回退到逐个赋值以避免长度不匹配错误
+                            valid_idx_positions = np.where(valid_indices)[0]
+                            for j, pos in enumerate(valid_idx_positions):
+                                if j < len(biomass_values):
+                                    biomass.iloc[pos] = biomass_values[j]
+                    except Exception as e:
+                        logger.error(f"计算生物量时出错: {str(e)}")
+                        # 使用默认值或保持NaN
+
+                valid_indices = ~diameterr_geo_bark.isna()  # Changed from diameterr to diameterr_geo_bark
+                valid_diameters = diameterr_geo_bark[valid_indices].values  # Changed from diameterr to diameterr_geo_bark
+
+                if len(valid_diameters) > 0:
+                    try:
+                        biomasss_values = cached_calculate_biomass_batch(
+                            valid_diameters, species_code, lat, lon, logger)
+
+                        # 检查长度是否匹配
+                        if len(biomasss_values) == sum(valid_indices):
+                            biomasss[valid_indices] = biomasss_values
+                        else:
+                            logger.error(
+                                f"校正生物量计算结果长度不匹配: 预期 {sum(valid_indices)}, 实际 {len(biomasss_values)}")
+                            # 回退到逐个赋值以避免长度不匹配错误
+                            valid_idx_positions = np.where(valid_indices)[0]
+                            for j, pos in enumerate(valid_idx_positions):
+                                if j < len(biomasss_values):
+                                    biomasss.iloc[pos] = biomasss_values[j]
+                    except Exception as e:
+                        logger.error(f"计算校正生物量时出错: {str(e)}")
+                        # 使用默认值或保持NaN
+
+                # 计算生物量增量
+                delta_bio[y_start] = biomass[y_start]
+                delta_bioo[y_start] = biomasss[y_start]
+                
+                # 计算后续年份的生物量增量
+                for k in range(y_start + 1, y_end + 1):
+                    if not pd.isna(biomass[k]) and not pd.isna(biomass[k - 1]):
+                        delta_bio[k] = biomass[k] - biomass[k - 1]
+                    if not pd.isna(biomasss[k]) and not pd.isna(biomasss[k - 1]):
+                        delta_bioo[k] = biomasss[k] - biomasss[k - 1]
+
+                # 将处理结果保存到数据字典中，而不是立即添加到DataFrame中
+                # 为列名添加随机值标识
+                rand_suffix = f"_{rand_val}" if times > 0 else ""
+
+                # 存入字典而不是立即添加到DataFrame
+                col_key = f"dia{rand_suffix}_{column_name}"
+                data_columns['dia'][col_key] = diameter
+
+                col_key = f"bio{rand_suffix}_{column_name}"
+                data_columns['bio'][col_key] = biomass
+
+                col_key = f"delta_dia{rand_suffix}_{column_name}"
+                data_columns['delta_dia'][col_key] = delta_dia
+
+                col_key = f"delta_bio{rand_suffix}_{column_name}"
+                data_columns['delta_bio'][col_key] = delta_bio
+
+                col_key = f"diaa{rand_suffix}_{column_name}"
+                data_columns['diaa'][col_key] = diameterr
+
+                col_key = f"bioo{rand_suffix}_{column_name}"
+                data_columns['bioo'][col_key] = biomasss
+
+                col_key = f"delta_diaa{rand_suffix}_{column_name}"
+                data_columns['delta_diaa'][col_key] = delta_diaa
+
+                col_key = f"delta_bioo{rand_suffix}_{column_name}"
+                data_columns['delta_bioo'][col_key] = delta_bioo
+
+                col_key = f"age{rand_suffix}_{column_name}"
+                data_columns['age'][col_key] = age
+
+        # 完成数据收集后，一次性创建DataFrame，避免频繁插入列导致的碎片化
+        for key in ['dia', 'bio', 'delta_dia', 'delta_bio', 'diaa', 'bioo', 'delta_diaa', 'delta_bioo', 'age']:
+            dataframes[key] = pd.DataFrame(data_columns[key])
+        
+        # Process each variable type to calculate means
+        for var_type in ['dia', 'bio', 'delta_dia', 'delta_bio', 'diaa', 'bioo', 'delta_diaa', 'delta_bioo', 'age']:
+            var_df = dataframes[var_type]
+            # Get all sample columns (excluding 'Year') for this variable type
+            all_sample_cols = [col for col in var_df.columns if col != 'Year'] 
+
+            if not all_sample_cols:
+                logger.warning(f"No sample columns found for {var_type}")
+                dataframes[f'{var_type}_mean'] = pd.DataFrame({'Year': years}) # Store empty mean df
+                continue
+
+            # Initialize the mean output dataframe for this variable type
+            mean_output_df = pd.DataFrame({'Year': years})
+            
+            # Check if we have multiple simulations (times > 0 and more than one random value)
+            if times > 0 and len(random_values) > 1:
+                logger.info(f"Calculating {var_type} means and sample depths for {len(random_values)} simulations.")
+                
+                # --- Multiple Simulations Logic ---
+                # mean_output_df starts with just 'Year' column
+                for rand_val in random_values:
+                    rand_suffix = f"_{rand_val}_"
+                    sim_sample_cols = [col for col in all_sample_cols if rand_suffix in col]
+
+                    if not sim_sample_cols:
+                        logger.warning(f"No sample columns found for {var_type} simulation {rand_val}")
+                        continue
+                        
+                    logger.debug(f"Processing {var_type} mean & depth for sim {rand_val} using {len(sim_sample_cols)} columns.")
+                    
+                    # Define expected column names from process_tree_data
+                    sim_mean_col_name = f"mean_{var_type}_{rand_val}"
+                    sim_samp_depth_col_name = f"samp.depth_{rand_val}"
+
+                    try:
+                        # Try R biweight mean for this simulation's samples
+                        sample_data = var_df[sim_sample_cols]
+                        with localconverter(rpy2.robjects.default_converter + pandas2ri.converter):
+                            r_df = pandas2ri.py2rpy(sample_data)
+                            r_result = dplR.chron(r_df) 
+                            
+                        # Process result using temp var_type to get suffixed columns
+                        temp_process_var_type = f"{var_type}_{rand_val}"
+                        sim_mean_df_from_r = process_tree_data(r_result, sample_data, years, temp_process_var_type)
+                        
+                        # Check if BOTH expected columns are returned by process_tree_data
+                        if sim_mean_col_name in sim_mean_df_from_r.columns and sim_samp_depth_col_name in sim_mean_df_from_r.columns:
+                            mean_values = sim_mean_df_from_r[sim_mean_col_name].values
+                            samp_depth_values = sim_mean_df_from_r[sim_samp_depth_col_name].values
+                            
+                            # Add this simulation's mean column
+                            if len(mean_values) >= len(years):
+                                mean_output_df[sim_mean_col_name] = mean_values[:len(years)]
+                            else: 
+                                padded = np.full(len(years), np.nan)
+                                padded[:len(mean_values)] = mean_values
+                                mean_output_df[sim_mean_col_name] = padded
+                                
+                            # Add this simulation's sample depth column
+                            if len(samp_depth_values) >= len(years):
+                                mean_output_df[sim_samp_depth_col_name] = samp_depth_values[:len(years)]
+                            else: 
+                                padded_sd = np.full(len(years), np.nan)
+                                padded_sd[:len(samp_depth_values)] = samp_depth_values
+                                mean_output_df[sim_samp_depth_col_name] = padded_sd
+                                
+                            logger.info(f"Processed {sim_mean_col_name} and {sim_samp_depth_col_name} using R biweight mean.")
+                        else:
+                             # Error if expected columns aren't returned
+                             missing_cols = [c for c in [sim_mean_col_name, sim_samp_depth_col_name] if c not in sim_mean_df_from_r.columns]
+                             raise ValueError(f"Columns {missing_cols} not found in R result processing for sim {rand_val}.")
+
+                    except Exception as e:
+                        logger.warning(f"R processing failed for sim {rand_val}, falling back to pandas: {e}")
+                        # Fallback to pandas mean and count for this simulation
+                        mean_values = var_df[sim_sample_cols].mean(axis=1).values
+                        samp_depth_values = var_df[sim_sample_cols].count(axis=1).values
+                        
+                        # Add mean column
+                        if len(mean_values) >= len(years):
+                            mean_output_df[sim_mean_col_name] = mean_values[:len(years)]
+                        else:
+                            padded = np.full(len(years), np.nan)
+                            padded[:len(mean_values)] = mean_values
+                            mean_output_df[sim_mean_col_name] = padded
+                            
+                        # Add sample depth column
+                        if len(samp_depth_values) >= len(years):
+                            mean_output_df[sim_samp_depth_col_name] = samp_depth_values[:len(years)]
+                        else:
+                            padded_sd = np.full(len(years), np.nan)
+                            padded_sd[:len(samp_depth_values)] = samp_depth_values
+                            mean_output_df[sim_samp_depth_col_name] = padded_sd
+                
+                # --- End of Multiple Simulations Logic ---
+                # No overall samp.depth calculation needed here anymore
+                
+            else:
+                # --- Single Simulation or times <= 0 Logic --- (Remains mostly the same)
+                logger.info(f"Calculating overall {var_type} mean and sample depth across {len(all_sample_cols)} samples.")
+                mean_col_name = f"mean_{var_type}" 
+                samp_depth_col_name = "samp.depth" # Standard name
+                
+                try:
+                    sample_data = var_df[all_sample_cols]
+                    with localconverter(rpy2.robjects.default_converter + pandas2ri.converter):
+                        r_df = pandas2ri.py2rpy(sample_data)
+                        r_result = dplR.chron(r_df)
+                        
+                    # process_tree_data will return mean_col_name and samp_depth_col_name
+                    mean_df_from_r = process_tree_data(r_result, sample_data, years, var_type)
+                    
+                    if mean_col_name in mean_df_from_r.columns and samp_depth_col_name in mean_df_from_r.columns:
+                        mean_values = mean_df_from_r[mean_col_name].values
+                        samp_depth_values = mean_df_from_r[samp_depth_col_name].values
+                        
+                        # Add mean column
+                        if len(mean_values) >= len(years):
+                            mean_output_df[mean_col_name] = mean_values[:len(years)]
+                        else: 
+                            padded = np.full(len(years), np.nan)
+                            padded[:len(mean_values)] = mean_values
+                            mean_output_df[mean_col_name] = padded
+                        
+                        # Add sample depth column (should be last)
+                        if len(samp_depth_values) >= len(years):
+                             mean_output_df[samp_depth_col_name] = samp_depth_values[:len(years)]
+                        else: 
+                             padded_sd = np.full(len(years), np.nan)
+                             padded_sd[:len(samp_depth_values)] = samp_depth_values
+                             mean_output_df[samp_depth_col_name] = padded_sd
+                             
+                        logger.info(f"Processed {mean_col_name} and {samp_depth_col_name} using R biweight mean")
+                    else:
+                        missing_cols = [c for c in [mean_col_name, samp_depth_col_name] if c not in mean_df_from_r.columns]
+                        logger.warning(f"R result missing {missing_cols}, falling back to pandas mean/count.")
+                        # Fallback to pandas mean and count
+                        mean_values = sample_data.mean(axis=1).values
+                        samp_depth_values = sample_data.count(axis=1).values
+                        if len(mean_values) >= len(years):
+                             mean_output_df[mean_col_name] = mean_values[:len(years)]
+                        else: 
+                             padded = np.full(len(years), np.nan)
+                             padded[:len(mean_values)] = mean_values
+                             mean_output_df[mean_col_name] = padded
+                        if len(samp_depth_values) >= len(years):
+                             mean_output_df[samp_depth_col_name] = samp_depth_values[:len(years)]
+                        else:
+                             padded_sd = np.full(len(years), np.nan)
+                             padded_sd[:len(samp_depth_values)] = samp_depth_values
+                             mean_output_df[samp_depth_col_name] = padded_sd
+                        
+                except Exception as e:
+                    logger.error(f"Error calculating overall {var_type} mean/depth: {str(e)}")
+                    # Fallback to pandas mean and count
+                    mean_values = var_df[all_sample_cols].mean(axis=1).values
+                    samp_depth_values = var_df[all_sample_cols].count(axis=1).values
+                    # Add mean column
+                    if len(mean_values) >= len(years):
+                        mean_output_df[mean_col_name] = mean_values[:len(years)]
+                    else: 
+                        padded = np.full(len(years), np.nan)
+                        padded[:len(mean_values)] = mean_values
+                        mean_output_df[mean_col_name] = padded
+                    # Add sample depth column
+                    if len(samp_depth_values) >= len(years):
+                        mean_output_df[samp_depth_col_name] = samp_depth_values[:len(years)]
+                    else:
+                        padded_sd = np.full(len(years), np.nan)
+                        padded_sd[:len(samp_depth_values)] = samp_depth_values
+                        mean_output_df[samp_depth_col_name] = padded_sd
+                    logger.info(f"Used pandas fallback for overall {var_type} mean/depth due to error.")
+
+            # Store the resulting mean dataframe
+            dataframes[f'{var_type}_mean'] = mean_output_df
+
+        # Assign all the final dataframes (including the potentially modified mean ones)
+        final_dia = dataframes['dia']
+        final_bio = dataframes['bio']
+        final_delta_dia = dataframes['delta_dia']
+        final_delta_bio = dataframes['delta_bio']
+        final_diaa = dataframes['diaa']
+        final_bioo = dataframes['bioo']
+        final_delta_diaa = dataframes['delta_diaa']
+        final_delta_bioo = dataframes['delta_bioo']
+        final_age = dataframes['age']
+        
+        final_dia_mean = dataframes['dia_mean']
+        final_bio_mean = dataframes['bio_mean']
+        final_delta_dia_mean = dataframes['delta_dia_mean']
+        final_delta_bio_mean = dataframes['delta_bio_mean']
+        final_diaa_mean = dataframes['diaa_mean']
+        final_bioo_mean = dataframes['bioo_mean']
+        final_delta_diaa_mean = dataframes['delta_diaa_mean']
+        final_delta_bioo_mean = dataframes['delta_bioo_mean']
+        final_age_mean = dataframes['age_mean']
+
+        # 保存结果到CSV文件
+        region_suffix = region if region != "all" else ""
+        species_suffix = species if species != "all" else ""
+        file_prefix = f"{mm}_{region_suffix}_{species_suffix}"
+
+        # 设置各种校正选项的编码
+        # 2=Random, 1=Customize, 0=No
+        initial_width_code = 2 if times > 0 else 1 if times < 0 else 0
+        geometric_code = 0 if dbh_method == - \
+            1 else 1 if dbh_method == 0 else 2  # 0=No, 1=Lockwood, 2=Customize
+        # 0=No, 1=Allometry, 2=Customize
+        bark_code = 0 if bark_method == 0 else 1 if bark_method == 1 else 2
+
+        # 保存非校正文件 - 标准格式
+        output_file = os.path.join(output_path, f"{file_prefix}_dia.csv")
+        final_dia.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(output_path, f"{file_prefix}_bio.csv")
+        final_bio.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(output_path, f"{file_prefix}_delta_dia.csv")
+        final_delta_dia.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(output_path, f"{file_prefix}_delta_bio.csv")
+        final_delta_bio.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(output_path, f"{file_prefix}_age.csv")
+        final_age.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        # 保存校正文件 - 包含校正代码
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_diaa_correction_{initial_width_code}_{geometric_code}_{bark_code}.csv")
+        final_diaa.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_bioo_correction_{initial_width_code}_{geometric_code}_{bark_code}.csv")
+        final_bioo.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_delta_diaa_correction_{initial_width_code}_{geometric_code}_{bark_code}.csv")
+        final_delta_diaa.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_delta_bioo_correction_{initial_width_code}_{geometric_code}_{bark_code}.csv")
+        final_delta_bioo.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        # 保存均值数据框 - 标准格式
+        output_file = os.path.join(output_path, f"{file_prefix}_dia_mean.csv")
+        final_dia_mean.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(output_path, f"{file_prefix}_bio_mean.csv")
+        final_bio_mean.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_delta_dia_mean.csv")
+        final_delta_dia_mean.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_delta_bio_mean.csv")
+        final_delta_bio_mean.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(output_path, f"{file_prefix}_age_mean.csv")
+        final_age_mean.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        # 保存均值校正数据框 - 包含校正代码
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_diaa_mean_correction_{initial_width_code}_{geometric_code}_{bark_code}.csv")
+        final_diaa_mean.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_bioo_mean_correction_{initial_width_code}_{geometric_code}_{bark_code}.csv")
+        final_bioo_mean.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_delta_diaa_mean_correction_{initial_width_code}_{geometric_code}_{bark_code}.csv")
+        final_delta_diaa_mean.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        output_file = os.path.join(
+            output_path,
+            f"{file_prefix}_delta_bioo_mean_correction_{initial_width_code}_{geometric_code}_{bark_code}.csv")
+        final_delta_bioo_mean.to_csv(output_file, index=False)
+        logger.info(f"已保存文件: {output_file}")
+
+        # 简化绘图逻辑 - Draw plot based on mean data
+        # Use the delta_bioo_mean dataframe for plotting AABI
+        plot_mean_df = dataframes.get('delta_bioo_mean', None)
+        
+        if plot_mean_df is not None and not plot_mean_df.empty:
+            if times > 0 and len(random_values) > 1:
+                logger.info("Plotting mean AABI for each simulation.")
+                # Find all mean columns for delta_bioo simulations
+                sim_mean_cols = [col for col in plot_mean_df.columns if col.startswith('mean_delta_bioo_')]
+                
+                if sim_mean_cols:
+                    for mean_col in sim_mean_cols:
+                        # Extract rand_val from column name (e.g., mean_delta_bioo_0.123 -> 0.123)
+                        try:
+                            rand_val_str = mean_col.split('_')[-1]
+                            # Plot this simulation's mean
+                            pyplot.plot(
+                                plot_mean_df['Year'],
+                                plot_mean_df[mean_col],
+                                label=f"{mm}_rand_{rand_val_str}")
+                            logger.info(f"Plotted AABI curve for simulation {rand_val_str}")
+                        except IndexError:
+                            logger.warning(f"Could not parse random value from column name: {mean_col}")
+                            # Fallback: plot with the raw column name as label
+                            pyplot.plot(plot_mean_df['Year'], plot_mean_df[mean_col], label=f"{mm}_{mean_col}")
+                else:
+                    logger.warning("No simulation-specific mean columns found in delta_bioo_mean for plotting.")
+                    # Fallback: Plot the first available non-Year, non-samp.depth column if any
+                    fallback_cols = [col for col in plot_mean_df.columns if col not in ['Year', 'samp.depth']]
+                    if fallback_cols:
+                         pyplot.plot(plot_mean_df['Year'], plot_mean_df[fallback_cols[0]], label=f"{mm}_mean")
+                         logger.info(f"Plotted fallback AABI curve using column: {fallback_cols[0]}")
+                         
+            else:
+                # Original logic: Plot the single mean column (e.g., 'mean_delta_bioo')
+                logger.info("Plotting single overall mean AABI curve.")
+                mean_col_name = 'mean_delta_bioo'
+                if mean_col_name in plot_mean_df.columns:
+                    pyplot.plot(plot_mean_df['Year'], plot_mean_df[mean_col_name], label=mm)
+                    logger.info(f"Plotted overall AABI curve using column: {mean_col_name}")
+                else:
+                    # Fallback if 'mean_delta_bioo' column doesn't exist (shouldn't happen in this case)
+                    fallback_cols = [col for col in plot_mean_df.columns if col not in ['Year', 'samp.depth']]
+                    if fallback_cols:
+                         pyplot.plot(plot_mean_df['Year'], plot_mean_df[fallback_cols[0]], label=f"{mm}_mean")
+                         logger.info(f"Plotted fallback AABI curve using column: {fallback_cols[0]}")
+        else:
+             logger.warning("Could not find or plot delta_bioo_mean data.")
+
+        # 设置图表标签和图例
+        pyplot.legend(loc='upper left')
+        pyplot.ylabel('AABI (kgC $tree^{-1} year^{-1}$)')
+        pyplot.xlabel('year')
+        pyplot.title(f"Site: {mm} (ID: {site_id})")
+
+        # 保存和显示当前站点图表
+        plot_file = os.path.join(output_path, f"delta_bio_plot_{site_id}_{region}_{species}_{mm}.png")
+        pyplot.savefig(plot_file, dpi=300)
+        logger.info(f"已保存绘图: {plot_file}")
+        pyplot.show(block=False)  # Use non-blocking to allow multiple windows
+
+        # 记录处理时间
+        processed_files += 1
+        file_elapsed = time.time() - file_start_time
+        overall_elapsed = time.time() - start_time
+        avg_time_per_file = overall_elapsed / processed_files
+        est_remaining = avg_time_per_file * (total_files - processed_files)
+
+        logger.info(f"文件 {mm} 处理完成, 耗时: {file_elapsed:.2f}秒")
+        logger.info(f"总进度: {processed_files}/{total_files}, 预计剩余时间: {est_remaining:.2f}秒")
+
+    logger.info(f"所有文件处理完成, 总耗时: {time.time() - start_time:.2f}秒")
+
+    # 显示完成提示
+    total_time = time.time() - start_time
+    msg = f"处理完成!\n总共处理了 {processed_files} 个文件\n总耗时: {total_time:.2f}秒"
+    try:
+        # 尝试使用tkinter显示消息框
+        messagebox.showinfo("处理完成", msg)
+    except Exception as e:
+        # 如果失败，则使用控制台输出
+        print("\n" + "=" * 50)
+        print(msg)
+        print("=" * 50 + "\n")
+
+    pyplot.show()  # Ensure all plots are shown at the end
+    return

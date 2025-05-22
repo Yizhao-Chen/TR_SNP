@@ -10,6 +10,9 @@ def parse_range(value):
         return None, None
     if ':' in value:
         start, end = map(int, value.split(':'))
+        # Always ensure start <= end for consistent range comparison
+        if start > end:
+            start, end = end, start
         return start, end
     else:
         val = int(value)
@@ -17,7 +20,8 @@ def parse_range(value):
 
 def is_valid_int(value):
     try:
-        int(value)
+        # First try to convert to float (will handle both integer and decimal strings)
+        float(value)
         return True
     except ValueError:
         return False
@@ -36,83 +40,112 @@ def om(mf, year_in, year_out, lat_in, lon_in, reg_in, spec_in):
 
     lat_start, lat_end = parse_range(lat_in)
     lon_start, lon_end = parse_range(lon_in)
+    
+    # Convert year values to integers if possible
+    try:
+        year_in_val = int(year_in) if year_in else ""
+    except ValueError:
+        year_in_val = ""
+    
+    try:
+        year_out_val = int(year_out) if year_out else ""
+    except ValueError:
+        year_out_val = ""
+        
     with open(mf) as f:
         reader = csv.DictReader(f)
-       # if len(lat_s) == 4:
-       #     lat_st = '0' + lat_s
-       # else:
-       #     lat_st = lat_s
-
-       # if len(lat_e) == 4:
-       #     lat_et = '0' + lat_e
-       # else:
-       #     lat_et = lat_e
-
-       # if len(lon_s) == 4:
-       #     lon_st = '0' + lon_s
-       # else:
-       #     lon_st = lon_s
-
-       # if len(lon_e) == 4:
-       #     lon_et = '0' + lon_e
-       # else:
-       #     lon_et = lon_e
 
         for row in reader:
-            start = row['start']
-            end = row['end']
-            id = row['id']
-            region = row['region']
-            species = row['species']
-            lat = row['lat']
-            lon = row['lon']
+            try:
+                # Get site ID, region, and species
+                id = row.get('site_id', '')
+                region = row.get('region', '')
+                species = row.get('tree_species_code', '')
+                
+                # Handle years as floats or ints
+                try:
+                    start = int(float(row.get('first_year', 0)))
+                except (ValueError, TypeError):
+                    start = 0
+                    
+                try:
+                    end = int(float(row.get('last_year', 0)))
+                except (ValueError, TypeError):
+                    end = 0
+                
+                # Process latitude and longitude
+                try:
+                    # Get raw lat/lon values
+                    lat_raw = row.get('latitude', '')
+                    lon_raw = row.get('longitude', '')
+                    
+                    # Skip if missing lat/lon
+                    if not lat_raw or not lon_raw:
+                        continue
+                    
+                    # Convert to float then to integer with x100
+                    lat = int(float(lat_raw) * 100)
+                    lon = int(float(lon_raw) * 100)
+                except (ValueError, TypeError):
+                    continue
+            
+                # Apply filters based on the case
+                if spec_in == 'all' and reg_in == 'all':
+                    # Filter by year range and lat/lon
+                    year_check = (not year_in_val or start <= year_in_val) and (not year_out_val or end >= year_out_val)
+                    
+                    # Fixed lat/lon checks
+                    lat_check = lat_start is None or (lat_start <= lat <= lat_end)
+                    
+                    # Special handling for longitude to correctly manage negative values
+                    # When dealing with negative longitudes, we need to ensure the comparisons work correctly
+                    lon_check = lon_start is None or (lon_start <= lon <= lon_end)
+                    
+                    # Debug output for any unexpected sites
+                    if id == 'wi014':
+                        print(f"DEBUG - Site: {id}, Lat: {lat}, Lon: {lon}")
+                        print(f"Lat range: {lat_start} to {lat_end}, Lon range: {lon_start} to {lon_end}")
+                        print(f"Lat check: {lat_check}, Lon check: {lon_check}")
+                    
+                    if year_check and lat_check and lon_check:
+                        file_list.append(id)
 
-            if not is_valid_int(lat) or not is_valid_int(lon):
-                continue  # 跳过无效的 lat 或 lon
+                elif spec_in != 'all' and reg_in == 'all':
+                    # Filter by year range and species
+                    if (not year_in_val or start <= year_in_val) and (not year_out_val or end >= year_out_val) and \
+                    species == spec_in:
+                        # Apply lat/lon filtering here too
+                        lat_check = lat_start is None or (lat_start <= lat <= lat_end)
+                        lon_check = lon_start is None or (lon_start <= lon <= lon_end)
+                        
+                        if lat_check and lon_check:
+                            file_list.append(id)
 
-            lat = int(lat)
-            lon = int(lon)
+                elif spec_in == 'all' and reg_in != 'all':
+                    # Filter by year range and region
+                    if (not year_in_val or start <= year_in_val) and (not year_out_val or end >= year_out_val) and \
+                    region == reg_in:
+                        # Apply lat/lon filtering here too
+                        lat_check = lat_start is None or (lat_start <= lat <= lat_end)
+                        lon_check = lon_start is None or (lon_start <= lon <= lon_end)
+                        
+                        if lat_check and lon_check:
+                            file_list.append(id)
 
-            # if spec_in == 'all' and reg_in == 'all':
-            #     if start <= year_in and end >= year_out and lat == lat_in and lon == lon_in:
-            #         file_list.append(id)
-
-            # elif spec_in != 'all' and reg_in == 'all':
-            #     if start <= year_in and end >= year_out and species == spec_in: 
-            #         file_list.append(id)
-            # elif spec_in == 'all' and reg_in != 'all':
-            #     if start <= year_in and end >= year_out and region == reg_in:
-            #         file_list.append(id)
-            # else:
-            #     if start <= year_in and end >= year_out and species == spec_in and region == reg_in:
-            #         file_list.append(id)
-
-
-            # if spec_in == 'all' and reg_in == 'all':
-            #     if (year_in == "" or start <= year_in) and (year_out == "" or end >= year_out) and \
-            #     (lat_in == "" or lat == lat_in) and (lon_in == "" or lon == lon_in):
-            #         file_list.append(id)
-
-            if spec_in == 'all' and reg_in == 'all':
-                if (year_in == "" or start <= year_in) and (year_out == "" or end >= year_out) and \
-                (lat_start is None or (lat_start <= lat <= lat_end)) and \
-                (lon_start is None or (lon_start <= lon <= lon_end)):
-                    file_list.append(id)
-
-            elif spec_in != 'all' and reg_in == 'all':
-                if (year_in == "" or start <= year_in) and (year_out == "" or end >= year_out) and \
-                species == spec_in:
-                    file_list.append(id)
-
-            elif spec_in == 'all' and reg_in != 'all':
-                if (year_in == "" or start <= year_in) and (year_out == "" or end >= year_out) and \
-                region == reg_in:
-                    file_list.append(id)
-
-            else:
-                if (year_in == "" or start <= year_in) and (year_out == "" or end >= year_out) and \
-                species == spec_in and region == reg_in:
-                    file_list.append(id)
+                else:
+                    # Filter by year range, species, and region
+                    if (not year_in_val or start <= year_in_val) and (not year_out_val or end >= year_out_val) and \
+                    species == spec_in and region == reg_in:
+                        # Apply lat/lon filtering here too
+                        lat_check = lat_start is None or (lat_start <= lat <= lat_end)
+                        lon_check = lon_start is None or (lon_start <= lon <= lon_end)
+                        
+                        if lat_check and lon_check:
+                            file_list.append(id)
+            except Exception as e:
+                # Skip rows with processing errors
+                print(f"Error processing row for site {row.get('site_id', 'unknown')}: {str(e)}")
+                continue
 
     return file_list
             #else:

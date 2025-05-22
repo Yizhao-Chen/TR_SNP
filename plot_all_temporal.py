@@ -1,14 +1,15 @@
+import os
+import sys
 import rpy2
 import tzlocal
 from rpy2.robjects import r
 from rpy2.robjects.packages import importr
 from rpy2.robjects.vectors import StrVector
 
-from rpy2.robjects.packages import importr,data
+from rpy2.robjects.packages import importr, data
 from rpy2.robjects.vectors import DataFrame, StrVector
 from rpy2.robjects.conversion import localconverter
-from rpy2.robjects import r, pandas2ri
-#import numpy as np
+import rpy2.robjects.pandas2ri as pandas2ri
 import pandas as pd
 from pandas import *
 
@@ -18,12 +19,13 @@ from pandas import *
 from matplotlib import *
 from matplotlib import pyplot
 #import plotnine
-import os
 
-#import R package
+# 激活 pandas 转换
+pandas2ri.activate()
+
+# 导入 R 包
 dplR = importr('dplR')
 r_base = importr('base')
-pandas2ri.activate()
 
 #add lat_in lon_in for global synthesis Yizh
 def plot_all(output_fl,nIndex):
@@ -66,11 +68,14 @@ def plot_all(output_fl,nIndex):
 
 
     with localconverter(rpy2.robjects.default_converter + pandas2ri.converter):
-        pdf_input = rpy2.robjects.conversion.ri2py(TR_de)
-        pdf_mean = rpy2.robjects.conversion.ri2py(TR_de1)  #TRW mean
-        t_start = rpy2.robjects.conversion.ri2py(start)
-        t_end = rpy2.robjects.conversion.ri2py(end)
-        # dataframe processing for plot
+        pdf_input = pandas2ri.rpy2py(TR_de)
+        pdf_mean = pandas2ri.rpy2py(TR_de1)  #TRW mean
+        
+        # 对于单个数值，直接从 R 对象中提取值
+        t_start = float(start[0])
+        t_end = float(end[0])
+        
+        # 数据框处理保持不变
         years = range(int(t_start), int(t_end) + 1)  # get the year index in the data
         pdf_input.index = years  # put the year as the index in the data
         pdf_mean.index = years
@@ -127,11 +132,14 @@ def plot_all(output_fl,nIndex):
         mm = os.path.splitext(os.path.basename(fk[i]))[0]
         print("mm2"+ mm)
         with localconverter(rpy2.robjects.default_converter + pandas2ri.converter):
-            pdf_input1 = rpy2.robjects.conversion.ri2py(TR_de)
-            pdf_mean1 = rpy2.robjects.conversion.ri2py(TR_de1)  #TRW mean
-            t_start = rpy2.robjects.conversion.ri2py(start)
-            t_end = rpy2.robjects.conversion.ri2py(end)
-            # dataframe processing for plot
+            pdf_input1 = pandas2ri.rpy2py(TR_de)
+            pdf_mean1 = pandas2ri.rpy2py(TR_de1)  #TRW mean
+            
+            # 对于单个数值，直接从 R 对象中提取值
+            t_start = float(start[0])
+            t_end = float(end[0])
+            
+            # 数据框处理保持不变
             years = range(int(t_start), int(t_end) + 1)  # get the year index in the data
             pdf_input1.index = years  # put the year as the index in the data
             pdf_mean1.index = years

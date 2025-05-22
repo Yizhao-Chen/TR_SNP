@@ -1,0 +1,216 @@
+Processing file: D:/TR_SNP_docker/Verson_0415/test_output/data/or092.rwl
+Species code: JUOC
+Random values: [0.102, 0.121, 0.112, 0.134, 0.148, 0.149, 0.13, 0.119, 0.107, 0.103]
+Years range: 530 - 2010, Total years: 1481
+DataFrame columns: ['Year', 'AGU01A', 'AGU01B', 'AGU02A', 'AGU02B', 'AGU03A', 'AGU03B', 'AGU04A', 'AGU04B', 'AGU13A', 'AGU14A', 'AGU14B', 'TRJ01C', 'TRJ01D', 'TRJ02C', 'TRJ10A', 'TRJ12A', 'TRJ12B', 'TRJ12C', 'TRJ14B', 'TRJ16A', 'TRJ16C', 'TRJ16B', 'TRJ19A', 'TRJ20A', 'TRJ20B', 'TRJ21A', 'TRJ21B', 'TRJ22A', 'TRJ23A', 'TRJ24A', 'TRJ25A', 'TRJ27A', 'TRJ28A', 'TRJ28B', 'TRJ29A', 'TRJ30A', 'TRJ33A', 'TRJ34B', 'TRJ35C', 'TRJ38A', 'TRJ38B', 'TRJ01B']
+
+Sample: AGU01A
+  Valid values: 211
+  First few values: [0.43 0.97 0.97 0.97 1.  ]
+  First valid index: 1800
+
+Sample: AGU01B
+  Valid values: 180
+  First few values: [0.6  1.09 0.56 0.6  0.99]
+  First valid index: 1831
+
+Sample: AGU02A
+  Valid values: 133
+  First few values: [0.69 0.59 0.58 0.73 0.45]
+  First valid index: 1878
+
+Sample: AGU02B
+  Valid values: 202
+  First few values: [0.63 0.48 0.43 0.49 0.35]
+  First valid index: 1809
+
+Sample: AGU03A
+  Valid values: 256
+  First few values: [0.7  0.31 0.31 0.65 0.39]
+  First valid index: 1755
+
+Sample: AGU03B
+  Valid values: 266
+  First few values: [1.45 1.61 1.27 0.92 0.91]
+  First valid index: 1745
+
+Sample: AGU04A
+  Valid values: 275
+  First few values: [0.38 0.33 0.52 0.53 0.78]
+  First valid index: 1736
+
+Sample: AGU04B
+  Valid values: 134
+  First few values: [0.32 0.3  0.13 0.12 0.09]
+  First valid index: 1877
+
+Sample: AGU13A
+  Valid values: 218
+  First few values: [0.02 0.14 0.11 0.36 0.39]
+  First valid index: 1793
+
+Sample: AGU14A
+  Valid values: 274
+  First few values: [0.98 1.39 0.84 1.86 1.08]
+  First valid index: 1737
+
+Sample: AGU14B
+  Valid values: 242
+  First few values: [2.07 1.31 1.5  1.98 3.38]
+  First valid index: 1769
+
+Sample: TRJ01C
+  Valid values: 471
+  First few values: [0.36 0.36 0.25 0.2  0.12]
+  First valid index: 530
+
+Sample: TRJ01D
+  Valid values: 666
+  First few values: [0.25 0.28 0.4  0.26 0.14]
+  First valid index: 530
+
+Sample: TRJ02C
+  Valid values: 1100
+  First few values: [0.23 0.41 0.4  0.27 0.63]
+  First valid index: 761
+
+Sample: TRJ10A
+  Valid values: 647
+  First few values: [1.27 0.66 0.89 0.73 1.14]
+  First valid index: 1169
+
+Sample: TRJ12A
+  Valid values: 637
+  First few values: [0.99 1.01 1.11 2.16 1.98]
+  First valid index: 1098
+
+Sample: TRJ12B
+  Valid values: 705
+  First few values: [0.6  0.65 0.39 0.88 0.4 ]
+  First valid index: 1292
+
+Sample: TRJ12C
+  Valid values: 214
+  First few values: [0.26 0.61 0.51 0.58 0.61]
+  First valid index: 1783
+
+Sample: TRJ14B
+  Valid values: 198
+  First few values: [0.69 0.33 0.86 1.04 0.97]
+  First valid index: 1799
+
+Sample: TRJ16A
+  Valid values: 569
+  First few values: [1.08 0.68 0.21 0.76 0.83]
+  First valid index: 1101
+
+Sample: TRJ16C
+  Valid values: 792
+  First few values: [0.33 0.28 0.35 0.14 0.14]
+  First valid index: 530
+
+Sample: TRJ16B
+  Valid values: 1040
+  First few values: [0.8  0.38 0.23 0.47 0.17]
+  First valid index: 884
+
+Sample: TRJ19A
+  Valid values: 604
+  First few values: [0.58 0.95 0.38 0.88 0.65]
+  First valid index: 1393
+
+Sample: TRJ20A
+  Valid values: 357
+  First few values: [0.5  0.62 0.35 0.19 0.13]
+  First valid index: 1640
+
+Sample: TRJ20B
+  Valid values: 710
+  First few values: [0.64 0.49 0.36 0.45 0.65]
+  First valid index: 1287
+
+Sample: TRJ21A
+  Valid values: 451
+  First few values: [0.52 0.36 0.18 0.35 0.45]
+  First valid index: 765
+
+Sample: TRJ21B
+  Valid values: 376
+  First few values: [0.59 0.39 0.31 0.28 0.5 ]
+  First valid index: 765
+
+Sample: TRJ22A
+  Valid values: 65
+  First few values: [0.4  0.3  0.52 0.25 0.21]
+  First valid index: 530
+
+Sample: TRJ23A
+  Valid values: 821
+  First few values: [2.1  1.97 2.17 0.59 0.69]
+  First valid index: 530
+
+Sample: TRJ24A
+  Valid values: 335
+  First few values: [0.6  0.69 0.96 1.   0.34]
+  First valid index: 1662
+
+Sample: TRJ25A
+  Valid values: 1300
+  First few values: [0.09 0.25 0.11 0.06 0.26]
+  First valid index: 621
+
+Sample: TRJ27A
+  Valid values: 345
+  First few values: [0.51 1.2  1.53 2.57 1.16]
+  First valid index: 756
+
+Sample: TRJ28A
+  Valid values: 581
+  First few values: [0.3  0.31 0.14 0.3  0.37]
+  First valid index: 1416
+
+Sample: TRJ28B
+  Valid values: 828
+  First few values: [0.96 0.5  0.83 0.31 0.64]
+  First valid index: 1169
+
+Sample: TRJ29A
+  Valid values: 998
+  First few values: [0.28 0.23 0.93 0.59 0.4 ]
+  First valid index: 640
+
+Sample: TRJ30A
+  Valid values: 671
+  First few values: [0.63 0.71 1.1  0.62 0.55]
+  First valid index: 530
+
+Sample: TRJ33A
+  Valid values: 571
+  First few values: [0.34 0.36 0.43 0.34 0.47]
+  First valid index: 1100
+
+Sample: TRJ34B
+  Valid values: 312
+  First few values: [0.39 0.33 0.37 0.19 0.22]
+  First valid index: 1685
+
+Sample: TRJ35C
+  Valid values: 278
+  First few values: [0.56 0.31 0.55 0.4  0.32]
+  First valid index: 1719
+
+Sample: TRJ38A
+  Valid values: 351
+  First few values: [0.65 0.51 0.29 0.76 0.17]
+  First valid index: 1424
+
+Sample: TRJ38B
+  Valid values: 424
+  First few values: [0.3  0.28 0.27 0.49 0.47]
+  First valid index: 1351
+
+Sample: TRJ01B
+  Valid values: 197
+  First few values: [0.48 1.   1.   0.98 1.06]
+  First valid index: 1800
+

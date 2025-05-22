@@ -1,0 +1,12 @@
+
+Centralamerica Metadata Summary:
+  Total sites: 8
+  Species represented: 7
+  Top 5 species by count:
+    - Taxodium mucronatum Ten.: 2 sites
+    - Genipa americana L.: 1 sites
+    - Swietenia macrophylla King: 1 sites
+    - Cedrela odorata L.: 1 sites
+    - Jacaranda copaia (Aubl.) D.Don: 1 sites
+  Earliest year: 1515.0
+  Latest year: 2022.0

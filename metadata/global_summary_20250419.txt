@@ -1,0 +1,27 @@
+
+Global ITRDB Metadata Summary:
+  Total sites: 6108
+  Regions represented: 8
+  Sites per region:
+    - northamerica: 3288 sites
+    - europe: 1580 sites
+    - asia: 628 sites
+    - southamerica: 288 sites
+    - australia: 183 sites
+    - africa: 132 sites
+    - centralamerica: 8 sites
+    - atlantic: 1 sites
+  Species represented: 365
+  Top 10 species by count:
+    - Pseudotsuga menziesii (Mirb.) Franco: 446 sites
+    - Pinus sylvestris L.: 438 sites
+    - Picea abies (L.) H. Karst.: 359 sites
+    - Pinus ponderosa Douglas ex C. Lawson: 310 sites
+    - Picea glauca (Moench) Voss: 252 sites
+    - Quercus spp. L.: 148 sites
+    - Quercus alba L.: 138 sites
+    - Tsuga mertensiana (Bong.) CarriÃ¨re: 136 sites
+    - Pinus edulis Engelm.: 131 sites
+    - Abies alba Mill.: 129 sites
+  Earliest year: -6000.0
+  Latest year: 4813.0

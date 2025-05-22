@@ -1,0 +1,12 @@
+
+Europe Metadata Summary:
+  Total sites: 1580
+  Species represented: 56
+  Top 5 species by count:
+    - Picea abies (L.) H. Karst.: 346 sites
+    - Pinus sylvestris L.: 343 sites
+    - Abies alba Mill.: 128 sites
+    - Quercus robur L. = Quercus pendunculata Ehrl.: 116 sites
+    - Fagus sylvatica L.: 112 sites
+  Earliest year: -5407.0
+  Latest year: 4813.0

@@ -1,28 +1,45 @@
-# 使用官方的 Miniconda 基础镜像
-FROM continuumio/miniconda3
+FROM python:3.7-slim
 
-# 设置工作目录
+# Install system dependencies, R and required packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    r-base \
+    r-base-dev \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev \
+    git \
+    build-essential \
+    tk \
+    libx11-6 \
+    libxext-dev \
+    libxrender-dev \
+    libxtst-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install required R packages
+RUN R -e "install.packages(c('dplR', 'ggplot2', 'tidyverse'), repos='https://cran.rstudio.com/')"
+
+# Set environment variables for rpy2
+ENV R_HOME=/usr/lib/R
+ENV LD_LIBRARY_PATH=/usr/lib/R/lib:$LD_LIBRARY_PATH
+
+# Set working directory
 WORKDIR /app
 
-# 复制环境文件和脚本到工作目录
-COPY environment.yml /app/environment.yml
-COPY . /app
+# Copy the Python requirements first (for better layer caching)
+COPY requirements.txt .
 
-# 使用国内源加速 APT 包安装
-RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|http://mirrors.aliyun.com/ubuntu/|g' /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends && \
-    apt-get install -y vim \
-    build-essential \
-    wget \
-    && apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# 创建 Conda 环境并激活
-RUN conda env create -f environment.yml
-RUN echo "source activate tr_env" > ~/.bashrc
-ENV PATH /opt/conda/envs/tr_env/bin:$PATH
+# Copy the application code
+COPY . .
 
+# Create necessary directories if they don't exist
+RUN mkdir -p test_output cache test_cache metadata
 
-# 运行脚本
-CMD ["python", "TR_SNP.py"]
+# Set the DISPLAY variable
+ENV DISPLAY=:0
+
+# Default command
+CMD ["python", "TR_SNP.py"] 

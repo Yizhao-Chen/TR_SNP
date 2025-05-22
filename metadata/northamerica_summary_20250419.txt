@@ -1,0 +1,17 @@
+
+Northamerica Metadata Summary:
+  Total sites: 3288
+  Subdirectories represented: 3
+  Top 5 subdirectories by count:
+    - usa: 2460 sites
+    - canada: 686 sites
+    - mexico: 142 sites
+  Species represented: 148
+  Top 5 species by count:
+    - Pseudotsuga menziesii (Mirb.) Franco: 442 sites
+    - Pinus ponderosa Douglas ex C. Lawson: 310 sites
+    - Picea glauca (Moench) Voss: 252 sites
+    - Quercus alba L.: 138 sites
+    - Tsuga mertensiana (Bong.) CarriÃ¨re: 136 sites
+  Earliest year: -6000.0
+  Latest year: 2024.0

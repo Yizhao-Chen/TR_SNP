@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Test and output files
+test_output/
+test_cache/
+*.log
+cache/
+
+# VS Code settings
+.vscode/ 

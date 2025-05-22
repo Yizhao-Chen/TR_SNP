@@ -1,0 +1,74 @@
+2025-04-30 10:19:13,067 - INFO - 开始处理生物量计算 - 参数配置:
+2025-04-30 10:19:13,067 - INFO - Correction Value: 0, 0, 0
+2025-04-30 10:19:13,068 - INFO - DBH method: -1
+2025-04-30 10:19:13,068 - INFO - Bark method: 0
+2025-04-30 10:19:13,068 - INFO - Output path: D:/TR_SNP_docker/Verson_0415/test_output
+2025-04-30 10:19:13,135 - INFO - 开始处理文件: or092 (Site ID: or092)
+2025-04-30 10:19:13,135 - INFO - 站点信息: Region=usa, Species=JUOC, Lat=43.1667, Lon=-120.8833
+2025-04-30 10:19:13,488 - INFO - Using random values: [0]
+2025-04-30 10:19:13,488 - INFO - Processing random value: 0
+2025-04-30 10:19:13,505 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:14,200 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:15,105 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:16,055 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:17,247 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:18,183 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:19,096 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:20,076 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:21,631 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:23,358 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:24,993 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:26,384 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:27,642 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:29,137 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:30,698 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:31,969 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:33,229 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:34,104 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:35,016 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:36,418 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:37,724 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:38,923 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:40,099 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:41,348 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:42,335 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:43,365 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:44,532 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:45,386 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:46,751 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:47,691 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:49,219 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:50,678 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:51,911 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:53,100 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:54,529 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:55,868 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:57,230 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:58,422 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:19:59,582 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:20:01,128 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:20:02,848 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:20:03,793 - INFO - 已将物种代码 JUOC 映射为拉丁名 Juniperus occidentalis
+2025-04-30 10:20:16,747 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_dia.csv
+2025-04-30 10:20:16,783 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_bio.csv
+2025-04-30 10:20:16,819 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_delta_dia.csv
+2025-04-30 10:20:16,856 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_delta_bio.csv
+2025-04-30 10:20:16,882 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_age.csv
+2025-04-30 10:20:16,915 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_diaa_correction_0_0_0.csv
+2025-04-30 10:20:16,949 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_bioo_correction_0_0_0.csv
+2025-04-30 10:20:16,984 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_delta_diaa_correction_0_0_0.csv
+2025-04-30 10:20:17,020 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_delta_bioo_correction_0_0_0.csv
+2025-04-30 10:20:17,039 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_dia_mean.csv
+2025-04-30 10:20:17,059 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_bio_mean.csv
+2025-04-30 10:20:17,078 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_delta_dia_mean.csv
+2025-04-30 10:20:17,098 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_delta_bio_mean.csv
+2025-04-30 10:20:17,118 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_age_mean.csv
+2025-04-30 10:20:17,138 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_diaa_mean_correction_0_0_0.csv
+2025-04-30 10:20:17,158 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_bioo_mean_correction_0_0_0.csv
+2025-04-30 10:20:17,179 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_delta_diaa_mean_correction_0_0_0.csv
+2025-04-30 10:20:17,199 - INFO - 已保存文件: D:/TR_SNP_docker/Verson_0415/test_output\or092_usa_JUOC_delta_bioo_mean_correction_0_0_0.csv
+2025-04-30 10:20:17,214 - INFO - 绘制了平均生物量曲线: delta_bio_mean_AGU01A
+2025-04-30 10:20:17,573 - INFO - 已保存绘图: D:/TR_SNP_docker/Verson_0415/test_output\delta_bio_plot_or092_usa_JUOC_or092.png
+2025-04-30 10:20:17,600 - INFO - 文件 or092 处理完成, 耗时: 64.47秒
+2025-04-30 10:20:17,600 - INFO - 总进度: 1/1, 预计剩余时间: 0.00秒
+2025-04-30 10:20:17,600 - INFO - 所有文件处理完成, 总耗时: 64.53秒

@@ -1,0 +1,8 @@
+
+Atlantic Metadata Summary:
+  Total sites: 1
+  Species represented: 1
+  Top 5 species by count:
+    - Pinus elliottii Engelm.: 1 sites
+  Earliest year: 1935.0
+  Latest year: 2002.0

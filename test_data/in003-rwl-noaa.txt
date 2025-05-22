@@ -1,0 +1,37 @@
+# Maxwell - Pioneer Mothers Memorial Forest - JGNI - ITRDB IN003
+#----------------------------------------------------------------------- 
+# World Data Service for Paleoclimatology, Boulder 
+# and 
+# NOAA Paleoclimatology Program 
+# National Centers for Environmental Information (NCEI) 
+#----------------------------------------------------------------------- 
+# Template Version 3.0 
+# Encoding: UTF-8 
+
+#------------------- 
+# Title 
+# Study_Name: Maxwell - Pioneer Mothers Memorial Forest - JGNI - ITRDB IN003 
+#------------------- 
+# Investigators: Maxwell, J.T. 
+#------------------- 
+# Description_Notes_and_Keywords 
+# Description: Juglans nigra case study NOAA Template Raw Measurements file added 2020-07-07\. 
+#------------------- 
+# Site Information 
+# Site_Name: Pioneer Mothers Memorial Forest 
+# Location: Indiana 
+# Northernmost_Latitude: 38.536 
+# Southernmost_Latitude: 38.536 
+# Easternmost_Longitude: -86.455 
+# Westernmost_Longitude: -86.455 
+# Elevation: 221 
+#------------------- 
+
+#-------------------- 
+# Species 
+# Species_Name: Juglans nigra
+# Common_Name: Black Walnut
+# Tree_Species_Code: JUNI
+#-------------------- 
+
+# Abstract: The benefit of using multiple species in dendroclimatic reconstructions in the eastern U.S. has been demonstrated. However, the benefit of including rarely-used species in multispecies reconstructions has been little explored. This paper shows the utility of using a rarely-used species in dendrochronology, Juglans nigra, in a multispecies Palmer Drought Severity Index (PDSI) reconstruction at a site in southern Indiana. 
